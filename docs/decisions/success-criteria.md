@@ -1,12 +1,24 @@
-# Phase 1: 90-Day Roadmap for Building an Enterprise-Grade Distributed Agent Framework
+---
+title: "Success Criteria: 10-Dimension Verification Checklist"
+type: decision
+tags: [success-criteria, verification, definition-of-done]
+sources: [raw/papers/memento-skills-2603.18743.md]
+created: 2026-04-07
+updated: 2026-04-08
+status: active
+---
 
-> Goal: Build an enterprise-grade, distributed, multi-agent .NET framework with continual skill self-evolution in 90 days.
+# Success Criteria: 10-Dimension Verification Checklist
+
+> Full acceptance criteria for the enterprise-grade distributed multi-agent .NET framework with skill self-evolution.
 >
-> Scope: Production-first architecture, including distributed execution, governance, security, and measurable self-improvement loops.
+> Each item below must be verified. Items are grouped into 10 dimensions (49 sub-items total).
+>
+> See [[decisions/roadmap]] for layered implementation order.
 
 ## 0. Success Criteria (Definition of Done)
 
-At day 90, every item below must be verified. Items are grouped into 10 dimensions.
+Every item below must be verified. Items are grouped into 10 dimensions.
 
 ### SC-1 Distributed Architecture
 

@@ -1,12 +1,24 @@
-# Phase 1：90 天路线图（构建企业级分布式 Agent Framework）
+---
+title: "成功标准：10 维度验收清单"
+type: decision
+tags: [success-criteria, verification, definition-of-done]
+sources: [raw/papers/memento-skills-2603.18743.md]
+created: 2026-04-07
+updated: 2026-04-08
+status: active
+---
 
-> 目标：在 90 天内构建一个企业级、分布式、多 Agent 协作，并具备技能持续自演化能力的 .NET Agent Framework。
+# 成功标准：10 维度验收清单
+
+> 企业级分布式多 Agent .NET 框架（含技能自演化）的完整验收标准。
 >
-> 范围：以生产可用为前提，覆盖分布式执行、治理、安全、可观测与可量化演进闭环。
+> 以下每一项必须通过验证。按 10 个维度分组（共 49 子项）。
+>
+> 分层实现顺序见 [[decisions/roadmap.zh-CN]]。
 
 ## 0. 成功标准（Definition of Done）
 
-到第 90 天，以下每一项必须通过验证。按 10 个维度分组。
+以下每一项必须通过验证。按 10 个维度分组。
 
 ### SC-1 分布式架构
 
