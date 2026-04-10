@@ -127,31 +127,7 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.3 核心依赖关系
 
-```mermaid
-graph TD
-    MEAI["Microsoft.Extensions.AI.Abstractions<br/>(外部 - Microsoft 官方)"]
-    ABS["AI.Abstractions<br/>AIAgent, AgentResponse, AgentSession"]
-    CORE["AI<br/>ChatClientAgent, Skills, OTel"]
-    OAI["AI.OpenAI"]
-    FDY["AI.Foundry"]
-    ANT["AI.Anthropic"]
-    WF["AI.Workflows"]
-    WFG["AI.Workflows.Generators"]
-    WFD["AI.Workflows.Declarative"]
-    A2A["AI.A2A"]
-    HOST["AI.Hosting"]
-
-    MEAI --> ABS
-    ABS --> CORE
-    CORE --> OAI
-    CORE --> FDY
-    CORE --> ANT
-    CORE --> WF
-    WF --> WFG
-    WF --> WFD
-    CORE --> A2A
-    CORE --> HOST
-```
+![MAF NuGet 包依赖关系](../../images/maf/09-overview-dependency.png)
 
 ---
 

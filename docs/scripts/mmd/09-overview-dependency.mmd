@@ -1,0 +1,23 @@
+graph TD
+    MEAI["Microsoft.Extensions.AI.Abstractions\n(外部 - Microsoft 官方)"]
+    ABS["AI.Abstractions\nAIAgent, AgentResponse, AgentSession"]
+    CORE["AI\nChatClientAgent, Skills, OTel"]
+    OAI["AI.OpenAI"]
+    FDY["AI.Foundry"]
+    ANT["AI.Anthropic"]
+    WF["AI.Workflows"]
+    WFG["AI.Workflows.Generators"]
+    WFD["AI.Workflows.Declarative"]
+    A2A["AI.A2A"]
+    HOST["AI.Hosting"]
+
+    MEAI --> ABS
+    ABS --> CORE
+    CORE --> OAI
+    CORE --> FDY
+    CORE --> ANT
+    CORE --> WF
+    WF --> WFG
+    WF --> WFD
+    CORE --> A2A
+    CORE --> HOST
