@@ -41,11 +41,23 @@ Get-ChildItem "$InputDir\*.mmd" | ForEach-Object {
     $url = "https://mermaid.ink/img/pako:$base64"
 
     $outFile = Join-Path $OutputDir "$name.png"
+    $tmpFile = "$outFile.tmp"
     try {
-        Invoke-WebRequest -Uri $url -OutFile $outFile -UseBasicParsing -UserAgent "Mozilla/5.0"
+        Invoke-WebRequest -Uri $url -OutFile $tmpFile -UseBasicParsing -UserAgent "Mozilla/5.0"
+
+        # mermaid.ink returns JPEG; convert to real PNG via sips (macOS)
+        if ($IsMacOS -or (Test-Path "/usr/bin/sips")) {
+            & sips -s format png $tmpFile --out $outFile 2>&1 | Out-Null
+            Remove-Item $tmpFile -ErrorAction SilentlyContinue
+        } else {
+            Move-Item $tmpFile $outFile -Force
+            Write-Warning "WARN: $name.png is JPEG (sips not available; install ImageMagick or run on macOS)"
+        }
+
         Write-Output "OK: $name.png"
     }
     catch {
+        Remove-Item $tmpFile -ErrorAction SilentlyContinue
         Write-Warning "FAIL: $name - $_"
     }
 }

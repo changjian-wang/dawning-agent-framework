@@ -35,8 +35,10 @@
 
 | 页面 | 说明 | 状态 |
 |------|------|------|
+| [[concepts/llm-fundamentals\|LLM 技术原理]] | Token、API、采样、Function Calling 等基础概念 | active |
+| [[concepts/context-management\|上下文管理]] | 五种上下文管理流派对比 + 双层记忆架构设计 | active |
+| [[concepts/agent-loop\|Agent Loop]] | ReAct / Plan-and-Execute / Reflexion 执行模式 | active |
 | [[concepts/llm-wiki-pattern.zh-CN\|LLM Wiki 模式]] | Karpathy 编译式知识管理 → Memory Plane 映射 | active |
-| [[concepts/llm-fundamentals\|LLM 基础]] | 大语言模型基础知识 | active |
 
 ## 对比分析 (`comparisons/`)
 

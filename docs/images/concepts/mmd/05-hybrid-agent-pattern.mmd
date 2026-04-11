@@ -1,0 +1,20 @@
+flowchart TD
+    Orch["Orchestrator Agent\n(Plan-and-Execute)"]
+    S1["Step 1 → Sub-Agent A\n(ReAct)"]
+    S2["Step 2 → Sub-Agent B\n(ReAct)"]
+    S3["Step 3 → Sub-Agent C\n(ReAct + Reflexion)"]
+    A1["Attempt 1 → 失败"]
+    A2["Attempt 2 → 反思后成功"]
+
+    Orch --> S1
+    Orch --> S2
+    Orch --> S3
+    S3 --> A1
+    A1 -->|"反思"| A2
+
+    style Orch fill:#e3f2fd,stroke:#1565c0
+    style S1 fill:#e8f5e9,stroke:#2e7d32
+    style S2 fill:#e8f5e9,stroke:#2e7d32
+    style S3 fill:#fff3e0,stroke:#e65100
+    style A1 fill:#fce4ec,stroke:#c62828
+    style A2 fill:#e8f5e9,stroke:#2e7d32
