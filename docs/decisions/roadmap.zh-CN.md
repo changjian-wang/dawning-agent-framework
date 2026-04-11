@@ -21,23 +21,7 @@ status: active
 
 ## 依赖图
 
-```
-L0  LLM Provider 抽象
- │
-L1  Agent 循环与 Tool 协议
- │
-L2  记忆系统 ─────────────────────┐
- │                                │
-L3  多 Agent 编排 ────────────────┤
- │                                │
-L4  技能路由器（Read Phase）──────┘
- │
-L5  技能演化（Write Phase）
- │
-L6  分布式架构（三面体）
- │
-L7  治理、合规与可观测性
-```
+![Layer 依赖图](../images/decisions/06-layer-dependency.png)
 
 ---
 

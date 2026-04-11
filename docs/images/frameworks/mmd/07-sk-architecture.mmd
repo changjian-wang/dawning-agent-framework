@@ -1,0 +1,32 @@
+graph TB
+    subgraph SK["Semantic Kernel"]
+        direction TB
+        subgraph APPS["Applications"]
+        end
+        subgraph AF["Agent Framework + Agents"]
+        end
+        subgraph MID["Planners & Process"]
+            direction LR
+            PLAN["Planners"]
+            PF["Process Framework"]
+        end
+        subgraph KERNEL["Kernel"]
+            direction LR
+            PLUG["Plugins"]
+            MEM["Memory"]
+            CONN["Connectors"]
+        end
+        subgraph AI["AI Services（LLMs）<br/>OpenAI · Azure OpenAI · HuggingFace<br/>Ollama · NVIDIA NIM · LMStudio · ONNX"]
+        end
+    end
+
+    APPS --> AF --> MID --> KERNEL --> AI
+
+    style APPS fill:#e3f2fd,stroke:#1565c0
+    style AF fill:#e3f2fd,stroke:#1565c0
+    style MID fill:#e8f5e9,stroke:#2e7d32
+    style KERNEL fill:#fff3e0,stroke:#e65100
+    style AI fill:#fce4ec,stroke:#c62828
+    style PLUG fill:#fff9c4,stroke:#f9a825
+    style MEM fill:#fff9c4,stroke:#f9a825
+    style CONN fill:#fff9c4,stroke:#f9a825

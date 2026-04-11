@@ -1,0 +1,24 @@
+graph TB
+    subgraph HOSTING["Hosting 层<br/>Hosting.A2A.AspNetCore · Hosting.AzureFunctions<br/>Hosting.AGUI.AspNetCore · Hosting.OpenAI"]
+    end
+    subgraph PROVIDER["Provider 层<br/>AI.Foundry · AI.OpenAI · AI.Anthropic<br/>AI.CopilotStudio · AI.GitHub.Copilot"]
+    end
+    subgraph WORKFLOW["Workflow 层<br/>AI.Workflows · AI.Workflows.Generators<br/>AI.Workflows.Declarative(.Foundry/.Mcp)"]
+    end
+    subgraph EXT["功能扩展层<br/>AI.A2A · AI.AGUI · AI.DurableTask<br/>AI.DevUI · AI.Mem0 · AI.Purview<br/>AI.CosmosNoSql · AI.AzureAI.Persistent · AI.FoundryMemory"]
+    end
+    subgraph CORE["Core 层<br/>Microsoft.Agents.AI<br/>（ChatClientAgent, Skills, Compaction, Memory,<br/>OpenTelemetry, Logging, Middleware）"]
+    end
+    subgraph ABS["Abstractions 层<br/>Microsoft.Agents.AI.Abstractions<br/>（AIAgent, AgentResponse, AgentSession, AIContext）"]
+    end
+    MEAI["Microsoft.Extensions.AI.Abstractions<br/>（外部依赖）"]
+
+    HOSTING --> PROVIDER --> WORKFLOW --> EXT --> CORE --> ABS --> MEAI
+
+    style HOSTING fill:#f3e5f5,stroke:#6a1b9a
+    style PROVIDER fill:#e3f2fd,stroke:#1565c0
+    style WORKFLOW fill:#e8f5e9,stroke:#2e7d32
+    style EXT fill:#fff3e0,stroke:#e65100
+    style CORE fill:#fce4ec,stroke:#c62828
+    style ABS fill:#fff9c4,stroke:#f9a825
+    style MEAI fill:#f5f5f5,stroke:#666

@@ -56,40 +56,7 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.1 分层架构
 
-```
-┌──────────────────────────────────────────────────────┐
-│                   Hosting 层                          │
-│  Hosting.A2A.AspNetCore  Hosting.AzureFunctions      │
-│  Hosting.AGUI.AspNetCore  Hosting.OpenAI              │
-├──────────────────────────────────────────────────────┤
-│                  Provider 层                          │
-│  AI.Foundry   AI.OpenAI   AI.Anthropic               │
-│  AI.CopilotStudio   AI.GitHub.Copilot                │
-├──────────────────────────────────────────────────────┤
-│                 Workflow 层                           │
-│  AI.Workflows   AI.Workflows.Generators              │
-│  AI.Workflows.Declarative(.Foundry/.Mcp)             │
-├──────────────────────────────────────────────────────┤
-│                 功能扩展层                             │
-│  AI.A2A   AI.AGUI   AI.DurableTask                   │
-│  AI.DevUI   AI.Mem0   AI.Purview                     │
-│  AI.CosmosNoSql   AI.AzureAI.Persistent              │
-│  AI.FoundryMemory                                    │
-├──────────────────────────────────────────────────────┤
-│                  Core 层                              │
-│  Microsoft.Agents.AI                                 │
-│  (ChatClientAgent, Skills, Compaction, Memory,       │
-│   OpenTelemetry, Logging, Middleware)                 │
-├──────────────────────────────────────────────────────┤
-│               Abstractions 层                         │
-│  Microsoft.Agents.AI.Abstractions                    │
-│  (AIAgent, AgentResponse, AgentSession, AIContext)    │
-└──────────────────────────────────────────────────────┘
-                        │
-                        ▼
-          Microsoft.Extensions.AI.Abstractions
-                   （外部依赖）
-```
+![MAF NuGet 包分层架构](../../images/maf/10-nuget-package-layers.png)
 
 ### 2.2 完整包清单
 

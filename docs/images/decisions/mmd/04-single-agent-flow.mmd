@@ -1,0 +1,19 @@
+flowchart TD
+    INPUT["用户输入<br/>&quot;查询最近的订单并发送邮件&quot;"]
+    RECALL["0. 检索长期记忆<br/>recall('订单 邮件') → 注入相关历史知识"]
+    BUILD["1. 构建消息列表<br/>system prompt + 记忆上下文 + user message + 历史消息"]
+    LLM["2. 调用 LLM<br/>发送 messages + tools 定义"]
+    CHECK{"3. 检查响应类型"}
+    TOOL["4. 执行工具"]
+    RESULT["5. 将结果加入消息"]
+    ANSWER["6. 返回最终答案"]
+    EXTRACT["7. extract_memories()<br/>→ 存入长期记忆"]
+
+    INPUT --> RECALL --> BUILD --> LLM --> CHECK
+    CHECK -->|有 tool_calls| TOOL --> RESULT --> LLM
+    CHECK -->|有 content| ANSWER --> EXTRACT
+
+    style INPUT fill:#fff9c4,stroke:#f9a825
+    style CHECK fill:#f3e5f5,stroke:#6a1b9a
+    style ANSWER fill:#e8f5e9,stroke:#2e7d32
+    style EXTRACT fill:#e8f5e9,stroke:#2e7d32

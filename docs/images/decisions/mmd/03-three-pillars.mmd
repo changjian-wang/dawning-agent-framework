@@ -1,0 +1,12 @@
+graph TB
+    MA["多 Agent 协作"]
+    MEM["长期记忆"]
+    DIST["分布式 Agent"]
+
+    MA <-->|Agent 之间通过共享记忆交换知识| MEM
+    MA <-->|需要分布式运行| DIST
+    MEM <-->|需要远程存储| DIST
+
+    style MA fill:#e3f2fd,stroke:#1565c0
+    style MEM fill:#e8f5e9,stroke:#2e7d32
+    style DIST fill:#fff3e0,stroke:#e65100

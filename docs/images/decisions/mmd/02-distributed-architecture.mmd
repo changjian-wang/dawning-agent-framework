@@ -1,0 +1,22 @@
+graph LR
+    subgraph PA["进程 A（Web 服务器）"]
+        A1["接待 Agent<br/>（接收用户请求）"]
+    end
+    subgraph PB["进程 B（GPU 机器）"]
+        B1["分析 Agent<br/>（需要 GPU）"]
+    end
+    subgraph PC["进程 C（安全沙箱）"]
+        C1["执行 Agent<br/>（高权限操作）"]
+    end
+    subgraph SHARED["共享长期记忆<br/>（Redis / PostgreSQL+pgvector）"]
+    end
+
+    A1 -->|msg| B1 -->|msg| C1
+    A1 --> SHARED
+    B1 --> SHARED
+    C1 --> SHARED
+
+    style PA fill:#e3f2fd,stroke:#1565c0
+    style PB fill:#e8f5e9,stroke:#2e7d32
+    style PC fill:#fff3e0,stroke:#e65100
+    style SHARED fill:#fce4ec,stroke:#c62828

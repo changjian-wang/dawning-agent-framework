@@ -1,0 +1,25 @@
+graph TB
+    subgraph ROOT["Root Agent<br/>（Coordinator / Orchestrator）"]
+        direction TB
+        subgraph AGENTS["Sub-Agents"]
+            direction LR
+            subgraph A["Sub-Agent A<br/>（Researcher）"]
+                A1["Sub-Agent A.1"]
+            end
+            subgraph B["Sub-Agent B<br/>（Writer）"]
+                B1["Tools"]
+            end
+        end
+        subgraph SESSION["Session Management<br/>（State, History, Context）"]
+        end
+        subgraph MODEL["Model Layer（Gemini / Others）"]
+        end
+    end
+
+    AGENTS --> SESSION --> MODEL
+
+    style ROOT fill:#f5f5f5,stroke:#333
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e8f5e9,stroke:#2e7d32
+    style SESSION fill:#fff3e0,stroke:#e65100
+    style MODEL fill:#fce4ec,stroke:#c62828

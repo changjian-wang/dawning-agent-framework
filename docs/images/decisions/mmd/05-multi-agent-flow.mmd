@@ -1,0 +1,38 @@
+flowchart TD
+    INPUT["用户: &quot;分析项目代码质量并修复关键 bug&quot;"]
+    ORCH["Orchestrator<br/>决定任务分解和调度顺序"]
+
+    subgraph AUDIT["1. 审计 Agent（可能在 GPU 机器上）"]
+        AU1["recall() 上次审计的发现"]
+        AU2["分析代码，发现 5 个问题"]
+        AU3["remember() 存入发现"]
+        AU4["返回结果给 Orchestrator"]
+        AU1 --> AU2 --> AU3 --> AU4
+    end
+
+    subgraph FIX["2. 修复 Agent（可能在开发沙箱中）"]
+        FX1["recall() 审计 Agent 的发现"]
+        FX2["逐个修复"]
+        FX3["remember() 存入修复结果"]
+        FX4["返回结果给 Orchestrator"]
+        FX1 --> FX2 --> FX3 --> FX4
+    end
+
+    subgraph TEST["3. 测试 Agent"]
+        TE1["recall() 修复了什么"]
+        TE2["生成测试，运行验证"]
+        TE3["返回最终报告"]
+        TE1 --> TE2 --> TE3
+    end
+
+    INPUT --> ORCH
+    ORCH --> AUDIT
+    ORCH --> FIX
+    ORCH --> TEST
+
+    AUDIT --> FIX --> TEST
+
+    style ORCH fill:#f3e5f5,stroke:#6a1b9a
+    style AUDIT fill:#e3f2fd,stroke:#1565c0
+    style FIX fill:#e8f5e9,stroke:#2e7d32
+    style TEST fill:#fff3e0,stroke:#e65100

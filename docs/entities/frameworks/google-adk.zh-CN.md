@@ -39,27 +39,7 @@ Google ADK 是 Google 在 2025 年推出的代码优先 Agent 开发框架。它
 
 ### 2.1 层级式 Agent 架构
 
-```
-┌─────────────────────────────────────┐
-│           Root Agent                │
-│  (Coordinator / Orchestrator)       │
-│                                     │
-│  ┌──────────────┐ ┌──────────────┐  │
-│  │  Sub-Agent A │ │  Sub-Agent B │  │
-│  │  (Researcher)│ │  (Writer)    │  │
-│  │              │ │              │  │
-│  │  ┌─────────┐│ │  ┌─────────┐ │  │
-│  │  │Sub-Agent││ │  │  Tools   │ │  │
-│  │  │  A.1    ││ │  └─────────┘ │  │
-│  │  └─────────┘│ │              │  │
-│  └──────────────┘ └──────────────┘  │
-├─────────────────────────────────────┤
-│        Session Management            │
-│   (State, History, Context)          │
-├─────────────────────────────────────┤
-│     Model Layer (Gemini / Others)    │
-└─────────────────────────────────────┘
-```
+![Google ADK 层级式 Agent 架构](../../images/frameworks/02-google-adk-hierarchy.png)
 
 ### 2.2 Agent 定义
 
@@ -119,11 +99,7 @@ ADK 提供丰富的工具类型：
 
 ADK 是 A2A 协议的原生支持者之一：
 
-```
-Agent A (ADK)  ←── A2A Protocol ──→  Agent B (MAF)
-                                      Agent C (Pydantic AI)
-                                      Agent D (Any A2A-compatible)
-```
+![A2A 协议集成](../../images/frameworks/03-google-adk-a2a.png)
 
 **A2A 能力**：
 - 跨框架 Agent 发现

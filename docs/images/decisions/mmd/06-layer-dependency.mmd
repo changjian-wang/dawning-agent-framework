@@ -1,0 +1,28 @@
+graph TB
+    L0["L0 LLM Provider 抽象"]
+    L1["L1 Agent 循环与 Tool 协议"]
+    L2["L2 记忆系统"]
+    L3["L3 多 Agent 编排"]
+    L4["L4 技能路由器（Read Phase）"]
+    L5["L5 技能演化（Write Phase）"]
+    L6["L6 分布式架构（三面体）"]
+    L7["L7 治理、合规与可观测性"]
+
+    L0 --> L1
+    L1 --> L2
+    L1 --> L3
+    L1 --> L4
+    L2 --> L5
+    L3 --> L5
+    L4 --> L5
+    L5 --> L6
+    L6 --> L7
+
+    style L0 fill:#e3f2fd,stroke:#1565c0
+    style L1 fill:#e3f2fd,stroke:#1565c0
+    style L2 fill:#e8f5e9,stroke:#2e7d32
+    style L3 fill:#e8f5e9,stroke:#2e7d32
+    style L4 fill:#e8f5e9,stroke:#2e7d32
+    style L5 fill:#fff3e0,stroke:#e65100
+    style L6 fill:#fce4ec,stroke:#c62828
+    style L7 fill:#f3e5f5,stroke:#6a1b9a

@@ -1,0 +1,20 @@
+graph TB
+    subgraph SG["State Graph"]
+        direction TB
+        A["Node A"] --> B["Node B"]
+        B --> C["Node C"]
+        B --> D["Node D"]
+        STATE["State: { messages, context, ... }"]
+    end
+    subgraph CP["Checkpoint Store<br/>（SQLite / PostgreSQL / Custom）"]
+    end
+
+    SG --> CP
+
+    style SG fill:#f5f5f5,stroke:#333
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e3f2fd,stroke:#1565c0
+    style C fill:#e3f2fd,stroke:#1565c0
+    style D fill:#e3f2fd,stroke:#1565c0
+    style STATE fill:#fff9c4,stroke:#f9a825
+    style CP fill:#e8f5e9,stroke:#2e7d32

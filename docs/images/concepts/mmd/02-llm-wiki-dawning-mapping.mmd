@@ -1,0 +1,33 @@
+graph LR
+    subgraph LW["LLM Wiki"]
+        S1["Schema（模式定义）"]
+        S2["Wiki（编译产物）"]
+        S3["Raw Sources（原始资料）"]
+        S4["Ingest（摄入）"]
+        S5["Query（查询）"]
+        S6["Lint（健康检查）"]
+        S7["index.md（内容索引）"]
+        S8["log.md（操作日志）"]
+    end
+    subgraph DAF["Dawning Agent Framework"]
+        D1["控制面 / IMemorySchema"]
+        D2["记忆面 / Compiled Knowledge Store"]
+        D3["记忆面 / Raw Knowledge Store"]
+        D4["IKnowledgeCompiler.IngestAsync()"]
+        D5["IKnowledgeQuery.SearchAsync()"]
+        D6["IKnowledgeMaintenance.LintAsync()"]
+        D7["IKnowledgeIndex → IVectorStore"]
+        D8["审计日志 / IKnowledgeLog"]
+    end
+
+    S1 --> D1
+    S2 --> D2
+    S3 --> D3
+    S4 --> D4
+    S5 --> D5
+    S6 --> D6
+    S7 --> D7
+    S8 --> D8
+
+    style LW fill:#f5f5f5,stroke:#333
+    style DAF fill:#f5f5f5,stroke:#333

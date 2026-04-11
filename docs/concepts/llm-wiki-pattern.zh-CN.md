@@ -24,19 +24,7 @@ Obsidian 是 IDE；LLM 是程序员；Wiki 是代码库。
 
 ## 2. 三层架构
 
-```
-┌─────────────────────────────────────────────┐
-│              Schema（模式定义）                │
-│  CLAUDE.md / AGENTS.md — 结构约定、工作流规则    │
-├─────────────────────────────────────────────┤
-│              Wiki（编译产物）                   │
-│  Markdown 文件集 — 摘要、实体页、概念页、综述      │
-│  index.md（内容目录）+ log.md（操作日志）         │
-├─────────────────────────────────────────────┤
-│           Raw Sources（原始资料）               │
-│  不可变的文章、论文、数据文件 — LLM 只读不写       │
-└─────────────────────────────────────────────┘
-```
+![LLM Wiki 三层架构](../images/concepts/01-llm-wiki-three-layer.png)
 
 | 层 | 所有者 | 可变性 | 说明 |
 |---|--------|--------|------|
@@ -115,18 +103,7 @@ Obsidian 是 IDE；LLM 是程序员；Wiki 是代码库。
 
 LLM Wiki 的三层架构可以直接映射到 Dawning 的三面分布式架构：
 
-```
-LLM Wiki                      Dawning Agent Framework
-─────────────                  ──────────────────────────
-Schema（模式定义）     ───→     控制面 / IMemorySchema
-Wiki（编译产物）       ───→     记忆面 / Compiled Knowledge Store
-Raw Sources（原始资料）───→     记忆面 / Raw Knowledge Store
-Ingest（摄入）         ───→     IKnowledgeCompiler.IngestAsync()
-Query（查询）          ───→     IKnowledgeQuery.SearchAsync()
-Lint（健康检查）       ───→     IKnowledgeMaintenance.LintAsync()
-index.md（内容索引）   ───→     IKnowledgeIndex（小规模 → IVectorStore 大规模）
-log.md（操作日志）     ───→     审计日志 / IKnowledgeLog
-```
+![LLM Wiki → Dawning Agent Framework 架构映射](../images/concepts/02-llm-wiki-dawning-mapping.png)
 
 ### 7.2 接口设计启示
 

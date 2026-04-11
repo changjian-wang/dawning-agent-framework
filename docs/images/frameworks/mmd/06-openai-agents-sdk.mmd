@@ -1,0 +1,31 @@
+graph TB
+    subgraph SDK["OpenAI Agents SDK"]
+        direction TB
+        subgraph AGENT["Agent"]
+            A1["name"]
+            A2["instructions"]
+            A3["tools（函数工具）"]
+            A4["handoffs（移交目标）"]
+            A5["guardrails（护栏）"]
+            A6["model（LLM 模型）"]
+        end
+        subgraph RUNNER["Runner"]
+            R1["1. 调用 LLM"]
+            R2["2. 解析工具调用"]
+            R3["3. 执行工具"]
+            R4["4. 处理移交"]
+            R5["5. 重复直到完成"]
+            R1 --> R2 --> R3 --> R4 --> R5
+        end
+        subgraph TRACE["Trace"]
+            T1["每次执行自动追踪"]
+            T2["可视化 UI 查看"]
+            T3["可导出到外部系统"]
+        end
+    end
+
+    AGENT --> RUNNER --> TRACE
+
+    style AGENT fill:#e3f2fd,stroke:#1565c0
+    style RUNNER fill:#e8f5e9,stroke:#2e7d32
+    style TRACE fill:#fff3e0,stroke:#e65100
