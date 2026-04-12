@@ -56,7 +56,7 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.1 分层架构
 
-![MAF NuGet 包分层架构](../../images/maf/10-nuget-package-layers.png)
+![MAF NuGet 包分层架构](../../../images/maf/10-nuget-package-layers.png)
 
 ### 2.2 完整包清单
 
@@ -94,7 +94,7 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.3 核心依赖关系
 
-![MAF NuGet 包依赖关系](../../images/maf/09-overview-dependency.png)
+![MAF NuGet 包依赖关系](../../../images/maf/09-overview-dependency.png)
 
 ---
 

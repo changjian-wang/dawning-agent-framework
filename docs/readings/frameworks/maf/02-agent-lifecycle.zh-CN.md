@@ -19,7 +19,7 @@ status: active
 
 ## 1. 生命周期全景
 
-![ChatClientAgent 生命周期全景](../../images/maf/01-lifecycle-overview.png)
+![ChatClientAgent 生命周期全景](../../../images/maf/01-lifecycle-overview.png)
 
 ---
 
@@ -107,7 +107,7 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 当 `UseProvidedChatClientAsIs = false`（默认）时，`WithDefaultAgentMiddleware` 自动包装：
 
-![IChatClient 中间件管道](../../images/maf/02-chatclient-pipeline.png)
+![IChatClient 中间件管道](../../../images/maf/02-chatclient-pipeline.png)
 
 **关键发现**：MAF 的 **Agent Loop（tool calling 循环）不在 `ChatClientAgent` 中**！它被委托给了 `FunctionInvokingChatClient`（M.E.AI 提供）。`ChatClientAgent` 只做一次 `GetResponseAsync` 调用，`FunctionInvokingChatClient` 内部处理多轮 tool → LLM 循环。
 
@@ -122,13 +122,13 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 ### 3.1 非流式（RunCoreAsync）
 
-![RunCoreAsync 完整流程](../../images/maf/03-run-core-async.png)
+![RunCoreAsync 完整流程](../../../images/maf/03-run-core-async.png)
 
 ### 3.2 流式（RunCoreStreamingAsync）
 
 流式版本结构类似，但有额外的复杂度：
 
-![RunCoreStreamingAsync 流程](../../images/maf/04-run-streaming.png)
+![RunCoreStreamingAsync 流程](../../../images/maf/04-run-streaming.png)
 
 **流式特殊处理**：
 - 每次 `yield return` 后，调用方执行期间 `CurrentRunContext` 可能被污染，所以每次 `MoveNextAsync` 前都要 `EnsureRunContextHasSession`
@@ -141,7 +141,7 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 `CreateConfiguredChatOptions` 实现了三层优先级合并：
 
-![ChatOptions 三层优先级合并](../../images/maf/05-chatoptions-merge.png)
+![ChatOptions 三层优先级合并](../../../images/maf/05-chatoptions-merge.png)
 
 具体合并规则：
 
@@ -264,11 +264,11 @@ builder.UseAIContextProviders(new TextSearchProvider(searchClient))
 
 ### 7.1 成功路径
 
-![Provider 通知 — 成功路径](../../images/maf/06-notify-success.png)
+![Provider 通知 — 成功路径](../../../images/maf/06-notify-success.png)
 
 ### 7.2 失败路径
 
-![Provider 通知 — 失败路径](../../images/maf/07-notify-failure.png)
+![Provider 通知 — 失败路径](../../../images/maf/07-notify-failure.png)
 
 ### 7.3 Per-Service-Call 持久化
 
