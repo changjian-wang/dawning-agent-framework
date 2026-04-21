@@ -29,9 +29,9 @@ status: active
 
 ## 2. 三种部署形态
 
-![三种部署形态对比](./diagrams/platform-deployment.png)
+![三种部署形态对比](../diagrams/platform-deployment.png)
 
-> 源文件：[`diagrams/platform-deployment.mmd`](./diagrams/platform-deployment.mmd)
+> 源文件：[`diagrams/platform-deployment.mmd`](../diagrams/platform-deployment.mmd)
 
 | 形态 | 谁运维 | 用什么 | 适合 |
 |------|-------|-------|------|

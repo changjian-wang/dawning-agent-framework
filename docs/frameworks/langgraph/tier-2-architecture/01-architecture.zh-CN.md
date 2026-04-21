@@ -29,9 +29,9 @@ status: active
 
 ### 1.1 分层总览（只看层 + 关键方向）
 
-![LangGraph 模块分层 stack](./diagrams/module-map.png)
+![LangGraph 模块分层 stack](../diagrams/module-map.png)
 
-> 源文件：[`diagrams/module-map.mmd`](./diagrams/module-map.mmd)
+> 源文件：[`diagrams/module-map.mmd`](../diagrams/module-map.mmd)
 
 每层**一句话职责**：
 
@@ -48,9 +48,9 @@ status: active
 
 分层图不展开运行时细节。真要看 Pregel 内部，用这张：
 
-![LangGraph 运行时内部](./diagrams/stream-lifecycle.png)
+![LangGraph 运行时内部](../diagrams/stream-lifecycle.png)
 
-> 源文件：[`diagrams/stream-lifecycle.mmd`](./diagrams/stream-lifecycle.mmd)
+> 源文件：[`diagrams/stream-lifecycle.mmd`](../diagrams/stream-lifecycle.mmd)
 
 ### 1.3 Channel 家族一览（不进图）
 
@@ -99,9 +99,9 @@ status: active
 
 以下是 `app.stream(input, config, stream_mode="updates")` 的高层时序：
 
-![LangGraph 运行生命周期](./diagrams/run-lifecycle.png)
+![LangGraph 运行生命周期](../diagrams/run-lifecycle.png)
 
-> 源文件：[`diagrams/run-lifecycle.mmd`](./diagrams/run-lifecycle.mmd)
+> 源文件：[`diagrams/run-lifecycle.mmd`](../diagrams/run-lifecycle.mmd)
 
 重点：
 - 每 superstep 先从 **channels 版本** 选出激活节点（类 Pregel 超步语义）
@@ -137,9 +137,9 @@ class State(TypedDict):
 
 BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价于"一个回合"：
 
-![LangGraph BSP 超步状态机](./diagrams/bsp-superstep.png)
+![LangGraph BSP 超步状态机](../diagrams/bsp-superstep.png)
 
-> 源文件：[`diagrams/bsp-superstep.mmd`](./diagrams/bsp-superstep.mmd)
+> 源文件：[`diagrams/bsp-superstep.mmd`](../diagrams/bsp-superstep.mmd)
 
 这意味着：
 - 并发安全性靠 **barrier + reducer** 保证，而不是锁
@@ -164,9 +164,9 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 7. 持久化分层
 
-![LangGraph 持久化分层](./diagrams/checkpoint-stack.png)
+![LangGraph 持久化分层](../diagrams/checkpoint-stack.png)
 
-> 源文件：[`diagrams/checkpoint-stack.mmd`](./diagrams/checkpoint-stack.mmd)
+> 源文件：[`diagrams/checkpoint-stack.mmd`](../diagrams/checkpoint-stack.mmd)
 
 - `Saver` 只管**写读+版本**；序列化独立
 - `Serde` 默认 msgpack，可换 JSON（调试友好）
@@ -192,9 +192,9 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 9. 模块依赖 DAG
 
-![LangGraph 模块依赖 DAG](./diagrams/module-deps.png)
+![LangGraph 模块依赖 DAG](../diagrams/module-deps.png)
 
-> 源文件：[`diagrams/module-deps.mmd`](./diagrams/module-deps.mmd)
+> 源文件：[`diagrams/module-deps.mmd`](../diagrams/module-deps.mmd)
 
 - 无循环依赖
 - `types` 是"词汇表"层，最干净

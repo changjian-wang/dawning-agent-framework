@@ -38,9 +38,9 @@ status: active
 
 ## 3. 全家福
 
-![Prebuilt Agents 全家福](./diagrams/prebuilt-family.png)
+![Prebuilt Agents 全家福](../diagrams/prebuilt-family.png)
 
-> 源文件：[`diagrams/prebuilt-family.mmd`](./diagrams/prebuilt-family.mmd)
+> 源文件：[`diagrams/prebuilt-family.mmd`](../diagrams/prebuilt-family.mmd)
 
 | API | 范式 | 适合 |
 |-----|------|------|
@@ -73,9 +73,9 @@ agent.invoke({"messages": [HumanMessage("最新汇率？")]})
 
 ### 4.2 内部图
 
-![ReAct Agent 内部图](./diagrams/prebuilt-react.png)
+![ReAct Agent 内部图](../diagrams/prebuilt-react.png)
 
-> 源文件：[`diagrams/prebuilt-react.mmd`](./diagrams/prebuilt-react.mmd)
+> 源文件：[`diagrams/prebuilt-react.mmd`](../diagrams/prebuilt-react.mmd)
 
 ```python
 # chat_agent_executor.py 简化
@@ -194,9 +194,9 @@ supervisor = create_supervisor(
 
 ### 6.2 内部图
 
-![Supervisor 内部图](./diagrams/prebuilt-supervisor.png)
+![Supervisor 内部图](../diagrams/prebuilt-supervisor.png)
 
-> 源文件：[`diagrams/prebuilt-supervisor.mmd`](./diagrams/prebuilt-supervisor.mmd)
+> 源文件：[`diagrams/prebuilt-supervisor.mmd`](../diagrams/prebuilt-supervisor.mmd)
 
 每个 worker 暴露为 supervisor 的工具：
 - supervisor 是个 `create_react_agent`，工具是 `transfer_to_search_agent` / `transfer_to_write_agent` 这样的"handoff tool"

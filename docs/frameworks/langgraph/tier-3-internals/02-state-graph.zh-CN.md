@@ -63,9 +63,9 @@ print(app.invoke({"counter": 0, "last": ""}))
 
 ## 3. 类层次
 
-![StateGraph 类层次](./diagrams/state-graph-class.png)
+![StateGraph 类层次](../diagrams/state-graph-class.png)
 
-> 源文件：[`diagrams/state-graph-class.mmd`](./diagrams/state-graph-class.mmd)
+> 源文件：[`diagrams/state-graph-class.mmd`](../diagrams/state-graph-class.mmd)
 
 - **`Graph`**：纯结构（节点 + 边），不带 state schema。`MessageGraph` 走这条
 - **`StateGraph`**：在 `Graph` 之上叠加"State schema → Channels"翻译
@@ -182,9 +182,9 @@ def __init__(self, state_schema=None, config_schema=None, *,
 
 ## 6. `compile()`：从账本到 Pregel
 
-![StateGraph.compile() 编译时序](./diagrams/state-graph-compile.png)
+![StateGraph.compile() 编译时序](../diagrams/state-graph-compile.png)
 
-> 源文件：[`diagrams/state-graph-compile.mmd`](./diagrams/state-graph-compile.mmd)
+> 源文件：[`diagrams/state-graph-compile.mmd`](../diagrams/state-graph-compile.mmd)
 
 ### 6.1 编译做的 6 件事
 

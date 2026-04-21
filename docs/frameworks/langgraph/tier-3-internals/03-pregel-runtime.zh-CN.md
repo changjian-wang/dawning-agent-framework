@@ -42,9 +42,9 @@ status: active
 
 ## 3. 模块结构
 
-![Pregel 内部模块](./diagrams/pregel-modules.png)
+![Pregel 内部模块](../diagrams/pregel-modules.png)
 
-> 源文件：[`diagrams/pregel-modules.mmd`](./diagrams/pregel-modules.mmd)
+> 源文件：[`diagrams/pregel-modules.mmd`](../diagrams/pregel-modules.mmd)
 
 | 文件 | 职责 |
 |------|------|
@@ -91,9 +91,9 @@ class Pregel(Runnable):
 
 ## 5. 单次超步的内部时序
 
-![Pregel 超步内部](./diagrams/pregel-tick.png)
+![Pregel 超步内部](../diagrams/pregel-tick.png)
 
-> 源文件：[`diagrams/pregel-tick.mmd`](./diagrams/pregel-tick.mmd)
+> 源文件：[`diagrams/pregel-tick.mmd`](../diagrams/pregel-tick.mmd)
 
 ### 5.1 PregelLoop.tick — 准备
 
@@ -208,9 +208,9 @@ def apply_writes(checkpoint, channels, tasks, get_next_version):
 
 ## 6. 并发模型
 
-![Pregel 并发执行模型](./diagrams/pregel-executor.png)
+![Pregel 并发执行模型](../diagrams/pregel-executor.png)
 
-> 源文件：[`diagrams/pregel-executor.mmd`](./diagrams/pregel-executor.mmd)
+> 源文件：[`diagrams/pregel-executor.mmd`](../diagrams/pregel-executor.mmd)
 
 | Mode | 执行器 | 适合 |
 |------|-------|------|
@@ -230,9 +230,9 @@ def apply_writes(checkpoint, channels, tasks, get_next_version):
 
 ## 7. Checkpoint 与超步的关系
 
-![Pregel 与 Checkpoint 交互](./diagrams/pregel-checkpoint.png)
+![Pregel 与 Checkpoint 交互](../diagrams/pregel-checkpoint.png)
 
-> 源文件：[`diagrams/pregel-checkpoint.mmd`](./diagrams/pregel-checkpoint.mmd)
+> 源文件：[`diagrams/pregel-checkpoint.mmd`](../diagrams/pregel-checkpoint.mmd)
 
 每个 superstep 产生 **2 个** checkpoint：
 

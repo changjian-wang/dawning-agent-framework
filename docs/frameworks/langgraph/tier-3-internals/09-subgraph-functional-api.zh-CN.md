@@ -95,9 +95,9 @@ parent_builder.add_conditional_edges("planner", fan_out, ["sub"])
 
 ## 3. 父子图 state 流动
 
-![父子图 state 流动](./diagrams/subgraph-state-flow.png)
+![父子图 state 流动](../diagrams/subgraph-state-flow.png)
 
-> 源文件：[`diagrams/subgraph-state-flow.mmd`](./diagrams/subgraph-state-flow.mmd)
+> 源文件：[`diagrams/subgraph-state-flow.mmd`](../diagrams/subgraph-state-flow.mmd)
 
 ---
 
@@ -195,9 +195,9 @@ result = workflow.invoke("最新汇率", config)
 
 ### 7.2 与 StateGraph 的关系
 
-![Functional API 转 StateGraph](./diagrams/functional-api.png)
+![Functional API 转 StateGraph](../diagrams/functional-api.png)
 
-> 源文件：[`diagrams/functional-api.mmd`](./diagrams/functional-api.mmd)
+> 源文件：[`diagrams/functional-api.mmd`](../diagrams/functional-api.mmd)
 
 - `@entrypoint` 装饰器把函数包成一个 **隐式 StateGraph**
 - `@task` 调用产生一个 future，运行时按图调度（并发安全）

@@ -39,9 +39,9 @@ status: active
 
 ## 3. 模块结构
 
-![Checkpoint 模块结构](./diagrams/checkpoint-modules.png)
+![Checkpoint 模块结构](../diagrams/checkpoint-modules.png)
 
-> 源文件：[`diagrams/checkpoint-modules.mmd`](./diagrams/checkpoint-modules.mmd)
+> 源文件：[`diagrams/checkpoint-modules.mmd`](../diagrams/checkpoint-modules.mmd)
 
 | 包 | 内容 |
 |----|------|
@@ -189,9 +189,9 @@ CREATE TABLE checkpoint_migrations (version BIGINT PRIMARY KEY);
 
 ## 8. 写入流程
 
-![Checkpoint 写入流程](./diagrams/checkpoint-write.png)
+![Checkpoint 写入流程](../diagrams/checkpoint-write.png)
 
-> 源文件：[`diagrams/checkpoint-write.mmd`](./diagrams/checkpoint-write.mmd)
+> 源文件：[`diagrams/checkpoint-write.mmd`](../diagrams/checkpoint-write.mmd)
 
 每个 superstep 大致 6 次 DB 交互：
 
