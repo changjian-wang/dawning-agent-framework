@@ -11,7 +11,7 @@
 
 所有 Agent 框架的执行核心都是同一个循环：
 
-![Agent 基础循环](../images/concepts/04-agent-loop-basic.png)
+![Agent 基础循环](../images/concepts/04-agent-loop-basic.svg)
 
 关键变量：
 - **何时终止** — `finish_reason="stop"` / 达到 `MaxSteps` / 达到 `MaxCost`
@@ -198,7 +198,7 @@ Attempt 2:
 
 实际生产系统往往混合使用：
 
-![混合 Agent 模式](../images/concepts/05-hybrid-agent-pattern.png)
+![混合 Agent 模式](../images/concepts/05-hybrid-agent-pattern.svg)
 
 - **顶层**用 Plan-and-Execute 拆解任务
 - **子任务**用 ReAct 执行具体工具调用

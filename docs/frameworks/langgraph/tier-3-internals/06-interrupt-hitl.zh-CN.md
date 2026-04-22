@@ -79,7 +79,7 @@ def interrupt(value: Any) -> Any:
 
 ## 5. 一次 HITL 的完整生命周期
 
-![interrupt 与 HITL 生命周期](../diagrams/interrupt-lifecycle.png)
+![interrupt 与 HITL 生命周期](../diagrams/interrupt-lifecycle.svg)
 
 > 源文件：[`diagrams/interrupt-lifecycle.mmd`](../diagrams/interrupt-lifecycle.mmd)
 

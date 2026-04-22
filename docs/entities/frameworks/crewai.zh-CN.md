@@ -40,7 +40,7 @@ CrewAI 是 Stars 数最高（48.2k）的纯 Agent 自动化框架，由 João Mo
 
 ### 2.1 双模式架构
 
-![CrewAI 双模式架构](../../images/frameworks/01-crewai-architecture.png)
+![CrewAI 双模式架构](../../images/frameworks/01-crewai-architecture.svg)
 
 ### 2.2 Crews — 自主协作模式
 

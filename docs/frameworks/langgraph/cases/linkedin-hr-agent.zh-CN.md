@@ -45,13 +45,13 @@ status: active
 
 ### 2.1 全景图
 
-![LinkedIn HR Agent 系统全景](./diagrams/linkedin-system.png)
+![LinkedIn HR Agent 系统全景](./diagrams/linkedin-system.svg)
 
 > 源文件：[`diagrams/linkedin-system.mmd`](./diagrams/linkedin-system.mmd)
 
 ### 2.2 Agent 拓扑（Supervisor 模式）
 
-![LinkedIn HR Agent 拓扑](./diagrams/linkedin-topology.png)
+![LinkedIn HR Agent 拓扑](./diagrams/linkedin-topology.svg)
 
 > 源文件：[`diagrams/linkedin-topology.mmd`](./diagrams/linkedin-topology.mmd)
 
@@ -97,7 +97,7 @@ class RecruiterState(TypedDict):
 
 ## 4. 一次招聘的完整时序
 
-![LinkedIn HR Agent 时序](./diagrams/linkedin-sequence.png)
+![LinkedIn HR Agent 时序](./diagrams/linkedin-sequence.svg)
 
 > 源文件：[`diagrams/linkedin-sequence.mmd`](./diagrams/linkedin-sequence.mmd)
 

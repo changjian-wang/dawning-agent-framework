@@ -63,7 +63,7 @@ print(app.invoke({"counter": 0, "last": ""}))
 
 ## 3. 类层次
 
-![StateGraph 类层次](../diagrams/state-graph-class.png)
+![StateGraph 类层次](../diagrams/state-graph-class.svg)
 
 > 源文件：[`diagrams/state-graph-class.mmd`](../diagrams/state-graph-class.mmd)
 
@@ -182,7 +182,7 @@ def __init__(self, state_schema=None, config_schema=None, *,
 
 ## 6. `compile()`：从账本到 Pregel
 
-![StateGraph.compile() 编译时序](../diagrams/state-graph-compile.png)
+![StateGraph.compile() 编译时序](../diagrams/state-graph-compile.svg)
 
 > 源文件：[`diagrams/state-graph-compile.mmd`](../diagrams/state-graph-compile.mmd)
 

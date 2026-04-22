@@ -59,7 +59,7 @@ Klarna 工程团队在 LangChain Interrupt 2025 给出的选型理由：
 
 ### 2.1 系统全景图
 
-![Klarna 客服 Agent 系统全景](./diagrams/klarna-system.png)
+![Klarna 客服 Agent 系统全景](./diagrams/klarna-system.svg)
 
 > 源文件：[`diagrams/klarna-system.mmd`](./diagrams/klarna-system.mmd)
 
@@ -67,7 +67,7 @@ Klarna 工程团队在 LangChain Interrupt 2025 给出的选型理由：
 
 ### 2.2 Agent 拓扑
 
-![Klarna 客服 Agent 拓扑](./diagrams/klarna-topology.png)
+![Klarna 客服 Agent 拓扑](./diagrams/klarna-topology.svg)
 
 > 源文件：[`diagrams/klarna-topology.mmd`](./diagrams/klarna-topology.mmd)
 
@@ -80,7 +80,7 @@ Klarna 工程团队在 LangChain Interrupt 2025 给出的选型理由：
 
 ### 2.3 典型请求时序
 
-![Klarna 退款请求时序](./diagrams/klarna-refund-sequence.png)
+![Klarna 退款请求时序](./diagrams/klarna-refund-sequence.svg)
 
 > 源文件：[`diagrams/klarna-refund-sequence.mmd`](./diagrams/klarna-refund-sequence.mmd)
 

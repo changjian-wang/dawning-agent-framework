@@ -16,7 +16,7 @@ status: active
 
 ## 1. 总览
 
-![模块映射全景](./diagrams/module-mapping.png)
+![模块映射全景](./diagrams/module-mapping.svg)
 
 > 源文件：[`diagrams/module-mapping.mmd`](./diagrams/module-mapping.mmd)
 

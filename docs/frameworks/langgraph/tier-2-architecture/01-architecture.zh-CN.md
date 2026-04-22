@@ -29,7 +29,7 @@ status: active
 
 ### 1.1 分层总览（只看层 + 关键方向）
 
-![LangGraph 模块分层 stack](../diagrams/module-map.png)
+![LangGraph 模块分层 stack](../diagrams/module-map.svg)
 
 > 源文件：[`diagrams/module-map.mmd`](../diagrams/module-map.mmd)
 
@@ -48,7 +48,7 @@ status: active
 
 分层图不展开运行时细节。真要看 Pregel 内部，用这张：
 
-![LangGraph 运行时内部](../diagrams/stream-lifecycle.png)
+![LangGraph 运行时内部](../diagrams/stream-lifecycle.svg)
 
 > 源文件：[`diagrams/stream-lifecycle.mmd`](../diagrams/stream-lifecycle.mmd)
 
@@ -99,7 +99,7 @@ status: active
 
 以下是 `app.stream(input, config, stream_mode="updates")` 的高层时序：
 
-![LangGraph 运行生命周期](../diagrams/run-lifecycle.png)
+![LangGraph 运行生命周期](../diagrams/run-lifecycle.svg)
 
 > 源文件：[`diagrams/run-lifecycle.mmd`](../diagrams/run-lifecycle.mmd)
 
@@ -137,7 +137,7 @@ class State(TypedDict):
 
 BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价于"一个回合"：
 
-![LangGraph BSP 超步状态机](../diagrams/bsp-superstep.png)
+![LangGraph BSP 超步状态机](../diagrams/bsp-superstep.svg)
 
 > 源文件：[`diagrams/bsp-superstep.mmd`](../diagrams/bsp-superstep.mmd)
 
@@ -164,7 +164,7 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 7. 持久化分层
 
-![LangGraph 持久化分层](../diagrams/checkpoint-stack.png)
+![LangGraph 持久化分层](../diagrams/checkpoint-stack.svg)
 
 > 源文件：[`diagrams/checkpoint-stack.mmd`](../diagrams/checkpoint-stack.mmd)
 
@@ -192,7 +192,7 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 9. 模块依赖 DAG
 
-![LangGraph 模块依赖 DAG](../diagrams/module-deps.png)
+![LangGraph 模块依赖 DAG](../diagrams/module-deps.svg)
 
 > 源文件：[`diagrams/module-deps.mmd`](../diagrams/module-deps.mmd)
 

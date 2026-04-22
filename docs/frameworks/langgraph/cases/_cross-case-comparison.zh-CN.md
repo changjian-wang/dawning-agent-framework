@@ -46,7 +46,7 @@ status: active
 
 ## 3. 拓扑选择决策树
 
-![拓扑选择决策树](./diagrams/topology-decision.png)
+![拓扑选择决策树](./diagrams/topology-decision.svg)
 
 > 源文件：[`diagrams/topology-decision.mmd`](./diagrams/topology-decision.mmd)
 

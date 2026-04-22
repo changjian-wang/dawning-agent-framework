@@ -38,7 +38,7 @@ status: active
 
 ## 3. 全家福
 
-![Prebuilt Agents 全家福](../diagrams/prebuilt-family.png)
+![Prebuilt Agents 全家福](../diagrams/prebuilt-family.svg)
 
 > 源文件：[`diagrams/prebuilt-family.mmd`](../diagrams/prebuilt-family.mmd)
 
@@ -73,7 +73,7 @@ agent.invoke({"messages": [HumanMessage("最新汇率？")]})
 
 ### 4.2 内部图
 
-![ReAct Agent 内部图](../diagrams/prebuilt-react.png)
+![ReAct Agent 内部图](../diagrams/prebuilt-react.svg)
 
 > 源文件：[`diagrams/prebuilt-react.mmd`](../diagrams/prebuilt-react.mmd)
 
@@ -194,7 +194,7 @@ supervisor = create_supervisor(
 
 ### 6.2 内部图
 
-![Supervisor 内部图](../diagrams/prebuilt-supervisor.png)
+![Supervisor 内部图](../diagrams/prebuilt-supervisor.svg)
 
 > 源文件：[`diagrams/prebuilt-supervisor.mmd`](../diagrams/prebuilt-supervisor.mmd)
 

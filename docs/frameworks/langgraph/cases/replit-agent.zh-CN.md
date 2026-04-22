@@ -34,7 +34,7 @@ status: active
 
 ## 2. 架构总览
 
-![Replit Agent 系统架构](./diagrams/replit-system.png)
+![Replit Agent 系统架构](./diagrams/replit-system.svg)
 
 > 源文件：[`diagrams/replit-system.mmd`](./diagrams/replit-system.mmd)
 
@@ -111,7 +111,7 @@ class ReplitState(TypedDict):
 
 ## 6. 拓扑
 
-![Replit Agent 拓扑](./diagrams/replit-topology.png)
+![Replit Agent 拓扑](./diagrams/replit-topology.svg)
 
 > 源文件：[`diagrams/replit-topology.mmd`](./diagrams/replit-topology.mmd)
 
@@ -119,7 +119,7 @@ class ReplitState(TypedDict):
 
 ## 7. Sequence：一次任务生命周期
 
-![一次任务生命周期](./diagrams/replit-sequence.png)
+![一次任务生命周期](./diagrams/replit-sequence.svg)
 
 > 源文件：[`diagrams/replit-sequence.mmd`](./diagrams/replit-sequence.mmd)
 

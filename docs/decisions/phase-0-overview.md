@@ -139,7 +139,7 @@ for (int step = 0; step < 10; step++)  // 硬编码最大步数
 
 **双层记忆架构**：
 
-![双层记忆架构](../images/decisions/01-dual-layer-memory.png)
+![双层记忆架构](../images/decisions/01-dual-layer-memory.svg)
 
 **为什么需要长期记忆**：
 
@@ -165,13 +165,13 @@ for (int step = 0; step < 10; step++)  // 硬编码最大步数
 | 高可用 / 可扩展 | 多个 Agent 实例负载均衡 |
 | 跨组织协作 | Agent 运行在不同公司的基础设施上（A2A Protocol） |
 
-![分布式 Agent 架构](../images/decisions/02-distributed-architecture.png)
+![分布式 Agent 架构](../images/decisions/02-distributed-architecture.svg)
 
 **竞品参考**：MS Agent Framework（Durable Agents、A2A Protocol）、AutoGen
 
 ### 3.4 三者的关系
 
-![三支柱关系](../images/decisions/03-three-pillars.png)
+![三支柱关系](../images/decisions/03-three-pillars.svg)
 
 ---
 
@@ -729,11 +729,11 @@ while (context.Steps < options.MaxSteps)
 
 ### 9.1 单 Agent 单次运行流程
 
-![单 Agent 单次运行流程](../images/decisions/04-single-agent-flow.png)
+![单 Agent 单次运行流程](../images/decisions/04-single-agent-flow.svg)
 
 ### 9.2 多 Agent 协作流程
 
-![多 Agent 协作流程](../images/decisions/05-multi-agent-flow.png)
+![多 Agent 协作流程](../images/decisions/05-multi-agent-flow.svg)
 
 ### 9.3 关键决策点
 

@@ -140,13 +140,13 @@ $$composite = w_{semantic} \times similarity + w_{recency} \times decay + w_{imp
 
 ## 4. Dawning 设计决策：双层记忆架构
 
-![双层记忆架构](../images/concepts/03-dual-layer-memory.png)
+![双层记忆架构](../images/concepts/03-dual-layer-memory.svg)
 
 ### 4.1 短期记忆：Automatic Compaction
 
 对话历史接近上下文窗口上限时，框架自动用 LLM 压缩旧消息为摘要。
 
-![Compaction 策略](../images/concepts/06-compaction-strategy.png)
+![Compaction 策略](../images/concepts/06-compaction-strategy.svg)
 
 ### 4.2 长期记忆（设计探索中）
 

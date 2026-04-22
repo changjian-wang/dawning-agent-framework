@@ -29,7 +29,7 @@ status: active
 
 ## 2. 三种部署形态
 
-![三种部署形态对比](../diagrams/platform-deployment.png)
+![三种部署形态对比](../diagrams/platform-deployment.svg)
 
 > 源文件：[`diagrams/platform-deployment.mmd`](../diagrams/platform-deployment.mmd)
 

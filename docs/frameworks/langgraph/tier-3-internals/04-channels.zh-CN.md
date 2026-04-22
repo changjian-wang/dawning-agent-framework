@@ -41,7 +41,7 @@ status: active
 
 ## 3. 类层次
 
-![Channels 类层次](../diagrams/channels-class.png)
+![Channels 类层次](../diagrams/channels-class.svg)
 
 > 源文件：[`diagrams/channels-class.mmd`](../diagrams/channels-class.mmd)
 
@@ -256,7 +256,7 @@ class State(TypedDict):
 
 ## 9. 版本号管理（与 Pregel 协作）
 
-![Channel 版本号与节点唤醒](../diagrams/channels-versions.png)
+![Channel 版本号与节点唤醒](../diagrams/channels-versions.svg)
 
 > 源文件：[`diagrams/channels-versions.mmd`](../diagrams/channels-versions.mmd)
 

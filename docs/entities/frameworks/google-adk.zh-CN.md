@@ -39,7 +39,7 @@ Google ADK 是 Google 在 2025 年推出的代码优先 Agent 开发框架。它
 
 ### 2.1 层级式 Agent 架构
 
-![Google ADK 层级式 Agent 架构](../../images/frameworks/02-google-adk-hierarchy.png)
+![Google ADK 层级式 Agent 架构](../../images/frameworks/02-google-adk-hierarchy.svg)
 
 ### 2.2 Agent 定义
 
@@ -99,7 +99,7 @@ ADK 提供丰富的工具类型：
 
 ADK 是 A2A 协议的原生支持者之一：
 
-![A2A 协议集成](../../images/frameworks/03-google-adk-a2a.png)
+![A2A 协议集成](../../images/frameworks/03-google-adk-a2a.svg)
 
 **A2A 协议三大核心抽象**：
 

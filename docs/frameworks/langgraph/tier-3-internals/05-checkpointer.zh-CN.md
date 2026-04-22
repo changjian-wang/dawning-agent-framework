@@ -39,7 +39,7 @@ status: active
 
 ## 3. 模块结构
 
-![Checkpoint 模块结构](../diagrams/checkpoint-modules.png)
+![Checkpoint 模块结构](../diagrams/checkpoint-modules.svg)
 
 > 源文件：[`diagrams/checkpoint-modules.mmd`](../diagrams/checkpoint-modules.mmd)
 
@@ -189,7 +189,7 @@ CREATE TABLE checkpoint_migrations (version BIGINT PRIMARY KEY);
 
 ## 8. 写入流程
 
-![Checkpoint 写入流程](../diagrams/checkpoint-write.png)
+![Checkpoint 写入流程](../diagrams/checkpoint-write.svg)
 
 > 源文件：[`diagrams/checkpoint-write.mmd`](../diagrams/checkpoint-write.mmd)
 

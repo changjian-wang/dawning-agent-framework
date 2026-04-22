@@ -187,7 +187,7 @@ status: draft | active | stale | archived
 | 文件名 | `kebab-case.md` | `semantic-kernel.md` |
 | 中文版 | `{name}.zh-CN.md` | `semantic-kernel.zh-CN.md` |
 | 原始资料 | `{来源简称}.md` | `karpathy-llm-wiki.md` |
-| 图片 | `{相关页面}-{描述}.png` | `three-plane-architecture-overview.png` |
+| 图片 | `{相关页面}-{描述}.svg` | `three-plane-architecture-overview.svg` |
 
 ## 6. 标签分类法
 

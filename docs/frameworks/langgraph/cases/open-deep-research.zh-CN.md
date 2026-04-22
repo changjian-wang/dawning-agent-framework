@@ -40,13 +40,13 @@ status: active
 
 ### 2.1 全景图
 
-![Open Deep Research 系统全景](./diagrams/odr-system.png)
+![Open Deep Research 系统全景](./diagrams/odr-system.svg)
 
 > 源文件：[`diagrams/odr-system.mmd`](./diagrams/odr-system.mmd)
 
 ### 2.2 Agent 拓扑（核心创新）
 
-![Open Deep Research Agent 拓扑](./diagrams/odr-topology.png)
+![Open Deep Research Agent 拓扑](./diagrams/odr-topology.svg)
 
 > 源文件：[`diagrams/odr-topology.mmd`](./diagrams/odr-topology.mmd)
 
@@ -62,7 +62,7 @@ status: active
 
 ### 2.3 一次研究的时序
 
-![Open Deep Research 时序](./diagrams/odr-sequence.png)
+![Open Deep Research 时序](./diagrams/odr-sequence.svg)
 
 > 源文件：[`diagrams/odr-sequence.mmd`](./diagrams/odr-sequence.mmd)
 

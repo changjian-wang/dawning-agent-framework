@@ -19,7 +19,7 @@ status: active
 
 ## 1. 类型关系全局图
 
-![Abstractions 层类型关系图](../../../images/maf/08-abstractions-class-diagram.png)
+![Abstractions 层类型关系图](../../../images/maf/08-abstractions-class-diagram.svg)
 
 ---
 

@@ -39,7 +39,7 @@ status: active
 
 ## 3. 5 种 stream_mode 一览
 
-![Stream Mode 对照](../diagrams/stream-modes.png)
+![Stream Mode 对照](../diagrams/stream-modes.svg)
 
 > 源文件：[`diagrams/stream-modes.mmd`](../diagrams/stream-modes.mmd)
 
@@ -151,7 +151,7 @@ async for event in graph.astream_events(input, config, version="v2"):
 
 ## 7. 事件流的内部机制
 
-![Stream 内部机制](../diagrams/stream-internals.png)
+![Stream 内部机制](../diagrams/stream-internals.svg)
 
 > 源文件：[`diagrams/stream-internals.mmd`](../diagrams/stream-internals.mmd)
 

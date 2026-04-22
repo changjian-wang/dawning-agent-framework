@@ -185,11 +185,11 @@ last-verified: <YYYY-MM>
 ### 5.3 图示
 
 - **源文件**：Mermaid（`flowchart`, `sequenceDiagram`, `stateDiagram-v2`, `classDiagram`），存为 `.mmd` 放在模块目录的 `diagrams/` 下
-- **产出**：渲染为同名 `.png`，**文档只引用 PNG**（避免依赖阅读器的 Mermaid 插件）
+- **产出**：渲染为同名 `.svg`，**文档只引用 PNG**（避免依赖阅读器的 Mermaid 插件）
 - **渲染命令**：`bash docs/scripts/render-mermaid.sh` —— 依赖 `mmdc`（`pnpm add -g @mermaid-js/mermaid-cli`）
 - **Markdown 引用样式**：
   ```markdown
-  ![模块地图](./diagrams/module-map.png)
+  ![模块地图](./diagrams/module-map.svg)
   > 源文件：[`diagrams/module-map.mmd`](./diagrams/module-map.mmd)
   ```
 - **重绘策略**：脚本按 mtime 增量渲染；修改 `.mmd` 后直接跑脚本即可

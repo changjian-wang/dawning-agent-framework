@@ -37,7 +37,7 @@ Semantic Kernel 是微软自 2023 年初发布的模型无关 AI SDK，定位为
 
 ### 2.1 核心架构
 
-![Semantic Kernel 核心架构](../../images/frameworks/07-sk-architecture.png)
+![Semantic Kernel 核心架构](../../images/frameworks/07-sk-architecture.svg)
 
 ### 2.2 Kernel — 核心引擎
 
@@ -208,7 +208,7 @@ SK 的 43 个 NuGet 包构成了 .NET AI 开发的核心基础设施：
 
 ## 6. 与其他微软产品的关系
 
-![Microsoft AI 产品矩阵](../../images/frameworks/08-microsoft-ai-matrix.png)
+![Microsoft AI 产品矩阵](../../images/frameworks/08-microsoft-ai-matrix.svg)
 
 ---
 

@@ -23,7 +23,7 @@ status: active
 
 ## 依赖图
 
-![Layer 依赖图](../images/decisions/06-layer-dependency.png)
+![Layer 依赖图](../images/decisions/06-layer-dependency.svg)
 
 ---
 
