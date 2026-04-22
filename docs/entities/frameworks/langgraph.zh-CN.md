@@ -38,8 +38,29 @@ LangGraph 是 LangChain 团队推出的底层有状态 Agent 编排框架。不�
 
 LangGraph 的核心是受 Google Pregel 启发的图执行模型：
 
-![LangGraph State Graph 模型](../../images/frameworks/04-langgraph-state-graph.svg)
+<!-- LangGraph State Graph 模型 -->
+````mermaid
+graph TB
+    subgraph SG["State Graph"]
+        direction TB
+        A["Node A"] --> B["Node B"]
+        B --> C["Node C"]
+        B --> D["Node D"]
+        STATE["State: { messages, context, ... }"]
+    end
+    subgraph CP["Checkpoint Store<br/>（SQLite / PostgreSQL / Custom）"]
+    end
 
+    SG --> CP
+
+    style SG fill:#f5f5f5,stroke:#333
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e3f2fd,stroke:#1565c0
+    style C fill:#e3f2fd,stroke:#1565c0
+    style D fill:#e3f2fd,stroke:#1565c0
+    style STATE fill:#fff9c4,stroke:#f9a825
+    style CP fill:#e8f5e9,stroke:#2e7d32
+```
 **三大基本要素**：
 1. **节点（Nodes）**：函数或 Agent，接收状态、返回更新
 2. **边（Edges）**：节点间的转换，支持条件边

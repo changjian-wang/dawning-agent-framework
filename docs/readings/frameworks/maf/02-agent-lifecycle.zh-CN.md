@@ -19,8 +19,51 @@ status: active
 
 ## 1. 生命周期全景
 
-![ChatClientAgent 生命周期全景](../../../images/maf/01-lifecycle-overview.svg)
+<!-- ChatClientAgent 生命周期全景 -->
+````mermaid
+flowchart TB
+    subgraph CREATE["创建阶段"]
+        direction LR
+        C1["IChatClient.AsAIAgent()"]
+        C2["new ChatClientAgent()"]
+        C3["AIAgentBuilder.Build()"]
+    end
 
+    subgraph CTOR["构造函数"]
+        S1["1. 克隆 Options"] --> S2["2. 包装 IChatClient"]
+        S2 --> S3["3. ChatHistoryProvider"]
+        S3 --> S4["4. AIContextProviders"]
+        S4 --> S5["5. 校验 StateKeys"]
+        S5 --> S6["6. 创建 Logger"]
+    end
+
+    subgraph CONFIG["配置 ChatClientAgentOptions"]
+        direction LR
+        O1["Id / Name / Desc"]
+        O2["ChatOptions\nInstructions, Tools\nTemp, MaxTokens"]
+        O3["HistoryProvider\nContextProviders"]
+        O4["UseAsIs\nPerServiceCall"]
+    end
+
+    subgraph RUN["运行阶段"]
+        R0["RunAsync"] --> R1["创建 Session"]
+        R1 --> R2["合并 ChatOptions"]
+        R2 --> R3["加载历史"]
+        R3 --> R4["Providers Invoking"]
+        R4 --> R5["调用 IChatClient"]
+        R5 --> R6["Providers Invoked"]
+        R6 --> R7["更新 ConversationId"]
+    end
+
+    subgraph SESSION["会话管理"]
+        direction LR
+        SS1["Create"]
+        SS2["Serialize"]
+        SS3["Deserialize"]
+    end
+
+    CREATE --> CTOR --> CONFIG --> RUN --> SESSION
+```
 ---
 
 ## 2. 创建阶段
@@ -107,8 +150,22 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 当 `UseProvidedChatClientAsIs = false`（默认）时，`WithDefaultAgentMiddleware` 自动包装：
 
-![IChatClient 中间件管道](../../../images/maf/02-chatclient-pipeline.svg)
+<!-- IChatClient 中间件管道 -->
+````mermaid
+flowchart TB
+    A["调用方"] --> FIC
 
+    subgraph PIPELINE["IChatClient 中间件管道"]
+        direction TB
+        FIC["FunctionInvokingChatClient\n自动函数调用"]
+        FIC -->|"tool_calls → 执行 → 回传"| PSC
+        PSC["PerServiceCall\nHistoryPersistingClient\n（可选）"]
+        PSC -->|"加载/持久化历史"| LEAF
+        LEAF["原始 IChatClient\nOpenAIChatClient 等"]
+    end
+
+    LEAF --> LLM["LLM 服务"]
+```
 **关键发现**：MAF 的 **Agent Loop（tool calling 循环）不在 `ChatClientAgent` 中**！它被委托给了 `FunctionInvokingChatClient`（M.E.AI 提供）。`ChatClientAgent` 只做一次 `GetResponseAsync` 调用，`FunctionInvokingChatClient` 内部处理多轮 tool → LLM 循环。
 
 这意味着：
@@ -122,14 +179,55 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 ### 3.1 非流式（RunCoreAsync）
 
-![RunCoreAsync 完整流程](../../../images/maf/03-run-core-async.svg)
+<!-- RunCoreAsync 完整流程 -->
+````mermaid
+flowchart TB
+    START(["RunCoreAsync"])
 
+    START --> PREPARE
+
+    subgraph PREPARE["1. PrepareSession"]
+        P1["合并 ChatOptions"] --> P2["创建/验证 Session"]
+        P2 --> P3["ConversationId 检查"]
+        P3 --> P4["LoadChatHistory"]
+        P4 --> P5["AIContextProviders\nInvoking 管道"]
+    end
+
+    PREPARE --> CTX["2. EnsureRunContext"]
+    CTX --> TRANSFORM["3. ApplyTransformations"]
+    TRANSFORM --> LLM_CALL
+
+    subgraph LLM_CALL["4. GetResponseAsync"]
+        F1["FunctionInvokingChatClient"] --> F2{"tool_calls?"}
+        F2 -->|Yes| F3["执行工具 → 再调 LLM"] --> F2
+        F2 -->|No| F4["ChatResponse"]
+    end
+
+    LLM_CALL --> UPDATE["5. UpdateConversationId"]
+    UPDATE --> NOTIFY["6. NotifyProviders\nInvoked 回调"]
+    NOTIFY --> RETURN(["7. AgentResponse"])
+```
 ### 3.2 流式（RunCoreStreamingAsync）
 
 流式版本结构类似，但有额外的复杂度：
 
-![RunCoreStreamingAsync 流程](../../../images/maf/04-run-streaming.svg)
+<!-- RunCoreStreamingAsync 流程 -->
+````mermaid
+flowchart TB
+    START(["RunCoreStreamingAsync"])
 
+    START --> P["1. PrepareSession\n（同非流式）"]
+    P --> STREAM["2. GetStreamingResponseAsync"]
+
+    STREAM --> LOOP{"hasUpdates?"}
+    LOOP -->|Yes| YIELD["yield AgentResponseUpdate"]
+    YIELD --> RESTORE["EnsureRunContext\n恢复上下文"]
+    RESTORE --> MOVE["MoveNextAsync"] --> LOOP
+
+    LOOP -->|No| COLLECT["4. ToChatResponse()"]
+    COLLECT --> UPDATE["5. UpdateConversationId"]
+    UPDATE --> NOTIFY["6. NotifyProviders"]
+```
 **流式特殊处理**：
 - 每次 `yield return` 后，调用方执行期间 `CurrentRunContext` 可能被污染，所以每次 `MoveNextAsync` 前都要 `EnsureRunContextHasSession`
 - `ContinuationToken` 包装了输入消息和已收到的更新，支持断点续传
@@ -141,8 +239,21 @@ public ChatClientAgent(IChatClient chatClient, ChatClientAgentOptions? options, 
 
 `CreateConfiguredChatOptions` 实现了三层优先级合并：
 
-![ChatOptions 三层优先级合并](../../../images/maf/05-chatoptions-merge.svg)
+<!-- ChatOptions 三层优先级合并 -->
+````mermaid
+flowchart LR
+    A["① AgentRunOptions\nResponseFormat\nBackgroundResponses\nAdditionalProperties"]
+    B["② 请求级 ChatOptions"]
+    C["③ Agent 级 ChatOptions"]
 
+    A -->|"最高优先"| MERGE(("合并"))
+    B -->|"中优先"| MERGE
+    C -->|"最低优先"| MERGE
+
+    style A fill:#e74c3c,color:#fff
+    style B fill:#f39c12,color:#fff
+    style C fill:#3498db,color:#fff
+```
 具体合并规则：
 
 | 属性 | 策略 |
@@ -264,12 +375,32 @@ builder.UseAIContextProviders(new TextSearchProvider(searchClient))
 
 ### 7.1 成功路径
 
-![Provider 通知 — 成功路径](../../../images/maf/06-notify-success.svg)
-
+<!-- Provider 通知 — 成功路径 -->
+````mermaid
+flowchart TB
+    A(["RunCoreAsync 结束"]) --> B["NotifyProviders"]
+    B --> C["ChatHistoryProvider\nInvokedAsync"]
+    C --> D["持久化新消息"]
+    B --> E["AIContextProvider ×N"]
+    E --> F["InvokedAsync"]
+    F --> G["后处理\n记忆 / 审计"]
+```
 ### 7.2 失败路径
 
-![Provider 通知 — 失败路径](../../../images/maf/07-notify-failure.svg)
+<!-- Provider 通知 — 失败路径 -->
+````mermaid
+flowchart TB
+    A(["GetResponseAsync 异常"]) --> B["NotifyProvidersOfFailure"]
+    B --> C["ChatHistoryProvider\nInvokedAsync(exception)"]
+    C --> D["默认跳过"]
+    B --> E["AIContextProvider ×N"]
+    E --> F["InvokedAsync(exception)"]
+    F --> G["默认跳过"]
 
+    style A fill:#e74c3c,color:#fff
+    style D fill:#95a5a6,color:#fff
+    style G fill:#95a5a6,color:#fff
+```
 ### 7.3 Per-Service-Call 持久化
 
 当 `RequirePerServiceCallChatHistoryPersistence = true` 时：

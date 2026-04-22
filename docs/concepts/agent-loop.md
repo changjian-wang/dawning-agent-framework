@@ -11,8 +11,23 @@
 
 所有 Agent 框架的执行核心都是同一个循环：
 
-![Agent 基础循环](../images/concepts/04-agent-loop-basic.svg)
+<!-- Agent 基础循环 -->
+````mermaid
+flowchart TD
+    Input["输入 (task / user message)"]
+    LLM["LLM 推理<br/>(Chat Completion)"]
+    Check{"finish_reason?"}
+    Stop["返回结果"]
+    Tool["执行工具"]
+    Obs["观察结果"]
 
+    Input --> LLM
+    LLM --> Check
+    Check -- "stop" --> Stop
+    Check -- "tool_calls" --> Tool
+    Tool --> Obs
+    Obs --> LLM
+```
 关键变量：
 - **何时终止** — `finish_reason="stop"` / 达到 `MaxSteps` / 达到 `MaxCost`
 - **如何选择工具** — LLM 自主选择（`tool_choice="auto"`）vs 框架强制
@@ -198,8 +213,29 @@ Attempt 2:
 
 实际生产系统往往混合使用：
 
-![混合 Agent 模式](../images/concepts/05-hybrid-agent-pattern.svg)
+<!-- 混合 Agent 模式 -->
+````mermaid
+flowchart TD
+    Orch["Orchestrator Agent<br/>(Plan-and-Execute)"]
+    S1["Step 1 → Sub-Agent A<br/>(ReAct)"]
+    S2["Step 2 → Sub-Agent B<br/>(ReAct)"]
+    S3["Step 3 → Sub-Agent C<br/>(ReAct + Reflexion)"]
+    A1["Attempt 1 → 失败"]
+    A2["Attempt 2 → 反思后成功"]
 
+    Orch --> S1
+    Orch --> S2
+    Orch --> S3
+    S3 --> A1
+    A1 -->|"反思"| A2
+
+    style Orch fill:#e3f2fd,stroke:#1565c0
+    style S1 fill:#e8f5e9,stroke:#2e7d32
+    style S2 fill:#e8f5e9,stroke:#2e7d32
+    style S3 fill:#fff3e0,stroke:#e65100
+    style A1 fill:#fce4ec,stroke:#c62828
+    style A2 fill:#e8f5e9,stroke:#2e7d32
+```
 - **顶层**用 Plan-and-Execute 拆解任务
 - **子任务**用 ReAct 执行具体工具调用
 - **关键步骤**加 Reflexion 保证质量

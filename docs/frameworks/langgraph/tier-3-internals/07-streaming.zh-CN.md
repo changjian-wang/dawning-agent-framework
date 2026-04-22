@@ -39,8 +39,31 @@ status: active
 
 ## 3. 5 种 stream_mode 一览
 
-![Stream Mode 对照](../diagrams/stream-modes.svg)
+<!-- Stream Mode 对照 -->
+````mermaid
+flowchart TB
+    Pregel[Pregel.stream] --> Runner[PregelRunner]
 
+    Runner --> Hook1[节点开始]
+    Runner --> Hook2[节点结束]
+    Runner --> Hook3[LLM token]
+    Runner --> Hook4[get_stream_writer 写]
+    Runner --> Hook5[apply_writes 完成]
+
+    Hook1 --> Mu[updates / debug.task]
+    Hook2 --> Mu2[updates / debug.task_result]
+    Hook3 --> Mm[messages]
+    Hook4 --> Mc[custom]
+    Hook5 --> Mv[values / debug.checkpoint]
+
+    Mu & Mu2 & Mm & Mc & Mv --> Q[(StreamProtocol Queue)]
+    Q --> Iter[Caller iter]
+
+    classDef hook fill:#fff4e6,stroke:#f08c00
+    classDef mode fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    class Hook1,Hook2,Hook3,Hook4,Hook5 hook
+    class Mu,Mu2,Mm,Mc,Mv mode
+```
 > 源文件：[`diagrams/stream-modes.mmd`](../diagrams/stream-modes.mmd)
 
 | Mode | 粒度 | 触发点 | 典型用途 |
@@ -151,8 +174,35 @@ async for event in graph.astream_events(input, config, version="v2"):
 
 ## 7. 事件流的内部机制
 
-![Stream 内部机制](../diagrams/stream-internals.svg)
+<!-- Stream 内部机制 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as Caller
+    participant P as Pregel.stream
+    participant R as PregelRunner
+    participant N as Node
+    participant LLM as LLM Callback
+    participant W as get_stream_writer
+    participant Q as StreamProtocol Queue
 
+    U->>P: stream(input, mode=[updates, messages])
+    P->>R: tick
+    R->>N: run node X
+    N->>LLM: llm.invoke (streaming)
+    LLM-->>Q: chunk1 -> push messages
+    Q-->>U: yield (messages, chunk1)
+    LLM-->>Q: chunk2 -> push messages
+    Q-->>U: yield (messages, chunk2)
+    N->>W: writer({"progress":0.5})
+    W-->>Q: push custom
+    Q-->>U: yield (custom, ...)
+    N-->>R: return dict
+    R-->>Q: push updates {node:dict}
+    Q-->>U: yield (updates, ...)
+    R->>R: apply_writes
+    R-->>Q: push values (full state) — 仅当 values mode 开启
+```
 > 源文件：[`diagrams/stream-internals.mmd`](../diagrams/stream-internals.mmd)
 
 - `Pregel.stream()` 创建 `StreamProtocol`（基于 deque + condition variable）

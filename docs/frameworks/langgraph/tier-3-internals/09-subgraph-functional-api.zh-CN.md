@@ -95,8 +95,32 @@ parent_builder.add_conditional_edges("planner", fan_out, ["sub"])
 
 ## 3. 父子图 state 流动
 
-![父子图 state 流动](../diagrams/subgraph-state-flow.svg)
+<!-- 父子图 state 流动 -->
+````mermaid
+flowchart LR
+    subgraph Parent["父图 (ParentState)"]
+        PA[node A]
+        PSub[sub_node 子图实例]
+        PB[node B]
+    end
 
+    subgraph Sub["子图 (SubInternal)"]
+        SubIn[input mapper]
+        SubX[node X]
+        SubY[node Y]
+        SubOut[output mapper]
+    end
+
+    PA --> PSub
+    PSub --> SubIn
+    SubIn --> SubX --> SubY --> SubOut
+    SubOut --> PB
+
+    classDef parent fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef sub fill:#f3f0ff,stroke:#5f3dc4
+    class PA,PSub,PB parent
+    class SubIn,SubX,SubY,SubOut sub
+```
 > 源文件：[`diagrams/subgraph-state-flow.mmd`](../diagrams/subgraph-state-flow.mmd)
 
 ---
@@ -195,8 +219,21 @@ result = workflow.invoke("最新汇率", config)
 
 ### 7.2 与 StateGraph 的关系
 
-![Functional API 转 StateGraph](../diagrams/functional-api.svg)
+<!-- Functional API 转 StateGraph -->
+````mermaid
+flowchart LR
+    User["@entrypoint def workflow(...): ..."] --> Decorator[Decorator]
+    Decorator --> SG[隐式 StateGraph]
+    User2["@task def step(...): ..."] --> TaskWrap[Task wrapper]
+    TaskWrap --> SG
+    SG --> Compile[compile + checkpointer]
+    Compile --> Pregel[Pregel runtime]
 
+    classDef user fill:#fff4e6,stroke:#f08c00
+    classDef impl fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    class User,User2 user
+    class SG,Compile,Pregel impl
+```
 > 源文件：[`diagrams/functional-api.mmd`](../diagrams/functional-api.mmd)
 
 - `@entrypoint` 装饰器把函数包成一个 **隐式 StateGraph**

@@ -37,8 +37,41 @@ Semantic Kernel 是微软自 2023 年初发布的模型无关 AI SDK，定位为
 
 ### 2.1 核心架构
 
-![Semantic Kernel 核心架构](../../images/frameworks/07-sk-architecture.svg)
+<!-- Semantic Kernel 核心架构 -->
+````mermaid
+graph TB
+    subgraph SK["Semantic Kernel"]
+        direction TB
+        subgraph APPS["Applications"]
+        end
+        subgraph AF["Agent Framework + Agents"]
+        end
+        subgraph MID["Planners & Process"]
+            direction LR
+            PLAN["Planners"]
+            PF["Process Framework"]
+        end
+        subgraph KERNEL["Kernel"]
+            direction LR
+            PLUG["Plugins"]
+            MEM["Memory"]
+            CONN["Connectors"]
+        end
+        subgraph AI["AI Services（LLMs）<br/>OpenAI · Azure OpenAI · HuggingFace<br/>Ollama · NVIDIA NIM · LMStudio · ONNX"]
+        end
+    end
 
+    APPS --> AF --> MID --> KERNEL --> AI
+
+    style APPS fill:#e3f2fd,stroke:#1565c0
+    style AF fill:#e3f2fd,stroke:#1565c0
+    style MID fill:#e8f5e9,stroke:#2e7d32
+    style KERNEL fill:#fff3e0,stroke:#e65100
+    style AI fill:#fce4ec,stroke:#c62828
+    style PLUG fill:#fff9c4,stroke:#f9a825
+    style MEM fill:#fff9c4,stroke:#f9a825
+    style CONN fill:#fff9c4,stroke:#f9a825
+```
 ### 2.2 Kernel — 核心引擎
 
 Kernel 是 SK 的中央协调器：
@@ -208,8 +241,27 @@ SK 的 43 个 NuGet 包构成了 .NET AI 开发的核心基础设施：
 
 ## 6. 与其他微软产品的关系
 
-![Microsoft AI 产品矩阵](../../images/frameworks/08-microsoft-ai-matrix.svg)
+<!-- Microsoft AI 产品矩阵 -->
+````mermaid
+graph TB
+    SK["Semantic Kernel<br/>（SDK 基础设施）"]
+    MAF["MAF<br/>（Agent 编排）"]
+    FOUNDRY["Azure AI Foundry<br/>（云端 AI 服务）"]
+    CS["Copilot Studio<br/>（低代码 Agent 平台）"]
+    M365["M365 Agents SDK<br/>（M365/Teams 渠道）"]
 
+    SK -->|Plugin 层| MAF
+    MAF -->|部署层| FOUNDRY
+    FOUNDRY --> CS
+    FOUNDRY --> M365
+    SK --- MAF --- FOUNDRY
+
+    style SK fill:#e3f2fd,stroke:#1565c0
+    style MAF fill:#e8f5e9,stroke:#2e7d32
+    style FOUNDRY fill:#fff3e0,stroke:#e65100
+    style CS fill:#f3e5f5,stroke:#6a1b9a
+    style M365 fill:#f3e5f5,stroke:#6a1b9a
+```
 ---
 
 ## 7. 社区与生态

@@ -63,8 +63,62 @@ print(app.invoke({"counter": 0, "last": ""}))
 
 ## 3. 类层次
 
-![StateGraph 类层次](../diagrams/state-graph-class.svg)
+<!-- StateGraph 类层次 -->
+````mermaid
+classDiagram
+    class Runnable {
+        <<interface>>
+        +invoke()
+        +stream()
+        +ainvoke()
+        +astream()
+    }
+    class Graph {
+        +nodes: dict
+        +edges: set
+        +branches: dict
+        +add_node()
+        +add_edge()
+        +add_conditional_edges()
+        +compile()
+    }
+    class StateGraph {
+        +schema: type
+        +channels: dict[BaseChannel]
+        +managed: dict[ManagedValue]
+        +input_schema, output_schema
+        +waiting_edges: set
+        +compile()
+    }
+    class Pregel {
+        +nodes: dict[PregelNode]
+        +channels: dict[BaseChannel]
+        +checkpointer
+        +invoke() / stream()
+    }
+    class CompiledGraph {
+        +builder: Graph
+        +attach_node()
+        +attach_edge()
+        +attach_branch()
+    }
+    class CompiledStateGraph {
+        +get_state()
+        +update_state()
+        +get_state_history()
+        +get_graph()
+    }
+    class MessageGraph {
+        <<MessagesState 预设>>
+    }
 
+    Runnable <|.. Pregel
+    Graph <|-- StateGraph
+    StateGraph <|-- MessageGraph
+    Pregel <|-- CompiledGraph
+    CompiledGraph <|-- CompiledStateGraph
+    StateGraph ..> CompiledStateGraph : compile()
+```
 > 源文件：[`diagrams/state-graph-class.mmd`](../diagrams/state-graph-class.mmd)
 
 - **`Graph`**：纯结构（节点 + 边），不带 state schema。`MessageGraph` 走这条
@@ -182,8 +236,47 @@ def __init__(self, state_schema=None, config_schema=None, *,
 
 ## 6. `compile()`：从账本到 Pregel
 
-![StateGraph.compile() 编译时序](../diagrams/state-graph-compile.svg)
+<!-- StateGraph.compile() 编译时序 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant SG as StateGraph
+    participant V as _validate
+    participant CSG as CompiledStateGraph
+    participant PN as PregelNode
+    participant CH as Channels
 
+    U->>SG: compile(checkpointer, interrupt_before, ...)
+    SG->>V: 校验节点/边/孤立点
+    V-->>SG: ok
+    SG->>CSG: 构造 CompiledStateGraph(builder=self, channels={**schema, START: Ephemeral})
+
+    loop 每个 add_node 记录
+        SG->>CSG: attach_node(key, NodeSpec)
+        CSG->>PN: 包装 runnable, retry, cache, writers
+        CSG->>CH: 注册 key__inbox channel
+    end
+
+    loop 每条普通边 (a, b)
+        SG->>CSG: attach_edge(a, b)
+        CSG->>PN: b.triggers += a__done
+    end
+
+    loop 每条 join 边 ((a,b), c)
+        SG->>CSG: attach_edge((a,b), c)
+        CSG->>CH: 注册 __join_a_b channel
+        CSG->>PN: c.triggers += __join_a_b
+    end
+
+    loop 每个 conditional branch
+        SG->>CSG: attach_branch(src, name, BranchSpec)
+        CSG->>CH: 注册 BranchChannel(router, mapping)
+    end
+
+    CSG->>CSG: 挂 checkpointer / store / cache / debug
+    CSG-->>U: CompiledStateGraph (Pregel ready)
+```
 > 源文件：[`diagrams/state-graph-compile.mmd`](../diagrams/state-graph-compile.mmd)
 
 ### 6.1 编译做的 6 件事

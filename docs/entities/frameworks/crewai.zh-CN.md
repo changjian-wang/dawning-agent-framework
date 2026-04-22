@@ -40,8 +40,39 @@ CrewAI 是 Stars 数最高（48.2k）的纯 Agent 自动化框架，由 João Mo
 
 ### 2.1 双模式架构
 
-![CrewAI 双模式架构](../../images/frameworks/01-crewai-architecture.svg)
+<!-- CrewAI 双模式架构 -->
+````mermaid
+graph TB
+    subgraph APP["CrewAI Application"]
+        direction TB
+        subgraph DUAL["双模式架构"]
+            direction LR
+            subgraph FLOWS["Flows<br/>（事件驱动）"]
+                F1["@start"]
+                F2["@listen"]
+                F3["@router"]
+                F4["or_ / and_"]
+                F5["State 管理"]
+            end
+            subgraph CREWS["Crews<br/>（自主协作）"]
+                C1["Agent（角色 + 目标）"]
+                C2["Task（任务描述）"]
+                C3["Process（执行模式）"]
+                C4["Tool（工具能力）"]
+                C5["Memory 系统"]
+            end
+        end
+        subgraph LLM["LLM Layer（via LiteLLM）<br/>100+ 提供商支持"]
+        end
+    end
 
+    DUAL --> LLM
+
+    style APP fill:#f5f5f5,stroke:#333
+    style FLOWS fill:#e3f2fd,stroke:#1565c0
+    style CREWS fill:#e8f5e9,stroke:#2e7d32
+    style LLM fill:#fff3e0,stroke:#e65100
+```
 ### 2.2 Crews — 自主协作模式
 
 Crew 是 CrewAI 的原始核心概念：

@@ -140,14 +140,55 @@ $$composite = w_{semantic} \times similarity + w_{recency} \times decay + w_{imp
 
 ## 4. Dawning 设计决策：双层记忆架构
 
-![双层记忆架构](../images/concepts/03-dual-layer-memory.svg)
+<!-- 双层记忆架构 -->
+````mermaid
+graph TB
+    subgraph WM["短期记忆 Working Memory"]
+        W0["自动压缩型<br/>参考 Claude Agent SDK"]
+        W1["当前会话的消息列表"]
+        W2["接近上限时自动压缩<br/>类似 GC"]
+        W0 ~~~ W1
+        W1 --> W2
+    end
+    subgraph LM["长期记忆 Long-term Memory"]
+        L0["语义记忆型<br/>参考 CrewAI"]
+        L1["remember / recall API"]
+        L2["向量数据库 + 语义检索"]
+        L3["多 Agent 共享 / 分布式存储"]
+        L0 ~~~ L1
+        L1 --> L2 --> L3
+    end
 
+    WM -->|"会话结束时提取关键事实"| LM
+
+    style WM fill:#e3f2fd,stroke:#1565c0
+    style LM fill:#e8f5e9,stroke:#2e7d32
+    style W0 fill:#bbdefb,stroke:#1565c0,stroke-dasharray: 5 5
+    style L0 fill:#c8e6c9,stroke:#2e7d32,stroke-dasharray: 5 5
+```
 ### 4.1 短期记忆：Automatic Compaction
 
 对话历史接近上下文窗口上限时，框架自动用 LLM 压缩旧消息为摘要。
 
-![Compaction 策略](../images/concepts/06-compaction-strategy.svg)
+<!-- Compaction 策略 -->
+````mermaid
+flowchart TD
+    subgraph compaction["Automatic Compaction"]
+        Before["压缩前<br/>[system, user1, assistant1, ..., user50, assistant50]<br/>↑ 接近上限"]
+        After["压缩后<br/>[system, 📝摘要, user49, assistant49, user50, assistant50]"]
+        Before -->|"LLM 摘要"| After
+    end
 
+    subgraph layers["三层策略"]
+        L1["1. Prompt Caching<br/>不变内容自动缓存"]
+        L2["2. Subagent 隔离<br/>子任务独立上下文"]
+        L3["3. Automatic Compaction<br/>兜底压缩"]
+        L1 --> L2 --> L3
+    end
+
+    style compaction fill:#fff9c4,stroke:#f9a825
+    style layers fill:#e3f2fd,stroke:#1565c0
+```
 ### 4.2 长期记忆（设计探索中）
 
 > **状态：待定** — 长期记忆的实现方案仍在评估中，暂不纳入近期开发计划。以下为当前的分析和思考方向。

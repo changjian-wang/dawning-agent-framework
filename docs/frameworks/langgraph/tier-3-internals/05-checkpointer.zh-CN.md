@@ -39,8 +39,28 @@ status: active
 
 ## 3. 模块结构
 
-![Checkpoint 模块结构](../diagrams/checkpoint-modules.svg)
+<!-- Checkpoint 模块结构 -->
+````mermaid
+flowchart TB
+    Abs["langgraph-checkpoint<br/>BaseCheckpointSaver · MemorySaver · Serde"]
 
+    SQ["langgraph-checkpoint-sqlite<br/>SqliteSaver / AsyncSqliteSaver"]
+    PG["langgraph-checkpoint-postgres<br/>PostgresSaver / AsyncPostgresSaver"]
+    DD["langgraph-checkpoint-duckdb<br/>DuckDBSaver"]
+    PT["LangGraph Platform Store<br/>(托管, 闭源)"]
+
+    Abs --> SQ
+    Abs --> PG
+    Abs --> DD
+    Abs --> PT
+
+    classDef abs fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef impl fill:#fff4e6,stroke:#f08c00
+    classDef ext fill:#f3f0ff,stroke:#5f3dc4
+    class Abs abs
+    class SQ,PG,DD impl
+    class PT ext
+```
 > 源文件：[`diagrams/checkpoint-modules.mmd`](../diagrams/checkpoint-modules.mmd)
 
 | 包 | 内容 |
@@ -189,8 +209,35 @@ CREATE TABLE checkpoint_migrations (version BIGINT PRIMARY KEY);
 
 ## 8. 写入流程
 
-![Checkpoint 写入流程](../diagrams/checkpoint-write.svg)
+<!-- Checkpoint 写入流程 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant L as PregelLoop
+    participant S as Saver
+    participant DB as Postgres
 
+    Note over L: superstep N 开始
+    L->>S: put(config, checkpoint_A, metadata, new_versions)
+    S->>DB: INSERT checkpoints (A)
+    S->>DB: INSERT checkpoint_blobs (变化的 channel × version)
+
+    par 并发执行 tasks
+        L->>L: task1.run
+        L->>S: put_writes(config, writes1, task1_id)
+        S->>DB: INSERT checkpoint_writes
+        L->>L: task2.run
+        L->>S: put_writes(config, writes2, task2_id)
+        S->>DB: INSERT checkpoint_writes
+    end
+
+    L->>L: barrier · apply_writes(in-memory)
+    L->>S: put(config, checkpoint_B, metadata, new_versions)
+    S->>DB: INSERT checkpoints (B)
+    S->>DB: INSERT checkpoint_blobs (变化的 channel × version)
+
+    Note over L,DB: 一个超步 = 4~6 次 DB 交互；<br/>未变 channel 不重写 blob
+```
 > 源文件：[`diagrams/checkpoint-write.mmd`](../diagrams/checkpoint-write.mmd)
 
 每个 superstep 大致 6 次 DB 交互：

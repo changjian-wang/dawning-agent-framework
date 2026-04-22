@@ -34,8 +34,52 @@ status: active
 
 ## 2. 架构总览
 
-![Replit Agent 系统架构](./diagrams/replit-system.svg)
+<!-- Replit Agent 系统架构 -->
+````mermaid
+flowchart TB
+    User[用户聊天框]
+    UI[Replit Web Editor UI]
 
+    subgraph LG["LangGraph 编排层"]
+        MGR[Manager Agent]
+        EDT[Editor Agent]
+        VFY[Verifier Agent]
+    end
+
+    subgraph Sandbox["容器沙箱"]
+        FS[文件系统]
+        Proc[进程 / shell]
+        Preview[Preview Server]
+    end
+
+    Tools[(工具集)]
+    LLM[Claude / GPT]
+    CKPT[(Postgres Checkpointer)]
+
+    User --> UI
+    UI --> MGR
+    MGR --> EDT
+    EDT --> VFY
+    VFY -->|fail| MGR
+    VFY -->|pass| User
+
+    EDT --> Tools
+    VFY --> Tools
+    Tools --> FS
+    Tools --> Proc
+    Tools --> Preview
+
+    MGR --> LLM
+    EDT --> LLM
+    VFY --> LLM
+
+    LG -.checkpoint.-> CKPT
+
+    classDef llm fill:#fff4e6,stroke:#f08c00
+    classDef sb fill:#fff5f5,stroke:#e03131
+    class MGR,EDT,VFY llm
+    class FS,Proc,Preview sb
+```
 > 源文件：[`diagrams/replit-system.mmd`](./diagrams/replit-system.mmd)
 
 ---
@@ -111,16 +155,54 @@ class ReplitState(TypedDict):
 
 ## 6. 拓扑
 
-![Replit Agent 拓扑](./diagrams/replit-topology.svg)
-
+<!-- Replit Agent 拓扑 -->
+````mermaid
+stateDiagram-v2
+    [*] --> Manager
+    Manager --> Editor: 任务派发
+    Editor --> Verifier: 编辑完成
+    Verifier --> Manager: 失败 / 重规划
+    Verifier --> Done: 通过
+    Manager --> HITL: 危险 / 不确定
+    HITL --> Manager: resume
+    Editor --> HITL: 大改动确认
+    HITL --> Editor: resume
+    Manager --> Done: 任务完成
+    Done --> [*]
+```
 > 源文件：[`diagrams/replit-topology.mmd`](./diagrams/replit-topology.mmd)
 
 ---
 
 ## 7. Sequence：一次任务生命周期
 
-![一次任务生命周期](./diagrams/replit-sequence.svg)
+<!-- 一次任务生命周期 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as 用户
+    participant M as Manager
+    participant E as Editor
+    participant V as Verifier
+    participant S as Sandbox
 
+    U->>M: "做一个 Todo App"
+    M->>M: 拆解 todo[]
+    M->>E: 创建 src/App.tsx
+    E->>S: create_file
+    E->>S: install_package react
+    E->>V: 准备好了
+    V->>S: npm run build
+    S-->>V: error: missing import
+    V->>M: fail (附 error)
+    M->>E: 修 import
+    E->>S: str_replace_editor
+    E->>V: 重试
+    V->>S: build + preview
+    S-->>V: ok
+    V->>M: pass
+    M->>U: 完成 + preview link
+```
 > 源文件：[`diagrams/replit-sequence.mmd`](./diagrams/replit-sequence.mmd)
 
 ---

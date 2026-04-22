@@ -41,8 +41,51 @@ status: active
 
 ## 3. 类层次
 
-![Channels 类层次](../diagrams/channels-class.svg)
+<!-- Channels 类层次 -->
+````mermaid
+classDiagram
+    class BaseChannel~Value, Update, C~ {
+        <<abstract>>
+        +ValueType: type
+        +UpdateType: type
+        +update(values) bool
+        +get() Value
+        +checkpoint() C
+        +from_checkpoint(c) Self
+        +is_available() bool
+        +consume() bool
+    }
 
+    class LastValue~Value~ {
+        +value: Value
+        +update(values) 单写覆盖
+    }
+    class BinaryOperatorAggregate~Value~ {
+        +operator: Callable
+        +update(values) reducer 折叠
+    }
+    class Topic~Value~ {
+        +accumulate: bool
+        +values: list
+    }
+    class AnyValue~Value~ {
+        +update(values) 取一
+    }
+    class EphemeralValue~Value~ {
+        +checkpoint() None
+        +consume() 读完即清
+    }
+    class UntrackedValue~Value~ {
+        +不 bump 版本号
+    }
+
+    BaseChannel <|-- LastValue
+    BaseChannel <|-- BinaryOperatorAggregate
+    BaseChannel <|-- Topic
+    BaseChannel <|-- AnyValue
+    BaseChannel <|-- EphemeralValue
+    BaseChannel <|-- UntrackedValue
+```
 > 源文件：[`diagrams/channels-class.mmd`](../diagrams/channels-class.mmd)
 
 ---
@@ -256,8 +299,39 @@ class State(TypedDict):
 
 ## 9. 版本号管理（与 Pregel 协作）
 
-![Channel 版本号与节点唤醒](../diagrams/channels-versions.svg)
+<!-- Channel 版本号与节点唤醒 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant N1 as Node A
+    participant N2 as Node B
+    participant L as PregelLoop
+    participant CH as Channel(messages)
+    participant CK as Checkpoint
 
+    Note over CK: channel_versions={messages:5}<br/>versions_seen={A:{messages:5}, B:{messages:5}}
+
+    L->>L: prepare_next_tasks
+    Note over L: A 看见 messages=5，等于 seen，不激活<br/>B 同理 → 都不跑 → END？
+    Note over CK: 假设外部 update_state 注入新 message → channel_versions={messages:6}
+
+    L->>L: prepare_next_tasks
+    Note over L: A.seen[messages]=5 < channel_versions=6 → 激活 A
+    L->>N1: run A
+    N1-->>L: writes messages=[m1]
+
+    L->>CH: apply_writes([m1])
+    CH->>CH: reducer 合并
+    CH-->>L: changed=true
+    L->>CK: channel_versions[messages]=7
+    L->>CK: versions_seen[A][messages]=7
+
+    Note over L: 下超步：A 自己 seen=7=current 不激活<br/>B.seen=5 < 7 激活
+    L->>N2: run B
+    N2-->>L: writes messages=[m2]
+    L->>CH: apply_writes([m2])
+    L->>CK: channel_versions[messages]=8, versions_seen[B][messages]=8
+```
 > 源文件：[`diagrams/channels-versions.mmd`](../diagrams/channels-versions.mmd)
 
 **两个版本号字典**（存于 checkpoint）：

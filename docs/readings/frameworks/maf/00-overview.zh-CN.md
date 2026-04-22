@@ -56,8 +56,33 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.1 分层架构
 
-![MAF NuGet 包分层架构](../../../images/maf/10-nuget-package-layers.svg)
+<!-- MAF NuGet 包分层架构 -->
+````mermaid
+graph TB
+    subgraph HOSTING["Hosting 层<br/>Hosting.A2A.AspNetCore · Hosting.AzureFunctions<br/>Hosting.AGUI.AspNetCore · Hosting.OpenAI"]
+    end
+    subgraph PROVIDER["Provider 层<br/>AI.Foundry · AI.OpenAI · AI.Anthropic<br/>AI.CopilotStudio · AI.GitHub.Copilot"]
+    end
+    subgraph WORKFLOW["Workflow 层<br/>AI.Workflows · AI.Workflows.Generators<br/>AI.Workflows.Declarative(.Foundry/.Mcp)"]
+    end
+    subgraph EXT["功能扩展层<br/>AI.A2A · AI.AGUI · AI.DurableTask<br/>AI.DevUI · AI.Mem0 · AI.Purview<br/>AI.CosmosNoSql · AI.AzureAI.Persistent · AI.FoundryMemory"]
+    end
+    subgraph CORE["Core 层<br/>Microsoft.Agents.AI<br/>（ChatClientAgent, Skills, Compaction, Memory,<br/>OpenTelemetry, Logging, Middleware）"]
+    end
+    subgraph ABS["Abstractions 层<br/>Microsoft.Agents.AI.Abstractions<br/>（AIAgent, AgentResponse, AgentSession, AIContext）"]
+    end
+    MEAI["Microsoft.Extensions.AI.Abstractions<br/>（外部依赖）"]
 
+    HOSTING --> PROVIDER --> WORKFLOW --> EXT --> CORE --> ABS --> MEAI
+
+    style HOSTING fill:#f3e5f5,stroke:#6a1b9a
+    style PROVIDER fill:#e3f2fd,stroke:#1565c0
+    style WORKFLOW fill:#e8f5e9,stroke:#2e7d32
+    style EXT fill:#fff3e0,stroke:#e65100
+    style CORE fill:#fce4ec,stroke:#c62828
+    style ABS fill:#fff9c4,stroke:#f9a825
+    style MEAI fill:#f5f5f5,stroke:#666
+```
 ### 2.2 完整包清单
 
 | 包名 | 层级 | 说明 | 依赖 |
@@ -94,8 +119,32 @@ microsoft/agent-framework/          ← monorepo（Python 50.5% + C# 45.3%）
 
 ### 2.3 核心依赖关系
 
-![MAF NuGet 包依赖关系](../../../images/maf/09-overview-dependency.svg)
+<!-- MAF NuGet 包依赖关系 -->
+````mermaid
+graph TD
+    MEAI["Microsoft.Extensions.AI.Abstractions\n(外部 - Microsoft 官方)"]
+    ABS["AI.Abstractions\nAIAgent, AgentResponse, AgentSession"]
+    CORE["AI\nChatClientAgent, Skills, OTel"]
+    OAI["AI.OpenAI"]
+    FDY["AI.Foundry"]
+    ANT["AI.Anthropic"]
+    WF["AI.Workflows"]
+    WFG["AI.Workflows.Generators"]
+    WFD["AI.Workflows.Declarative"]
+    A2A["AI.A2A"]
+    HOST["AI.Hosting"]
 
+    MEAI --> ABS
+    ABS --> CORE
+    CORE --> OAI
+    CORE --> FDY
+    CORE --> ANT
+    CORE --> WF
+    WF --> WFG
+    WF --> WFD
+    CORE --> A2A
+    CORE --> HOST
+```
 ---
 
 ## 3. 核心类型总览

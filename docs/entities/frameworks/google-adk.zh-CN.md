@@ -39,8 +39,34 @@ Google ADK 是 Google 在 2025 年推出的代码优先 Agent 开发框架。它
 
 ### 2.1 层级式 Agent 架构
 
-![Google ADK 层级式 Agent 架构](../../images/frameworks/02-google-adk-hierarchy.svg)
+<!-- Google ADK 层级式 Agent 架构 -->
+````mermaid
+graph TB
+    subgraph ROOT["Root Agent<br/>（Coordinator / Orchestrator）"]
+        direction TB
+        subgraph AGENTS["Sub-Agents"]
+            direction LR
+            subgraph A["Sub-Agent A<br/>（Researcher）"]
+                A1["Sub-Agent A.1"]
+            end
+            subgraph B["Sub-Agent B<br/>（Writer）"]
+                B1["Tools"]
+            end
+        end
+        subgraph SESSION["Session Management<br/>（State, History, Context）"]
+        end
+        subgraph MODEL["Model Layer（Gemini / Others）"]
+        end
+    end
 
+    AGENTS --> SESSION --> MODEL
+
+    style ROOT fill:#f5f5f5,stroke:#333
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e8f5e9,stroke:#2e7d32
+    style SESSION fill:#fff3e0,stroke:#e65100
+    style MODEL fill:#fce4ec,stroke:#c62828
+```
 ### 2.2 Agent 定义
 
 ```python
@@ -99,8 +125,23 @@ ADK 提供丰富的工具类型：
 
 ADK 是 A2A 协议的原生支持者之一：
 
-![A2A 协议集成](../../images/frameworks/03-google-adk-a2a.svg)
+<!-- A2A 协议集成 -->
+````mermaid
+graph LR
+    A["Agent A<br/>（ADK）"]
+    B["Agent B<br/>（MAF）"]
+    C["Agent C<br/>（Pydantic AI）"]
+    D["Agent D<br/>（Any A2A-compatible）"]
 
+    A <-->|A2A Protocol| B
+    A <-->|A2A Protocol| C
+    A <-->|A2A Protocol| D
+
+    style A fill:#e3f2fd,stroke:#1565c0
+    style B fill:#e8f5e9,stroke:#2e7d32
+    style C fill:#fff3e0,stroke:#e65100
+    style D fill:#f3e5f5,stroke:#6a1b9a
+```
 **A2A 协议三大核心抽象**：
 
 ![Google A2A 协议架构](../../images/frameworks/architecture/Google-A2A-architecture.png)

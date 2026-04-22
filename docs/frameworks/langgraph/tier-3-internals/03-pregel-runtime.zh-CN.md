@@ -42,8 +42,31 @@ status: active
 
 ## 3. 模块结构
 
-![Pregel 内部模块](../diagrams/pregel-modules.svg)
+<!-- Pregel 内部模块 -->
+````mermaid
+flowchart TB
+    Pregel["pregel/__init__.py<br/>Pregel"]
+    Loop["pregel/loop.py<br/>PregelLoop"]
+    Runner["pregel/runner.py<br/>PregelRunner"]
+    Algo["pregel/algo.py<br/>prepare_next_tasks · apply_writes"]
+    Executor["pregel/_executor.py<br/>BackgroundExecutor / Async"]
+    RW["pregel/read.py · write.py<br/>ChannelRead · ChannelWrite"]
+    Manager["pregel/manager.py<br/>Channels + Checkpointer lifecycle"]
+    Stream["pregel/messages.py · debug.py · io.py<br/>Stream encoders"]
 
+    Pregel --> Loop
+    Loop --> Algo
+    Loop --> Runner
+    Loop --> Manager
+    Runner --> Executor
+    Runner --> Stream
+    Algo -. uses .-> RW
+
+    classDef core fill:#e7f5ff,stroke:#1971c2,color:#0b3d91,rx:6,ry:6
+    classDef io fill:#fff4e6,stroke:#f08c00,rx:6,ry:6
+    class Pregel,Loop,Runner,Algo core
+    class Executor,RW,Manager,Stream io
+```
 > 源文件：[`diagrams/pregel-modules.mmd`](../diagrams/pregel-modules.mmd)
 
 | 文件 | 职责 |
@@ -91,8 +114,48 @@ class Pregel(Runnable):
 
 ## 5. 单次超步的内部时序
 
-![Pregel 超步内部](../diagrams/pregel-tick.svg)
+<!-- Pregel 超步内部 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant P as Pregel.stream
+    participant L as PregelLoop
+    participant A as algo
+    participant R as PregelRunner
+    participant E as Executor
+    participant N as Node Fn
+    participant CK as Checkpointer
 
+    U->>P: stream(input, config)
+    P->>L: enter loop(input)
+    L->>CK: get_tuple(config)
+    CK-->>L: CheckpointTuple | None
+    L->>L: channels_from_checkpoint()
+
+    loop superstep N
+        L->>A: prepare_next_tasks(channels, checkpoint, pending_pushes)
+        A-->>L: List[PregelExecutableTask]
+        L->>L: check interrupt_before
+        L->>R: tick(tasks)
+        par 并发执行
+            R->>E: submit(task)
+            E->>N: task.proc(input, writes)
+            N-->>E: dict | Command | Send | interrupt()
+            E-->>R: future done
+        end
+        R->>R: collect writes, emit stream events
+        R-->>L: tasks done
+        L->>A: apply_writes(channels, tasks, get_next_version)
+        A->>A: 更新 channel_versions + versions_seen
+        L->>CK: put(checkpoint)
+        L->>L: check interrupt_after
+        L->>U: yield events (updates/values/messages/...)
+    end
+
+    L-->>P: done | interrupted
+    P-->>U: 返回最终事件
+```
 > 源文件：[`diagrams/pregel-tick.mmd`](../diagrams/pregel-tick.mmd)
 
 ### 5.1 PregelLoop.tick — 准备
@@ -208,8 +271,37 @@ def apply_writes(checkpoint, channels, tasks, get_next_version):
 
 ## 6. 并发模型
 
-![Pregel 并发执行模型](../diagrams/pregel-executor.svg)
+<!-- Pregel 并发执行模型 -->
+````mermaid
+flowchart LR
+    Loop[PregelLoop] --> Runner[PregelRunner]
+    Runner --> Submit{执行模式}
+    Submit -->|sync| BG[BackgroundExecutor<br/>ThreadPoolExecutor]
+    Submit -->|async| AB[AsyncBackgroundExecutor<br/>asyncio.create_task]
+    Submit -->|trio| TR[Trio nursery]
 
+    BG --> T1[Task 1]
+    BG --> T2[Task 2]
+    BG --> Tn[...]
+    AB --> A1[Task 1]
+    AB --> A2[Task 2]
+    AB --> An[...]
+
+    T1 -->|future| Collect[collect writes<br/>emit stream events]
+    T2 -->|future| Collect
+    A1 -->|task| Collect
+    A2 -->|task| Collect
+
+    Collect --> Barrier[barrier:<br/>apply_writes 单线程]
+    Barrier --> Loop
+
+    classDef exec fill:#fff4e6,stroke:#f08c00,rx:6,ry:6
+    classDef task fill:#e7f5ff,stroke:#1971c2,color:#0b3d91,rx:4,ry:4
+    classDef sync fill:#ffe3e3,stroke:#c92a2a,rx:6,ry:6
+    class BG,AB,TR exec
+    class T1,T2,Tn,A1,A2,An task
+    class Barrier sync
+```
 > 源文件：[`diagrams/pregel-executor.mmd`](../diagrams/pregel-executor.mmd)
 
 | Mode | 执行器 | 适合 |
@@ -230,8 +322,34 @@ def apply_writes(checkpoint, channels, tasks, get_next_version):
 
 ## 7. Checkpoint 与超步的关系
 
-![Pregel 与 Checkpoint 交互](../diagrams/pregel-checkpoint.svg)
+<!-- Pregel 与 Checkpoint 交互 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant L as PregelLoop
+    participant CK as Checkpointer
+    participant CH as Channels
+    participant T as Tasks
 
+    Note over L,CK: superstep N 开始
+    L->>CK: put(checkpoint A)<br/>step=N, tasks=[...], channel_versions=v_n
+    L->>T: 并发执行任务
+    T-->>L: writes / Command / Send / interrupt
+
+    Note over L,CH: barrier
+    L->>CH: apply_writes(reducer 合并)
+    CH->>CH: channel_versions = v_(n+1)
+    L->>CK: put(checkpoint B)<br/>含 pending_writes / interrupted 标记
+
+    alt 有 interrupt()
+        L-->>L: 标记 interrupted, 退出循环
+        Note over CK: B 含 pending_writes，<br/>下次 invoke(Command(resume=...)) 从此恢复
+    else 正常
+        L->>L: superstep N+1
+    end
+
+    Note over L,CK: 关键不变量：<br/>A 用于 replay 任务列表，<br/>B 用于状态恢复
+```
 > 源文件：[`diagrams/pregel-checkpoint.mmd`](../diagrams/pregel-checkpoint.mmd)
 
 每个 superstep 产生 **2 个** checkpoint：

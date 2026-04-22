@@ -29,8 +29,28 @@ status: active
 
 ### 1.1 分层总览（只看层 + 关键方向）
 
-![LangGraph 模块分层 stack](../diagrams/module-map.svg)
+<!-- LangGraph 模块分层 stack -->
+````mermaid
+%% LangGraph 模块分层 stack（TB 方向，视觉"调用栈"）
+%% 渲染：https://mermaid.live/
 
+flowchart TB
+    UA["① 用户 API 层<br/>StateGraph · Functional API · Prebuilt"]
+    RT["② 运行时层<br/>CompiledStateGraph · Pregel · Scheduler · Task"]
+    PR["③ 原语层<br/>Command · Send · Interrupt · StreamMode"]
+    CH["④ 通道层<br/>LastValue · Topic · BinaryOperator · Ephemeral · AnyValue"]
+    CK["⑤ 持久化层<br/>BaseCheckpointSaver · SerializerProtocol"]
+    IM["⑥ 持久化实现<br/>Memory · SQLite · Postgres · DuckDB · Platform Store"]
+
+    UA -->|compile| RT
+    RT -->|read/write| CH
+    RT -->|use| PR
+    RT -->|put/get| CK
+    CK -->|adapter| IM
+
+    classDef layer fill:#f8f9fa,stroke:#495057,stroke-width:2px,color:#212529,rx:8,ry:8
+    class UA,RT,PR,CH,CK,IM layer
+```
 > 源文件：[`diagrams/module-map.mmd`](../diagrams/module-map.mmd)
 
 每层**一句话职责**：
@@ -48,8 +68,42 @@ status: active
 
 分层图不展开运行时细节。真要看 Pregel 内部，用这张：
 
-![LangGraph 运行时内部](../diagrams/stream-lifecycle.svg)
+<!-- LangGraph 运行时内部 -->
+````mermaid
+%% LangGraph 一次 .stream() 调用的生命周期时序图
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant CG as CompiledStateGraph
+    participant PR as Pregel
+    participant LP as PregelLoop
+    participant AL as algo.prepare_next_tasks
+    participant N as Node Fn
+    participant CH as Channels
+    participant CK as Checkpointer
+    participant ST as Stream Writer
 
+    U->>CG: app.stream(input, config)
+    CG->>PR: __stream__()
+    PR->>CK: get_tuple(config)
+    CK-->>PR: CheckpointTuple | None
+    PR->>LP: enter loop
+
+    loop Superstep N
+        LP->>AL: prepare_next_tasks(channels, checkpoint)
+        AL-->>LP: List[PregelExecutableTask]
+        par 并行 tasks
+            LP->>N: task.proc(input)
+            N-->>LP: updates (dict | Command | Send)
+        end
+        LP->>CH: apply_writes(updates)
+        CH->>CK: put(checkpoint)
+        LP->>ST: emit events
+    end
+
+    LP-->>PR: done / interrupt
+    PR-->>U: async iter of events
+```
 > 源文件：[`diagrams/stream-lifecycle.mmd`](../diagrams/stream-lifecycle.mmd)
 
 ### 1.3 Channel 家族一览（不进图）
@@ -99,8 +153,41 @@ status: active
 
 以下是 `app.stream(input, config, stream_mode="updates")` 的高层时序：
 
-![LangGraph 运行生命周期](../diagrams/run-lifecycle.svg)
+<!-- LangGraph 运行生命周期 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant CG as CompiledStateGraph
+    participant PR as Pregel
+    participant LP as PregelLoop
+    participant AL as algo.prepare_next_tasks
+    participant N as Node Fn
+    participant CH as Channels
+    participant CK as Checkpointer
+    participant ST as Stream Writer
 
+    U->>CG: app.stream(input, config)
+    CG->>PR: __stream__()
+    PR->>CK: get_tuple(config)
+    CK-->>PR: CheckpointTuple | None
+    PR->>LP: enter loop
+
+    loop Superstep N
+        LP->>AL: prepare_next_tasks(channels, checkpoint)
+        AL-->>LP: List[PregelExecutableTask]
+        par 并行 tasks
+            LP->>N: task.proc(input)
+            N-->>LP: updates (dict | Command | Send)
+        end
+        LP->>CH: apply_writes(updates)
+        CH->>CK: put(checkpoint)
+        LP->>ST: emit events (values/updates/messages/...)
+    end
+
+    LP-->>PR: done / interrupt
+    PR-->>U: async iter of events
+```
 > 源文件：[`diagrams/run-lifecycle.mmd`](../diagrams/run-lifecycle.mmd)
 
 重点：
@@ -137,8 +224,19 @@ class State(TypedDict):
 
 BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价于"一个回合"：
 
-![LangGraph BSP 超步状态机](../diagrams/bsp-superstep.svg)
-
+<!-- LangGraph BSP 超步状态机 -->
+````mermaid
+stateDiagram-v2
+    [*] --> SelectActiveTasks
+    SelectActiveTasks --> ExecuteParallel : tasks 非空
+    SelectActiveTasks --> Done : tasks 空 & 无 pending writes
+    ExecuteParallel --> ApplyWrites
+    ApplyWrites --> Checkpoint
+    Checkpoint --> Interrupted : 有 interrupt()
+    Checkpoint --> SelectActiveTasks : 正常
+    Interrupted --> [*]
+    Done --> [*]
+```
 > 源文件：[`diagrams/bsp-superstep.mmd`](../diagrams/bsp-superstep.mmd)
 
 这意味着：
@@ -164,8 +262,17 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 7. 持久化分层
 
-![LangGraph 持久化分层](../diagrams/checkpoint-stack.svg)
-
+<!-- LangGraph 持久化分层 -->
+````mermaid
+flowchart LR
+    Pregel --> Saver[BaseCheckpointSaver]
+    Saver --> Serde[SerializerProtocol]
+    Saver --> InMem[MemorySaver]
+    Saver --> SQLite[SqliteSaver / AsyncSqliteSaver]
+    Saver --> PG[PostgresSaver / AsyncPostgresSaver]
+    Saver --> DD[DuckDBSaver]
+    Saver --> Ext[LangGraph Platform Store]
+```
 > 源文件：[`diagrams/checkpoint-stack.mmd`](../diagrams/checkpoint-stack.mmd)
 
 - `Saver` 只管**写读+版本**；序列化独立
@@ -192,8 +299,18 @@ BSP = Bulk Synchronous Parallel。LangGraph 的一个 **superstep** 大致等价
 
 ## 9. 模块依赖 DAG
 
-![LangGraph 模块依赖 DAG](../diagrams/module-deps.svg)
-
+<!-- LangGraph 模块依赖 DAG -->
+````mermaid
+flowchart LR
+    types --> channels
+    types --> pregel
+    channels --> pregel
+    checkpoint --> pregel
+    graph_mod[graph] --> pregel
+    pregel --> stream
+    prebuilt --> graph_mod
+    func --> pregel
+```
 > 源文件：[`diagrams/module-deps.mmd`](../diagrams/module-deps.mmd)
 
 - 无循环依赖

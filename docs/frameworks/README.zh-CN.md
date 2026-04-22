@@ -105,20 +105,25 @@ last-verified: <YYYY-MM>
 
 ## 3. 框架矩阵（2026-04）
 
-| 框架 | 语言 | 版本 | 定位 | 源码解剖状态 |
-|------|------|------|------|-------------|
-| **LangGraph** | Python/TS | 1.x | 有状态图编排 | 🚧 起步 |
-| **OpenAI Agents SDK** | Python/TS | 0.x | 极简 Agent Loop | ⏳ 计划 |
-| **Microsoft Agent Framework (MAF)** | .NET / Python | 1.x | 企业级 Agent + Workflow | ⏳ 计划 |
-| **Semantic Kernel** | .NET / Python | 1.x | Kernel + Plugin | ⏳ 计划 |
-| **CrewAI** | Python | 0.x | 角色化多 Agent | ⏳ 计划 |
-| **Google ADK** | Python | 1.x | Vertex 生态 Agent | ⏳ 计划 |
-| **AutoGen** | Python/.NET | 0.4+ | Actor 模型多 Agent | ⏳ 计划 |
-| **LlamaIndex Workflows** | Python | 1.x | Event-Driven Workflow | ⏳ 计划 |
-| **Pydantic AI** | Python | 0.x | Type-Safe Agent | ⏳ 计划 |
-| **Mastra** | TS | 0.x | TypeScript 全栈 | ⏳ 计划 |
+| 框架 | 语言 | 版本 | 定位 | Entity 分析 | 源码解剖 |
+|------|------|------|------|-------------|---------|
+| **LangGraph** | Python/TS | 1.x | 有状态图编排 | [📄](../entities/frameworks/langgraph.zh-CN.md) | 🚧 起步 |
+| **OpenAI Agents SDK** | Python/TS | 0.x | 极简 Agent Loop | [📄](../entities/frameworks/openai-agents-sdk.zh-CN.md) | ⏳ |
+| **Microsoft Agent Framework** | .NET / Python | 1.x | 企业级 Agent + Workflow | [📄](../entities/frameworks/microsoft-agent-framework.zh-CN.md) | ⏳ |
+| **Semantic Kernel** | .NET / Python | 1.x | Kernel + Plugin | [📄](../entities/frameworks/semantic-kernel.zh-CN.md) | ⏳ |
+| **CrewAI** | Python | 1.x | 角色化多 Agent | [📄](../entities/frameworks/crewai.zh-CN.md) | ⏳ |
+| **Google ADK** | Python | 1.x | Vertex 生态 Agent | [📄](../entities/frameworks/google-adk.zh-CN.md) | ⏳ |
+| **AutoGen** | Python/.NET | 0.4+ | Actor 模型多 Agent（已维护模式） | [📄](../entities/frameworks/autogen.zh-CN.md) | ⏳ |
+| **LangChain** | Python/TS | 0.3+ | 组件库 + LCEL | [📄](../entities/frameworks/langchain.zh-CN.md) | ⏳ |
+| **LlamaIndex Workflows** | Python | 1.x | Event-Driven Workflow + RAG | [📄](../entities/frameworks/llamaindex.zh-CN.md) | ⏳ |
+| **Pydantic AI** | Python | 0.x | Type-Safe Agent | [📄](../entities/frameworks/pydantic-ai.zh-CN.md) | ⏳ |
+| **smolagents** | Python | 0.x | Code Agent（极简） | [📄](../entities/frameworks/smolagents.zh-CN.md) | ⏳ |
+| **DSPy** | Python | 2.5+ | 声明式 Prompt 编译 | [📄](../entities/frameworks/dspy.zh-CN.md) | ⏳ |
+| **Agno** | Python | 0.x | 高性能 + 5 层能力（前身 Phidata） | [📄](../entities/frameworks/agno.zh-CN.md) | ⏳ |
+| **Mastra** | TS | 0.x | TypeScript 全栈 | [📄](../entities/frameworks/mastra.zh-CN.md) | ⏳ |
+| **Spring AI** | Java/Kotlin | 1.0+ | Spring Boot 自动装配 | [📄](../entities/frameworks/spring-ai.zh-CN.md) | ⏳ |
 
-图例：✅ 完成 · 🚧 进行中 · ⏳ 计划
+图例：📄 Entity 分析已就位 · ✅ 源码解剖完成 · 🚧 进行中 · ⏳ 计划
 
 ---
 
@@ -189,7 +194,28 @@ last-verified: <YYYY-MM>
 - **渲染命令**：`bash docs/scripts/render-mermaid.sh` —— 依赖 `mmdc`（`pnpm add -g @mermaid-js/mermaid-cli`）
 - **Markdown 引用样式**：
   ```markdown
-  ![模块地图](./diagrams/module-map.svg)
+  <!-- 模块地图 -->
+  ````mermaid
+%% LangGraph 模块分层 stack（TB 方向，视觉"调用栈"）
+%% 渲染：https://mermaid.live/
+
+flowchart TB
+    UA["① 用户 API 层<br/>StateGraph · Functional API · Prebuilt"]
+    RT["② 运行时层<br/>CompiledStateGraph · Pregel · Scheduler · Task"]
+    PR["③ 原语层<br/>Command · Send · Interrupt · StreamMode"]
+    CH["④ 通道层<br/>LastValue · Topic · BinaryOperator · Ephemeral · AnyValue"]
+    CK["⑤ 持久化层<br/>BaseCheckpointSaver · SerializerProtocol"]
+    IM["⑥ 持久化实现<br/>Memory · SQLite · Postgres · DuckDB · Platform Store"]
+
+    UA -->|compile| RT
+    RT -->|read/write| CH
+    RT -->|use| PR
+    RT -->|put/get| CK
+    CK -->|adapter| IM
+
+    classDef layer fill:#f8f9fa,stroke:#495057,stroke-width:2px,color:#212529,rx:8,ry:8
+    class UA,RT,PR,CH,CK,IM layer
+  ```
   > 源文件：[`diagrams/module-map.mmd`](./diagrams/module-map.mmd)
   ```
 - **重绘策略**：脚本按 mtime 增量渲染；修改 `.mmd` 后直接跑脚本即可

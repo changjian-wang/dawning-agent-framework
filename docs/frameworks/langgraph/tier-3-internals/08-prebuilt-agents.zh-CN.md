@@ -38,8 +38,25 @@ status: active
 
 ## 3. 全家福
 
-![Prebuilt Agents 全家福](../diagrams/prebuilt-family.svg)
+<!-- Prebuilt Agents 全家福 -->
+````mermaid
+flowchart TB
+    Base[StateGraph + ToolNode]
+    Base --> R[create_react_agent<br/>单 agent + 工具循环]
+    Base --> S[create_supervisor<br/>中央调度 + workers]
+    Base --> Sw[create_swarm<br/>互相 handoff]
 
+    R -.fork.- Custom1[自定义 ReAct 变种]
+    S -.fork.- Custom2[自定义 supervisor]
+    Sw -.fork.- Custom3[自定义 swarm]
+
+    classDef base fill:#f8f9fa,stroke:#495057
+    classDef api fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef custom fill:#fff4e6,stroke:#f08c00
+    class Base base
+    class R,S,Sw api
+    class Custom1,Custom2,Custom3 custom
+```
 > 源文件：[`diagrams/prebuilt-family.mmd`](../diagrams/prebuilt-family.mmd)
 
 | API | 范式 | 适合 |
@@ -73,8 +90,20 @@ agent.invoke({"messages": [HumanMessage("最新汇率？")]})
 
 ### 4.2 内部图
 
-![ReAct Agent 内部图](../diagrams/prebuilt-react.svg)
+<!-- ReAct Agent 内部图 -->
+````mermaid
+flowchart LR
+    Start([START]) --> A[agent<br/>llm.bind_tools.invoke]
+    A --> C{should_continue}
+    C -->|tool_calls 非空| T[tools<br/>ToolNode]
+    C -->|tool_calls 空| End([END])
+    T --> A
 
+    classDef llm fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef tool fill:#fff4e6,stroke:#f08c00
+    class A llm
+    class T tool
+```
 > 源文件：[`diagrams/prebuilt-react.mmd`](../diagrams/prebuilt-react.mmd)
 
 ```python
@@ -194,8 +223,25 @@ supervisor = create_supervisor(
 
 ### 6.2 内部图
 
-![Supervisor 内部图](../diagrams/prebuilt-supervisor.svg)
+<!-- Supervisor 内部图 -->
+````mermaid
+flowchart TB
+    Start([START]) --> Sup[supervisor<br/>react agent with handoff tools]
+    Sup --> Decide{tool_calls?}
+    Decide -->|transfer_to_search| W1[search_agent<br/>子图]
+    Decide -->|transfer_to_write| W2[write_agent<br/>子图]
+    Decide -->|transfer_to_review| W3[review_agent<br/>子图]
+    Decide -->|无 tool_calls| End([END])
 
+    W1 --> Sup
+    W2 --> Sup
+    W3 --> Sup
+
+    classDef sup fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef worker fill:#fff4e6,stroke:#f08c00
+    class Sup sup
+    class W1,W2,W3 worker
+```
 > 源文件：[`diagrams/prebuilt-supervisor.mmd`](../diagrams/prebuilt-supervisor.mmd)
 
 每个 worker 暴露为 supervisor 的工具：

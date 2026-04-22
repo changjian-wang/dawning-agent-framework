@@ -19,8 +19,115 @@ status: active
 
 ## 1. 类型关系全局图
 
-![Abstractions 层类型关系图](../../../images/maf/08-abstractions-class-diagram.svg)
+<!-- Abstractions 层类型关系图 -->
+````mermaid
+classDiagram
+    direction TB
 
+    class AIAgent {
+        &lt;&lt;abstract&gt;&gt;
+        +Id: string
+        +Name: string?
+        +RunAsync() AgentResponse
+        +RunStreamingAsync() IAsyncEnumerable
+        +RunAsync~T~() AgentResponse~T~
+        +CreateSessionAsync() AgentSession
+        +SerializeSessionAsync() JsonElement
+        +DeserializeSessionAsync() AgentSession
+        +GetService(type, key?) object?
+        #RunCoreAsync()* AgentResponse
+        #RunCoreStreamingAsync()* IAsyncEnumerable
+        #CreateSessionCoreAsync()* AgentSession
+        -CurrentRunContext [AsyncLocal]
+    }
+
+    class DelegatingAIAgent {
+        &lt;&lt;abstract&gt;&gt;
+        #InnerAgent: AIAgent
+    }
+
+    class AgentSession {
+        &lt;&lt;abstract&gt;&gt;
+        +StateBag: AgentSessionStateBag
+        +GetService~T~(key?) T?
+    }
+
+    class AgentSessionStateBag {
+        -ConcurrentDictionary state
+        +TryGetValue~T~(key) bool
+        +GetValue~T~(key) T?
+        +SetValue~T~(key, value)
+        +Serialize() JsonElement
+        +Deserialize()$ AgentSessionStateBag
+    }
+
+    class AgentResponse {
+        +Messages: IList~ChatMessage~
+        +Text: string
+        +AgentId: string?
+        +Usage: UsageDetails?
+        +FinishReason: ChatFinishReason?
+        +ContinuationToken
+    }
+
+    class AgentResponseUpdate {
+        +Contents: IList~AIContent~
+        +Text: string
+        +Role: ChatRole?
+        +AgentId: string?
+        +FinishReason: ChatFinishReason?
+        +ContinuationToken
+    }
+
+    class AgentRunOptions {
+        +AllowBackgroundResponses: bool?
+        +ContinuationToken
+        +ResponseFormat
+        +Clone() AgentRunOptions
+    }
+
+    class AgentRunContext {
+        +Agent: AIAgent
+        +Session: AgentSession?
+        +RequestMessages
+        +RunOptions: AgentRunOptions?
+    }
+
+    class AIContext {
+        +Instructions: string?
+        +Messages
+        +Tools
+    }
+
+    class AIContextProvider {
+        &lt;&lt;abstract&gt;&gt;
+        +StateKeys
+        +InvokingAsync() AIContext
+        +InvokedAsync()
+    }
+
+    class ChatHistoryProvider {
+        &lt;&lt;abstract&gt;&gt;
+        +StateKeys
+        +InvokingAsync() IEnumerable
+        +InvokedAsync()
+    }
+
+    class AIAgentMetadata {
+        +ProviderName: string?
+    }
+
+    AIAgent <|-- DelegatingAIAgent
+    AIAgent --> AgentSession : creates
+    AIAgent --> AgentResponse : returns
+    AIAgent --> AgentResponseUpdate : yields
+    AIAgent --> AgentRunContext : sets AsyncLocal
+    AIAgent ..> AgentRunOptions : uses
+    AgentSession --> AgentSessionStateBag : contains
+    AIContextProvider --> AIContext : returns
+    ChatHistoryProvider ..> AgentSession : reads/writes StateBag
+    AIContextProvider ..> AgentSession : reads/writes StateBag
+```
 ---
 
 ## 2. AIAgent：抽象基类详解

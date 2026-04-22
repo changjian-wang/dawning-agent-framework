@@ -45,14 +45,101 @@ status: active
 
 ### 2.1 全景图
 
-![LinkedIn HR Agent 系统全景](./diagrams/linkedin-system.svg)
+<!-- LinkedIn HR Agent 系统全景 -->
+````mermaid
+flowchart LR
+    subgraph User["Recruiter 用户"]
+        Web[LinkedIn Recruiter UI]
+        Notif[通知/邮件]
+    end
 
+    subgraph Ingress["接入与权限"]
+        Auth[SSO + RBAC]
+        ABT[A/B Routing]
+    end
+
+    subgraph Engine["LangGraph Agent 平台"]
+        Sup[Supervisor]
+        SR[Search Agent]
+        MC[Match Agent]
+        OUT[Outreach Agent]
+        FU[Followup Agent]
+        HITL[HITL Gate]
+    end
+
+    subgraph Internal["LinkedIn 内部服务"]
+        TalentDB[(Talent Graph)]
+        JobsDB[(Jobs DB)]
+        MsgSvc[Messaging Service]
+        SafeSvc[Safety Classifier]
+    end
+
+    subgraph Data["数据 & 审计"]
+        PG[(PostgresSaver<br/>checkpoints)]
+        Audit[(Audit Store)]
+        LS[LangSmith]
+    end
+
+    subgraph Models["LLM 路由"]
+        M1[GPT-4o]
+        M2[Claude 3.5]
+        M3[内部 fine-tuned]
+    end
+
+    Web --> Auth --> ABT --> Sup
+    Sup --> SR --> TalentDB
+    Sup --> MC --> JobsDB
+    Sup --> OUT --> SafeSvc
+    Sup --> FU --> MsgSvc
+    Sup --> HITL --> Web
+    Engine --> M1 & M2 & M3
+    Engine --> PG
+    Engine --> Audit
+    Engine --> LS
+    HITL --> Notif
+```
 > 源文件：[`diagrams/linkedin-system.mmd`](./diagrams/linkedin-system.mmd)
 
 ### 2.2 Agent 拓扑（Supervisor 模式）
 
-![LinkedIn HR Agent 拓扑](./diagrams/linkedin-topology.svg)
+<!-- LinkedIn HR Agent 拓扑 -->
+````mermaid
+flowchart TB
+    Start([START]) --> Sup[Supervisor]
+    Sup -->|search| SR[Search Agent]
+    Sup -->|match| MC[Match Agent]
+    Sup -->|outreach| OUT[Outreach Agent]
+    Sup -->|followup| FU[Followup Agent]
 
+    SR --> H1{HITL: 搜索条件确认}
+    H1 -->|approve| MC
+    H1 -->|edit| SR
+
+    MC --> H2{HITL: Top N 入选确认}
+    H2 -->|approve| OUT
+    H2 -->|edit| MC
+
+    OUT --> H3{HITL: 文案审阅}
+    H3 -->|approve| Send[发送外联]
+    H3 -->|edit| Send
+    H3 -->|regenerate| OUT
+    H3 -->|skip| End1([跳过])
+
+    FU --> H4{HITL: 回复审阅}
+    H4 -->|approve| Reply[回复消息]
+    H4 -->|edit| Reply
+
+    Send --> Done([END])
+    Reply --> Done
+    End1 --> Done
+
+    classDef agent fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef hitl fill:#fff4e6,stroke:#f08c00
+    classDef done fill:#d3f9d8,stroke:#2f9e44
+    class Sup,SR,MC,OUT,FU agent
+    class H1,H2,H3,H4 hitl
+    class Send,Reply,Done done
+```
 > 源文件：[`diagrams/linkedin-topology.mmd`](./diagrams/linkedin-topology.mmd)
 
 **核心模式：单 Supervisor + N Workers + 强 HITL gate**。
@@ -97,8 +184,55 @@ class RecruiterState(TypedDict):
 
 ## 4. 一次招聘的完整时序
 
-![LinkedIn HR Agent 时序](./diagrams/linkedin-sequence.svg)
+<!-- LinkedIn HR Agent 时序 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant R as Recruiter
+    participant UI as Recruiter UI
+    participant API as API Gateway
+    participant G as LangGraph Engine
+    participant CK as PostgresSaver
+    participant LLM as LLM Models
+    participant LS as LangSmith
+    participant TG as Talent Graph
 
+    R->>UI: 创建招聘项目
+    UI->>API: POST /project (jd, criteria)
+    API->>G: invoke({"project_id":...})
+    G->>LLM: supervisor 规划
+    LLM-->>G: route=search
+    G->>TG: 搜候选人
+    TG-->>G: 候选人池
+    G->>CK: put(checkpoint)
+    G-->>UI: interrupt(search_review)
+    UI-->>R: 渲染候选人列表 + 条件
+    Note over R: Recruiter 调整条件 / 确认
+
+    R->>UI: 修改并 approve
+    UI->>API: POST /resume (decision)
+    API->>G: invoke(Command(resume=decision))
+    G->>LLM: match agent
+    LLM-->>G: shortlist + 解释
+    G->>CK: put(checkpoint)
+    G-->>UI: interrupt(shortlist_review)
+    UI-->>R: 渲染 Top N
+
+    R->>UI: approve
+    UI->>API: POST /resume
+    API->>G: invoke(Command(resume))
+    loop 每个 candidate
+        G->>LLM: outreach draft
+        G-->>UI: interrupt(outreach_review)
+        R->>UI: edit / approve
+        UI->>API: POST /resume
+        G->>API: send outreach
+    end
+
+    G->>LS: trace(全链路)
+    G->>CK: put(final checkpoint)
+    G-->>UI: 完成
+```
 > 源文件：[`diagrams/linkedin-sequence.mmd`](./diagrams/linkedin-sequence.mmd)
 
 **HITL 不是异常路径，是正常步骤**：每个关键节点 `interrupt(...)` 暴露给前端，前端用按钮 / 修改文案，再 `Command(resume=...)` 续跑。

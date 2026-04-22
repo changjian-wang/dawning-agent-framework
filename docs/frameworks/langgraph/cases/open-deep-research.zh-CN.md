@@ -40,14 +40,81 @@ status: active
 
 ### 2.1 全景图
 
-![Open Deep Research 系统全景](./diagrams/odr-system.svg)
+<!-- Open Deep Research 系统全景 -->
+````mermaid
+flowchart LR
+    subgraph User["用户"]
+        UI[CLI / Notebook / Web UI]
+    end
 
+    subgraph Models["LLM 提供商"]
+        Plan[Planner Model<br/>o3 / Claude Opus]
+        Write[Writer Model<br/>GPT-4o / Claude Sonnet]
+        Sum[Summarizer Model<br/>GPT-4o-mini]
+    end
+
+    subgraph Search["搜索后端（任选）"]
+        Tav[Tavily]
+        Per[Perplexity]
+        Exa[Exa]
+        ArX[ArXiv / PubMed]
+        Etc[...]
+    end
+
+    subgraph Engine["LangGraph 运行时"]
+        SG[ReportGraph<br/>顶层 supervisor]
+        Sub[SectionSubgraph<br/>章节 sub-agent x N]
+        CK[(PostgresSaver<br/>checkpoint)]
+        Stream[Stream<br/>messages / updates]
+    end
+
+    UI --> SG
+    SG --> Plan
+    SG --> Sub
+    Sub --> Write
+    Sub --> Sum
+    Sub --> Search
+    SG --> CK
+    Sub --> CK
+    SG --> Stream --> UI
+```
 > 源文件：[`diagrams/odr-system.mmd`](./diagrams/odr-system.mmd)
 
 ### 2.2 Agent 拓扑（核心创新）
 
-![Open Deep Research Agent 拓扑](./diagrams/odr-topology.svg)
+<!-- Open Deep Research Agent 拓扑 -->
+````mermaid
+flowchart TB
+    Start([START]) --> Plan[plan_sections<br/>顶层规划]
+    Plan -->|Send fan-out| F1[build_section_with_web_research #1]
+    Plan -->|Send fan-out| F2[build_section_with_web_research #2]
+    Plan -->|Send fan-out| Fn[build_section_with_web_research #N]
 
+    subgraph SubGraph["每个章节子图"]
+        GQ[generate_queries] --> SW[search_web]
+        SW --> Inputs[section_writer_inputs_node]
+        Inputs --> WS[write_section]
+        WS --> Refl{reflect_or_finish}
+        Refl -->|不够| SW
+        Refl -->|够| SubEnd([sub END])
+    end
+
+    F1 -.-> GQ
+    F2 -.-> GQ
+    Fn -.-> GQ
+
+    F1 --> Compile[compile_final_report]
+    F2 --> Compile
+    Fn --> Compile
+    Compile --> End([END])
+
+    classDef plan fill:#e7f5ff,stroke:#1971c2,color:#0b3d91
+    classDef fan fill:#fff4e6,stroke:#f08c00
+    classDef sub fill:#f3f0ff,stroke:#5f3dc4
+    class Plan,Compile plan
+    class F1,F2,Fn fan
+    class GQ,SW,Inputs,WS,Refl sub
+```
 > 源文件：[`diagrams/odr-topology.mmd`](./diagrams/odr-topology.mmd)
 
 **两层 supervisor 模式**：
@@ -62,8 +129,54 @@ status: active
 
 ### 2.3 一次研究的时序
 
-![Open Deep Research 时序](./diagrams/odr-sequence.svg)
+<!-- Open Deep Research 时序 -->
+````mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant T as Top Graph
+    participant P as plan_sections
+    participant S1 as Section sub-agent #1
+    participant S2 as Section sub-agent #2
+    participant Sn as Section sub-agent #N
+    participant W as compile_final_report
+    participant LLM as LLM Models
+    participant Search as Search API
 
+    U->>T: invoke({"topic": ...})
+    T->>P: plan_sections(state)
+    P->>LLM: planner.with_structured_output(Sections)
+    LLM-->>P: Sections([s1, s2, ..., sN])
+
+    Note over T: Send fan-out: 一次派 N 个子图任务
+    par 并发
+        T->>S1: payload={section: s1, topic}
+        S1->>LLM: gen_queries
+        S1->>Search: search(q1, q2, ...)
+        Search-->>S1: raw results
+        S1->>LLM: write_section
+        LLM-->>S1: draft
+        S1->>LLM: reflect_grader
+        alt 通过
+            S1-->>T: completed_section #1
+        else 不够
+            S1->>Search: 再搜
+            S1->>LLM: 重写
+            S1-->>T: completed_section #1
+        end
+    and
+        T->>S2: payload={section: s2}
+        S2-->>T: completed_section #2
+    and
+        T->>Sn: payload={section: sN}
+        Sn-->>T: completed_section #N
+    end
+
+    T->>W: compile_final_report(state)
+    W->>LLM: 拼接 + 润色
+    LLM-->>W: final markdown
+    W-->>U: report
+```
 > 源文件：[`diagrams/odr-sequence.mmd`](./diagrams/odr-sequence.mmd)
 
 ---

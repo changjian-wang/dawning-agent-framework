@@ -59,16 +59,112 @@ Klarna 工程团队在 LangChain Interrupt 2025 给出的选型理由：
 
 ### 2.1 系统全景图
 
-![Klarna 客服 Agent 系统全景](./diagrams/klarna-system.svg)
+<!-- Klarna 客服 Agent 系统全景 -->
+````mermaid
+%% Klarna 客服 Agent 系统全景图
+flowchart LR
+    subgraph Users["用户入口"]
+        Web[Klarna App / Web]
+        IM[IM / 邮件渠道]
+    end
 
+    subgraph Ingress["接入层"]
+        LB[Gateway + Auth]
+        Rate[Rate Limit / 风控]
+    end
+
+    subgraph AgentPlatform["Agent 平台（LangGraph 驱动）"]
+        Router[Router Agent]
+        SG1[支付子图]
+        SG2[退款子图]
+        SG3[争议子图]
+        SG4[账号子图]
+        SG5[FAQ / 通识子图]
+        HITL[Human Handoff]
+    end
+
+    subgraph Services["Klarna 内部服务"]
+        Orders[订单服务]
+        Payments[支付服务]
+        KYC[KYC / 风控]
+        Refund[退款流程]
+        Notif[通知服务]
+    end
+
+    subgraph Data["数据与记忆"]
+        UserCtx[(用户画像)]
+        Hist[(对话历史)]
+        KB[(Knowledge Base RAG)]
+        Policy[(合规策略库)]
+    end
+
+    subgraph Observability["可观测 / 运维"]
+        LS[LangSmith Tracing]
+        Eval[Eval Pipeline]
+        Dash[业务 Dashboard]
+    end
+
+    Users --> Ingress --> Router
+    Router --> SG1 & SG2 & SG3 & SG4 & SG5
+    SG1 & SG2 & SG3 --> HITL
+    SG1 --> Payments
+    SG2 --> Refund
+    SG3 --> KYC
+    SG4 --> Orders
+    SG5 --> KB
+    AgentPlatform --> UserCtx & Hist & KB & Policy
+    AgentPlatform --> LS
+    LS --> Eval
+    Eval --> Dash
+```
 > 源文件：[`diagrams/klarna-system.mmd`](./diagrams/klarna-system.mmd)
 
 > 📌 图中子图切分是**推测**，参考 Klarna 公开提到的业务域；实际命名可能不同。
 
 ### 2.2 Agent 拓扑
 
-![Klarna 客服 Agent 拓扑](./diagrams/klarna-topology.svg)
+<!-- Klarna 客服 Agent 拓扑 -->
+````mermaid
+%% Klarna 客服 Agent 拓扑图（Router + 多 Subgraph + HITL）
+flowchart TB
+    Entry[入口节点 identify_intent]
+    Router{Router 业务域分类}
 
+    subgraph PaymentSG["支付子图"]
+        P1[加载订单]
+        P2[解释扣款]
+        P3[修复支付问题]
+        P4{需要人工?}
+    end
+
+    subgraph RefundSG["退款子图"]
+        R1[验证退款资格]
+        R2[发起退款]
+        R3[通知用户]
+        R4{金额 > 阈值?}
+    end
+
+    subgraph DisputeSG["争议子图"]
+        D1[收集证据]
+        D2[调用 KYC / 风控]
+        D3[生成工单]
+        HITLNode[人工介入]
+    end
+
+    Handoff[客服人员接管]
+
+    Entry --> Router
+    Router -->|payment| P1
+    Router -->|refund| R1
+    Router -->|dispute| D1
+    P1 --> P2 --> P3 --> P4
+    P4 -->|yes| Handoff
+    P4 -->|no| End1([结束])
+    R1 --> R2 --> R3 --> R4
+    R4 -->|yes| HITLNode --> Handoff
+    R4 -->|no| End2([结束])
+    D1 --> D2 --> D3 --> HITLNode --> Handoff
+```
 > 源文件：[`diagrams/klarna-topology.mmd`](./diagrams/klarna-topology.mmd)
 
 **设计要点（推测 + 公开）**：
@@ -80,8 +176,43 @@ Klarna 工程团队在 LangChain Interrupt 2025 给出的选型理由：
 
 ### 2.3 典型请求时序
 
-![Klarna 退款请求时序](./diagrams/klarna-refund-sequence.svg)
+<!-- Klarna 退款请求时序 -->
+````mermaid
+%% Klarna 退款请求典型时序
+sequenceDiagram
+    autonumber
+    participant U as 用户
+    participant GW as Gateway
+    participant R as Router Agent
+    participant SG as 子图（退款）
+    participant T as Tools (Refund Service)
+    participant H as Human Queue
+    participant LS as LangSmith
 
+    U->>GW: "我想退一笔扣款"
+    GW->>R: invoke(thread_id=user_id)
+    R->>LS: trace.start
+    R->>R: intent 分类 → refund
+    R->>SG: goto(refund_sg)
+    SG->>SG: 加载订单 & 扣款记录
+    SG->>T: check_refund_eligibility(order_id)
+    T-->>SG: eligible=true, amount=$1200
+
+    alt amount > threshold
+        SG->>SG: interrupt("需人工批准退款 $1200")
+        SG-->>GW: 挂起（checkpoint 已保存）
+        GW-->>U: "已提交，客服 2 分钟内回复"
+        H->>SG: resume(approve=true)
+    else amount <= threshold
+        SG->>T: initiate_refund(order_id)
+        T-->>SG: refund_id=R123
+    end
+
+    SG->>SG: 生成回复
+    SG->>LS: trace.end
+    SG-->>GW: reply
+    GW-->>U: "退款已发起，3-5 天到账"
+```
 > 源文件：[`diagrams/klarna-refund-sequence.mmd`](./diagrams/klarna-refund-sequence.mmd)
 
 ---

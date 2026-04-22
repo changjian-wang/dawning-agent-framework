@@ -139,8 +139,28 @@ for (int step = 0; step < 10; step++)  // 硬编码最大步数
 
 **双层记忆架构**：
 
-![双层记忆架构](../images/decisions/01-dual-layer-memory.svg)
+<!-- 双层记忆架构 -->
+````mermaid
+graph TB
+    subgraph WM["短期记忆（Working Memory）"]
+        W1["当前会话的消息列表"]
+        W2["接近上限时自动压缩（类似 GC）"]
+        W3["会话结束后可持久化（Session Resume）"]
+    end
+    subgraph LM["长期记忆（Long-term Memory）"]
+        L1["跨会话的知识积累"]
+        L2["remember() / recall() API"]
+        L3["向量数据库 + 语义检索"]
+        L4["复合评分（语义 + 时间衰减 + 重要性）"]
+        L5["层级作用域（scope tree）"]
+        L6["多 Agent 共享 / 私有隔离"]
+    end
 
+    WM -->|会话结束时提取关键事实| LM
+
+    style WM fill:#e3f2fd,stroke:#1565c0
+    style LM fill:#e8f5e9,stroke:#2e7d32
+```
 **为什么需要长期记忆**：
 
 | 场景 | 没有长期记忆 | 有长期记忆 |
@@ -165,14 +185,50 @@ for (int step = 0; step < 10; step++)  // 硬编码最大步数
 | 高可用 / 可扩展 | 多个 Agent 实例负载均衡 |
 | 跨组织协作 | Agent 运行在不同公司的基础设施上（A2A Protocol） |
 
-![分布式 Agent 架构](../images/decisions/02-distributed-architecture.svg)
+<!-- 分布式 Agent 架构 -->
+````mermaid
+graph LR
+    subgraph PA["进程 A（Web 服务器）"]
+        A1["接待 Agent<br/>（接收用户请求）"]
+    end
+    subgraph PB["进程 B（GPU 机器）"]
+        B1["分析 Agent<br/>（需要 GPU）"]
+    end
+    subgraph PC["进程 C（安全沙箱）"]
+        C1["执行 Agent<br/>（高权限操作）"]
+    end
+    subgraph SHARED["共享长期记忆<br/>（Redis / PostgreSQL+pgvector）"]
+    end
 
+    A1 -->|msg| B1 -->|msg| C1
+    A1 --> SHARED
+    B1 --> SHARED
+    C1 --> SHARED
+
+    style PA fill:#e3f2fd,stroke:#1565c0
+    style PB fill:#e8f5e9,stroke:#2e7d32
+    style PC fill:#fff3e0,stroke:#e65100
+    style SHARED fill:#fce4ec,stroke:#c62828
+```
 **竞品参考**：MS Agent Framework（Durable Agents、A2A Protocol）、AutoGen
 
 ### 3.4 三者的关系
 
-![三支柱关系](../images/decisions/03-three-pillars.svg)
+<!-- 三支柱关系 -->
+````mermaid
+graph TB
+    MA["多 Agent 协作"]
+    MEM["长期记忆"]
+    DIST["分布式 Agent"]
 
+    MA <-->|Agent 之间通过共享记忆交换知识| MEM
+    MA <-->|需要分布式运行| DIST
+    MEM <-->|需要远程存储| DIST
+
+    style MA fill:#e3f2fd,stroke:#1565c0
+    style MEM fill:#e8f5e9,stroke:#2e7d32
+    style DIST fill:#fff3e0,stroke:#e65100
+```
 ---
 
 ## 4. 核心概念清单
@@ -729,12 +785,71 @@ while (context.Steps < options.MaxSteps)
 
 ### 9.1 单 Agent 单次运行流程
 
-![单 Agent 单次运行流程](../images/decisions/04-single-agent-flow.svg)
+<!-- 单 Agent 单次运行流程 -->
+````mermaid
+flowchart TD
+    INPUT["用户输入<br/>&quot;查询最近的订单并发送邮件&quot;"]
+    RECALL["0. 检索长期记忆<br/>recall('订单 邮件') → 注入相关历史知识"]
+    BUILD["1. 构建消息列表<br/>system prompt + 记忆上下文 + user message + 历史消息"]
+    LLM["2. 调用 LLM<br/>发送 messages + tools 定义"]
+    CHECK{"3. 检查响应类型"}
+    TOOL["4. 执行工具"]
+    RESULT["5. 将结果加入消息"]
+    ANSWER["6. 返回最终答案"]
+    EXTRACT["7. extract_memories()<br/>→ 存入长期记忆"]
 
+    INPUT --> RECALL --> BUILD --> LLM --> CHECK
+    CHECK -->|有 tool_calls| TOOL --> RESULT --> LLM
+    CHECK -->|有 content| ANSWER --> EXTRACT
+
+    style INPUT fill:#fff9c4,stroke:#f9a825
+    style CHECK fill:#f3e5f5,stroke:#6a1b9a
+    style ANSWER fill:#e8f5e9,stroke:#2e7d32
+    style EXTRACT fill:#e8f5e9,stroke:#2e7d32
+```
 ### 9.2 多 Agent 协作流程
 
-![多 Agent 协作流程](../images/decisions/05-multi-agent-flow.svg)
+<!-- 多 Agent 协作流程 -->
+````mermaid
+flowchart TD
+    INPUT["用户: &quot;分析项目代码质量并修复关键 bug&quot;"]
+    ORCH["Orchestrator<br/>决定任务分解和调度顺序"]
 
+    subgraph AUDIT["1. 审计 Agent（可能在 GPU 机器上）"]
+        AU1["recall() 上次审计的发现"]
+        AU2["分析代码，发现 5 个问题"]
+        AU3["remember() 存入发现"]
+        AU4["返回结果给 Orchestrator"]
+        AU1 --> AU2 --> AU3 --> AU4
+    end
+
+    subgraph FIX["2. 修复 Agent（可能在开发沙箱中）"]
+        FX1["recall() 审计 Agent 的发现"]
+        FX2["逐个修复"]
+        FX3["remember() 存入修复结果"]
+        FX4["返回结果给 Orchestrator"]
+        FX1 --> FX2 --> FX3 --> FX4
+    end
+
+    subgraph TEST["3. 测试 Agent"]
+        TE1["recall() 修复了什么"]
+        TE2["生成测试，运行验证"]
+        TE3["返回最终报告"]
+        TE1 --> TE2 --> TE3
+    end
+
+    INPUT --> ORCH
+    ORCH --> AUDIT
+    ORCH --> FIX
+    ORCH --> TEST
+
+    AUDIT --> FIX --> TEST
+
+    style ORCH fill:#f3e5f5,stroke:#6a1b9a
+    style AUDIT fill:#e3f2fd,stroke:#1565c0
+    style FIX fill:#e8f5e9,stroke:#2e7d32
+    style TEST fill:#fff3e0,stroke:#e65100
+```
 ### 9.3 关键决策点
 
 | 步骤 | 需要处理的边界条件 |
