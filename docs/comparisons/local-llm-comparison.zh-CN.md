@@ -2,7 +2,7 @@
 title: "本地 LLM 方案对比：Ollama、LM Studio、vLLM、TensorRT-LLM、llama.cpp"
 type: comparison
 tags: [local-llm, ollama, vllm, tensorrt-llm, llamacpp, lmstudio, tgi, sglang]
-sources: [concepts/cost-optimization.zh-CN.md, concepts/deployment-architectures.zh-CN.md]
+sources: [concepts/06-operations/cost-optimization.zh-CN.md, concepts/06-operations/deployment-architectures.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

@@ -2,7 +2,7 @@
 title: "路线图：分层构建路径"
 type: decision
 tags: [roadmap, architecture, agent-os, microkernel]
-sources: [decisions/success-criteria.md, decisions/success-criteria.zh-CN.md, concepts/agent-os-architecture.zh-CN.md]
+sources: [decisions/success-criteria.md, decisions/success-criteria.zh-CN.md, concepts/01-agent-core/agent-os-architecture.zh-CN.md]
 created: 2026-04-08
 updated: 2026-04-17
 status: active
@@ -120,7 +120,7 @@ graph TB
 
 **前置依赖**：Layer 1。
 
-> **注意**：长期知识存储（向量检索）方案仍在评估中，存在已知局限（详见 [concepts/context-management.md](../concepts/context-management.md)）。本层当前仅确认短期记忆部分，长期知识服务交付物待定。
+> **注意**：长期知识存储（向量检索）方案仍在评估中，存在已知局限（详见 [concepts/02-context-memory/context-management.md](../concepts/02-context-memory/context-management.md)）。本层当前仅确认短期记忆部分，长期知识服务交付物待定。
 
 **需要掌握的知识**：
 - 上下文窗口管理策略（buffer、滑动窗口、摘要压缩）

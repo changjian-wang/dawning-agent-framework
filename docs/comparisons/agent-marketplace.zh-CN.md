@@ -2,7 +2,7 @@
 title: "Agent 生态经济学：Marketplace、GPTs、Agent Store、Skill 交易、定价模型"
 type: comparison
 tags: [marketplace, gpts, agent-store, pricing, economy, skill-market, monetization, m2m-payment]
-sources: [concepts/skill-evolution.zh-CN.md, concepts/dawning-capability-matrix.zh-CN.md]
+sources: [concepts/01-agent-core/skill-evolution.zh-CN.md, concepts/01-agent-core/dawning-capability-matrix.zh-CN.md]
 created: 2026-04-18
 updated: 2026-04-18
 status: active

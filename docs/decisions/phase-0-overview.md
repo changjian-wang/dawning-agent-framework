@@ -133,7 +133,7 @@ for (int step = 0; step < 10; step++)  // 硬编码最大步数
 
 ### 3.2 长期记忆
 
-> **状态：设计探索中** — 长期记忆的实现方案仍在评估，向量数据库方案存在已知局限（详见 [concepts/context-management.md](../concepts/context-management.md)）。框架预留 `ILongTermMemory` 接口，待方案成熟后实现。
+> **状态：设计探索中** — 长期记忆的实现方案仍在评估，向量数据库方案存在已知局限（详见 [concepts/02-context-memory/context-management.md](../concepts/02-context-memory/context-management.md)）。框架预留 `ILongTermMemory` 接口，待方案成熟后实现。
 
 **解决的问题**：Agent 需要跨会话积累知识，而不是每次从零开始。
 

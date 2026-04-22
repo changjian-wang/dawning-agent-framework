@@ -29,7 +29,7 @@
 ## [2026-04-07] ingest | Karpathy LLM Wiki 模式
 
 - 来源：`raw/articles/karpathy-llm-wiki.md`（待补充原文）
-- 新建页面：`concepts/llm-wiki-pattern.zh-CN.md`
+- 新建页面：`concepts/00-foundations/llm-wiki-pattern.zh-CN.md`
 - 关键要点：编译优于检索、三层架构（Raw/Wiki/Schema）、Ingest/Query/Lint 三种操作、维护成本归零的洞察
 
 ## [2026-04-08] restructure | 路线图重构为分层学习路径 + 成功标准
@@ -73,7 +73,7 @@
   - Layer 6 分布式架构 → **IPC + 分布式内核**
   - Layer 7 治理与合规 → **Security 子系统**
 - 新建页面：
-  - `concepts/agent-os-architecture.zh-CN.md`：OS 架构核心文档（微内核设计、三面体→子系统映射、命名空间表、分层图）
+  - `concepts/01-agent-core/agent-os-architecture.zh-CN.md`：OS 架构核心文档（微内核设计、三面体→子系统映射、命名空间表、分层图）
   - `comparisons/agent-os-vs-frameworks.md`：Agent OS vs Frameworks 定位差异化分析
 - 更新页面：
   - `index.md`：全面重写为 Agent OS 索引
@@ -84,9 +84,9 @@
   - `decisions/layer-0-requirements.zh-CN.md`：标题、命名空间、术语全面更新
   - `decisions/layer-0-features.zh-CN.md`：标题、命名空间更新
   - `decisions/layer-0-tech-spec.zh-CN.md`：标题、命名空间更新
-  - `concepts/agent-loop.md`：标题和引言更新
-  - `concepts/context-management.md`：引言更新
-  - `concepts/llm-wiki-pattern.zh-CN.md`：引言更新
+  - `concepts/01-agent-core/agent-loop.md`：标题和引言更新
+  - `concepts/02-context-memory/context-management.md`：引言更新
+  - `concepts/00-foundations/llm-wiki-pattern.zh-CN.md`：引言更新
   - `comparisons/agent-framework-landscape.zh-CN.md`：定位语更新
   - `comparisons/agent-framework-landscape.md`：引言更新
 - 关键洞察：dawning-assistant 是 Agent OS 之上的第一个"用户态应用"（Shell），dawning-agents 是"标准库"

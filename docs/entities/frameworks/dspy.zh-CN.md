@@ -177,4 +177,4 @@ better = copro.compile(RAG(retriever), trainset=trainset)
 
 - 官方文档：<https://dspy.ai/>
 - 论文《DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines》
-- [concepts/prompt-engineering-dspy.zh-CN.md](../../concepts/prompt-engineering-dspy.zh-CN.md)
+- [concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN.md](../../concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN.md)

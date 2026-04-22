@@ -2,7 +2,7 @@
 title: "成功标准：10 维度验收清单"
 type: decision
 tags: [success-criteria, verification, definition-of-done, agent-os]
-sources: [raw/papers/memento-skills-2603.18743.md, concepts/agent-os-architecture.zh-CN.md]
+sources: [raw/papers/memento-skills-2603.18743.md, concepts/01-agent-core/agent-os-architecture.zh-CN.md]
 created: 2026-04-07
 updated: 2026-04-17
 status: active
@@ -42,7 +42,7 @@ status: active
 - SC-1.3：记忆面提供短期状态（会话级）和长期知识（跨会话）两个独立可扩展的服务。
   > 短期状态处理当前对话的消息历史、工具调用结果和临时上下文。长期知识存储跨会话持久的事实、技能和学到的模式。这两类关注点的访问模式有本质差异（热访问 vs. 温访问），因此必须独立部署和扩展。
   >
-  > **注意**：长期知识服务（SC-1.3.2）的实现方案仍在评估中，向量数据库方案存在已知局限（详见 [concepts/context-management.md](../concepts/context-management.md)）。当前仅确认短期状态服务和接口定义，长期知识服务的具体实现待方案确定后修订。
+  > **注意**：长期知识服务（SC-1.3.2）的实现方案仍在评估中，向量数据库方案存在已知局限（详见 [concepts/02-context-memory/context-management.md](../concepts/02-context-memory/context-management.md)）。当前仅确认短期状态服务和接口定义，长期知识服务的具体实现待方案确定后修订。
 
   1. **短期状态服务** —— 低延迟、会话级存储（如 Redis、带持久化的内存存储），保存当前对话的消息列表、工具调用结果和临时变量。支持会话结束时基于 TTL 的自动过期，并提供原子读-改-写操作以支持并发步骤执行。
   2. **长期知识服务（待定）** —— 预留 `ILongTermMemory` 接口。候选方案包括向量检索（pgvector / Qdrant）、编译式知识管理（LLM Wiki）、结构化上下文快照（Context Broker），待评估后确定具体实现。
@@ -166,7 +166,7 @@ status: active
 
 ### SC-8 记忆系统
 
-> **注意**：SC-8.1、SC-8.5（短期记忆）为当前确认项。SC-8.2–SC-8.4（长期记忆）方案仍在评估，向量数据库方案存在已知局限（详见 [concepts/context-management.md](../concepts/context-management.md)），验收标准待方案确定后修订。
+> **注意**：SC-8.1、SC-8.5（短期记忆）为当前确认项。SC-8.2–SC-8.4（长期记忆）方案仍在评估，向量数据库方案存在已知局限（详见 [concepts/02-context-memory/context-management.md](../concepts/02-context-memory/context-management.md)），验收标准待方案确定后修订。
 
 - SC-8.1：短期记忆支持 buffer、滑动窗口、摘要压缩三种策略，按 Agent 可配置。
   > 短期记忆管理当前对话的消息历史。Buffer 模式保留所有消息（简单但 token 昂贵）。滑动窗口只保留最近 N 条（有界但可能丢失早期上下文）。摘要压缩通过 LLM 将较旧消息浓缩为摘要（保留关键事实同时控制 token）。策略按 Agent 通过配置选择，因为不同 Agent 的上下文需求不同。

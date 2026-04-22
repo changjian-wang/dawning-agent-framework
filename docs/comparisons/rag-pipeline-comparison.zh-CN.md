@@ -2,7 +2,7 @@
 title: "RAG Pipeline 专题：各家 RAG 实现的模块细节对比"
 type: comparison
 tags: [rag, retrieval, pipeline, architecture, comparison]
-sources: [concepts/dawning-capability-matrix.zh-CN.md, comparisons/framework-modules-mapping.zh-CN.md]
+sources: [concepts/01-agent-core/dawning-capability-matrix.zh-CN.md, comparisons/framework-modules-mapping.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

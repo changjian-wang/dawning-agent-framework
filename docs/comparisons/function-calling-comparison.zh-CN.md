@@ -2,7 +2,7 @@
 title: "Tool / Function Calling 深度对比：OpenAI vs Anthropic vs Gemini"
 type: comparison
 tags: [tool-calling, function-calling, openai, anthropic, gemini, mcp]
-sources: [concepts/agent-loop.md, concepts/protocols-a2a-mcp.zh-CN.md]
+sources: [concepts/01-agent-core/agent-loop.md, concepts/07-interop-ux/protocols-a2a-mcp.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active
@@ -590,7 +590,7 @@ public interface ITool
 
 - [[concepts/protocols-a2a-mcp.zh-CN]] — MCP 协议作为跨供应商的工具层标准
 - [[concepts/dawning-capability-matrix.zh-CN]] — `ILLMProvider` 和 `IToolRegistry` 抽象
-- [[concepts/agent-loop.md]] — Tool 调用在 Agent Loop 中的位置
+- [[concepts/01-agent-core/agent-loop.md]] — Tool 调用在 Agent Loop 中的位置
 - OpenAI Function Calling：<https://platform.openai.com/docs/guides/function-calling>
 - Anthropic Tool Use：<https://docs.anthropic.com/en/docs/build-with-claude/tool-use>
 - Gemini Function Calling：<https://ai.google.dev/gemini-api/docs/function-calling>

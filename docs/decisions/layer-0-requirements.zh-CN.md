@@ -2,7 +2,7 @@
 title: "Layer 0 需求说明：LLM Driver 抽象"
 type: decision
 tags: [layer-0, llm-driver, requirements, agent-os]
-sources: [decisions/success-criteria.zh-CN.md, decisions/phase-0-overview.md, concepts/agent-os-architecture.zh-CN.md]
+sources: [decisions/success-criteria.zh-CN.md, decisions/phase-0-overview.md, concepts/01-agent-core/agent-os-architecture.zh-CN.md]
 created: 2026-04-08
 updated: 2026-04-17
 status: active

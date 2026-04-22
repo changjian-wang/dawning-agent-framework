@@ -33,9 +33,9 @@ status: active
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/agent-loop.md](concepts/agent-loop.md) | Agent 循环抽象（§2.4 新增） |
-| [concepts/protocols-a2a-mcp.zh-CN.md](concepts/protocols-a2a-mcp.zh-CN.md) | MCP（工具协议）/ A2A（Agent 互通）规范 |
-| [concepts/dawning-capability-matrix.zh-CN.md](concepts/dawning-capability-matrix.zh-CN.md) | Dawning 8 层 × 16 接口能力矩阵 |
+| [concepts/01-agent-core/agent-loop.md](concepts/01-agent-core/agent-loop.md) | Agent 循环抽象（§2.4 新增） |
+| [concepts/07-interop-ux/protocols-a2a-mcp.zh-CN.md](concepts/07-interop-ux/protocols-a2a-mcp.zh-CN.md) | MCP（工具协议）/ A2A（Agent 互通）规范 |
+| [concepts/01-agent-core/dawning-capability-matrix.zh-CN.md](concepts/01-agent-core/dawning-capability-matrix.zh-CN.md) | Dawning 8 层 × 16 接口能力矩阵 |
 | [comparisons/framework-modules-mapping.zh-CN.md](comparisons/framework-modules-mapping.zh-CN.md) | 主流框架模块 ↔ Dawning 分层映射 |
 | [comparisons/agent-framework-landscape.zh-CN.md](comparisons/agent-framework-landscape.zh-CN.md) | 框架全景（已有，本批嵌图） |
 | [comparisons/agent-os-vs-frameworks.md](comparisons/agent-os-vs-frameworks.md) | Agent OS vs Framework 定位（本批嵌图） |
@@ -44,9 +44,9 @@ status: active
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/memory-architecture.zh-CN.md](concepts/memory-architecture.zh-CN.md) | Working/Episodic/Semantic/Procedural 记忆分层 |
-| [concepts/embedding-models.zh-CN.md](concepts/embedding-models.zh-CN.md) | Embedding 模型选型（BGE/Qwen3/OpenAI） |
-| [concepts/next-gen-rag.zh-CN.md](concepts/next-gen-rag.zh-CN.md) | GraphRAG / HippoRAG / Self-RAG / ColPali / Agentic RAG |
+| [concepts/02-context-memory/memory-architecture.zh-CN.md](concepts/02-context-memory/memory-architecture.zh-CN.md) | Working/Episodic/Semantic/Procedural 记忆分层 |
+| [concepts/00-foundations/embedding-models.zh-CN.md](concepts/00-foundations/embedding-models.zh-CN.md) | Embedding 模型选型（BGE/Qwen3/OpenAI） |
+| [concepts/03-io-data/next-gen-rag.zh-CN.md](concepts/03-io-data/next-gen-rag.zh-CN.md) | GraphRAG / HippoRAG / Self-RAG / ColPali / Agentic RAG |
 | [comparisons/rag-pipeline-comparison.zh-CN.md](comparisons/rag-pipeline-comparison.zh-CN.md) | RAG 主流 pipeline 结构对比 |
 | [comparisons/vector-database-comparison.zh-CN.md](comparisons/vector-database-comparison.zh-CN.md) | Qdrant/Milvus/Weaviate/pgvector/LanceDB 等对比 |
 
@@ -54,18 +54,18 @@ status: active
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/reasoning-algorithms.zh-CN.md](concepts/reasoning-algorithms.zh-CN.md) | ReAct / CoT / ToT / Plan-Execute 等算法 |
-| [concepts/reasoning-models.zh-CN.md](concepts/reasoning-models.zh-CN.md) | o1 / R1 / QwQ / Gemini Thinking 推理模型 |
-| [concepts/inference-time-search.zh-CN.md](concepts/inference-time-search.zh-CN.md) | Best-of-N / MCTS / PRM / Self-Consistency |
-| [concepts/prompt-engineering-dspy.zh-CN.md](concepts/prompt-engineering-dspy.zh-CN.md) | Prompt 工程 + DSPy 声明式编程 |
-| [concepts/post-training.zh-CN.md](concepts/post-training.zh-CN.md) | SFT/DPO/KTO/ORPO/RLVR/GRPO + PEFT |
+| [concepts/00-foundations/reasoning-algorithms.zh-CN.md](concepts/00-foundations/reasoning-algorithms.zh-CN.md) | ReAct / CoT / ToT / Plan-Execute 等算法 |
+| [concepts/00-foundations/reasoning-models.zh-CN.md](concepts/00-foundations/reasoning-models.zh-CN.md) | o1 / R1 / QwQ / Gemini Thinking 推理模型 |
+| [concepts/00-foundations/inference-time-search.zh-CN.md](concepts/00-foundations/inference-time-search.zh-CN.md) | Best-of-N / MCTS / PRM / Self-Consistency |
+| [concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN.md](concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN.md) | Prompt 工程 + DSPy 声明式编程 |
+| [concepts/00-foundations/post-training.zh-CN.md](concepts/00-foundations/post-training.zh-CN.md) | SFT/DPO/KTO/ORPO/RLVR/GRPO + PEFT |
 
 ### 2.4 Agent 形态（6）
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/multi-agent-patterns.zh-CN.md](concepts/multi-agent-patterns.zh-CN.md) | Supervisor / Swarm / Debate / Handoff 多 Agent 模式 |
-| [concepts/multimodal-agents.zh-CN.md](concepts/multimodal-agents.zh-CN.md) | 多模态 Agent（VLM/ASR/TTS/视频/机器人）|
+| [concepts/01-agent-core/multi-agent-patterns.zh-CN.md](concepts/01-agent-core/multi-agent-patterns.zh-CN.md) | Supervisor / Swarm / Debate / Handoff 多 Agent 模式 |
+| [concepts/03-io-data/multimodal-agents.zh-CN.md](concepts/03-io-data/multimodal-agents.zh-CN.md) | 多模态 Agent（VLM/ASR/TTS/视频/机器人）|
 | [comparisons/agentic-coding-deep-dive.zh-CN.md](comparisons/agentic-coding-deep-dive.zh-CN.md) | Cursor/Cline/Aider/Claude Code/Devin/OpenHands |
 | [comparisons/computer-use-agents.zh-CN.md](comparisons/computer-use-agents.zh-CN.md) | Anthropic CU / Operator / Browser-Use / UFO |
 | [comparisons/research-agents.zh-CN.md](comparisons/research-agents.zh-CN.md) | Deep Research / AI Scientist / AlphaEvolve / STORM |
@@ -76,8 +76,8 @@ status: active
 | 文件 | TL;DR |
 |------|------|
 | [comparisons/function-calling-comparison.zh-CN.md](comparisons/function-calling-comparison.zh-CN.md) | OpenAI/Anthropic/Gemini function calling 方言对比 |
-| [concepts/structured-output.zh-CN.md](concepts/structured-output.zh-CN.md) | JSON Mode / Structured Output / Outlines |
-| [concepts/skill-evolution.zh-CN.md](concepts/skill-evolution.zh-CN.md) | Tool → Skill → Package 演进 |
+| [concepts/03-io-data/structured-output.zh-CN.md](concepts/03-io-data/structured-output.zh-CN.md) | JSON Mode / Structured Output / Outlines |
+| [concepts/01-agent-core/skill-evolution.zh-CN.md](concepts/01-agent-core/skill-evolution.zh-CN.md) | Tool → Skill → Package 演进 |
 
 ### 2.6 基础设施与部署（6）
 
@@ -86,33 +86,33 @@ status: active
 | [comparisons/llm-gateway-comparison.zh-CN.md](comparisons/llm-gateway-comparison.zh-CN.md) | LiteLLM/Portkey/Helicone/OpenRouter 网关 |
 | [comparisons/local-llm-comparison.zh-CN.md](comparisons/local-llm-comparison.zh-CN.md) | Ollama/vLLM/TGI/llama.cpp 本地推理 |
 | [comparisons/polyglot-agent-ecosystem.zh-CN.md](comparisons/polyglot-agent-ecosystem.zh-CN.md) | Python/TS/.NET/Java/Go 生态对比 |
-| [concepts/deployment-architectures.zh-CN.md](concepts/deployment-architectures.zh-CN.md) | 部署架构（单体/微服务/Serverless） |
-| [concepts/state-persistence.zh-CN.md](concepts/state-persistence.zh-CN.md) | LangGraph Checkpoint / Temporal / Letta / Event Sourcing |
-| [concepts/edge-small-models.zh-CN.md](concepts/edge-small-models.zh-CN.md) | Phi-4/Gemini Nano/Apple Foundation + Core ML/MLX |
+| [concepts/06-operations/deployment-architectures.zh-CN.md](concepts/06-operations/deployment-architectures.zh-CN.md) | 部署架构（单体/微服务/Serverless） |
+| [concepts/02-context-memory/state-persistence.zh-CN.md](concepts/02-context-memory/state-persistence.zh-CN.md) | LangGraph Checkpoint / Temporal / Letta / Event Sourcing |
+| [concepts/00-foundations/edge-small-models.zh-CN.md](concepts/00-foundations/edge-small-models.zh-CN.md) | Phi-4/Gemini Nano/Apple Foundation + Core ML/MLX |
 
 ### 2.7 观测与治理（5）
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/observability-deep.zh-CN.md](concepts/observability-deep.zh-CN.md) | OTel / Langfuse / Phoenix / Braintrust 深度 |
-| [concepts/cost-optimization.zh-CN.md](concepts/cost-optimization.zh-CN.md) | Token/Cache/Router/Batch 成本治理 |
-| [concepts/agent-evaluation.zh-CN.md](concepts/agent-evaluation.zh-CN.md) | Eval 框架（RAGAS/DeepEval/Phoenix/Braintrust） |
-| [concepts/agent-ux-patterns.zh-CN.md](concepts/agent-ux-patterns.zh-CN.md) | Streaming / HITL / Generative UI 模式 |
-| [concepts/ai-compliance.zh-CN.md](concepts/ai-compliance.zh-CN.md) | EU AI Act / NIST / ISO 42001 合规 |
+| [concepts/06-operations/observability-deep.zh-CN.md](concepts/06-operations/observability-deep.zh-CN.md) | OTel / Langfuse / Phoenix / Braintrust 深度 |
+| [concepts/06-operations/cost-optimization.zh-CN.md](concepts/06-operations/cost-optimization.zh-CN.md) | Token/Cache/Router/Batch 成本治理 |
+| [concepts/04-prompt-eval/agent-evaluation.zh-CN.md](concepts/04-prompt-eval/agent-evaluation.zh-CN.md) | Eval 框架（RAGAS/DeepEval/Phoenix/Braintrust） |
+| [concepts/07-interop-ux/agent-ux-patterns.zh-CN.md](concepts/07-interop-ux/agent-ux-patterns.zh-CN.md) | Streaming / HITL / Generative UI 模式 |
+| [concepts/05-security-compliance/ai-compliance.zh-CN.md](concepts/05-security-compliance/ai-compliance.zh-CN.md) | EU AI Act / NIST / ISO 42001 合规 |
 
 ### 2.8 安全与身份（2）
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/agent-security.zh-CN.md](concepts/agent-security.zh-CN.md) | Prompt injection / Tool 滥用 / Sandbox |
-| [concepts/agent-identity-auth.zh-CN.md](concepts/agent-identity-auth.zh-CN.md) | OAuth 2.1 / Token Exchange / MCP Auth / Zero Trust |
+| [concepts/05-security-compliance/agent-security.zh-CN.md](concepts/05-security-compliance/agent-security.zh-CN.md) | Prompt injection / Tool 滥用 / Sandbox |
+| [concepts/05-security-compliance/agent-identity-auth.zh-CN.md](concepts/05-security-compliance/agent-identity-auth.zh-CN.md) | OAuth 2.1 / Token Exchange / MCP Auth / Zero Trust |
 
 ### 2.9 数据与生态（3）
 
 | 文件 | TL;DR |
 |------|------|
-| [concepts/dataset-building.zh-CN.md](concepts/dataset-building.zh-CN.md) | 数据集构建（SFT/DPO/Eval） |
-| [concepts/enterprise-roadmap.zh-CN.md](concepts/enterprise-roadmap.zh-CN.md) | 企业 Agent 落地 90 天路线 |
+| [concepts/03-io-data/dataset-building.zh-CN.md](concepts/03-io-data/dataset-building.zh-CN.md) | 数据集构建（SFT/DPO/Eval） |
+| [concepts/06-operations/enterprise-roadmap.zh-CN.md](concepts/06-operations/enterprise-roadmap.zh-CN.md) | 企业 Agent 落地 90 天路线 |
 | [comparisons/agent-marketplace.zh-CN.md](comparisons/agent-marketplace.zh-CN.md) | GPTs Store / Agent Space / x402 / 定价模型 |
 
 ### 2.10 对比（已存在，已扩展交叉引用）

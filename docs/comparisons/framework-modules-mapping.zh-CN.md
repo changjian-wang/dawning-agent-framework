@@ -2,7 +2,7 @@
 title: "框架模块映射：各家如何划分核心抽象"
 type: comparison
 tags: [architecture, modules, comparison, langchain, spring-ai, maf, sk]
-sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/dawning-capability-matrix.zh-CN.md]
+sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/01-agent-core/dawning-capability-matrix.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

@@ -2,7 +2,7 @@
 title: "企业 LLM 网关：API 聚合、限流、计费、审计"
 type: concept
 tags: [llm-gateway, api-gateway, rate-limit, billing, audit, portkey, litellm, kong-ai]
-sources: [concepts/cost-optimization.zh-CN.md, concepts/agent-security.zh-CN.md]
+sources: [concepts/06-operations/cost-optimization.zh-CN.md, concepts/05-security-compliance/agent-security.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

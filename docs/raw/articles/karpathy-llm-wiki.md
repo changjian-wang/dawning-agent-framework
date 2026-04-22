@@ -27,4 +27,4 @@
 
 ## 引用此资料的 Wiki 页面
 
-- `concepts/llm-wiki-pattern.zh-CN.md` — LLM Wiki 模式概念页
+- `concepts/00-foundations/llm-wiki-pattern.zh-CN.md` — LLM Wiki 模式概念页

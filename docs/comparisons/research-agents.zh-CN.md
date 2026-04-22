@@ -2,7 +2,7 @@
 title: "自主研究 Agent：Deep Research、AI Scientist、AlphaEvolve、STORM"
 type: comparison
 tags: [research-agent, deep-research, ai-scientist, alphaevolve, storm, autonomous, long-horizon]
-sources: [comparisons/agentic-coding-deep-dive.zh-CN.md, concepts/reasoning-models.zh-CN.md]
+sources: [comparisons/agentic-coding-deep-dive.zh-CN.md, concepts/00-foundations/reasoning-models.zh-CN.md]
 created: 2026-04-18
 updated: 2026-04-18
 status: active

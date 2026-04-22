@@ -183,7 +183,7 @@ agent.chat("How do I reset my password?")
 ## 6. 对 Dawning Agent OS 的启示
 
 1. **Event-Driven vs Graph-Driven**：两种编排模型各有优劣——事件驱动更松耦合，图驱动更可推理。Dawning 可以**同时支持两种心智**
-2. **RAG 作为一等公民**：不要把 RAG 当成一个"工具"，而应设计为**内存子系统**（参考 [concepts/context-management.md](../../concepts/context-management.md)）
+2. **RAG 作为一等公民**：不要把 RAG 当成一个"工具"，而应设计为**内存子系统**（参考 [concepts/02-context-memory/context-management.md](../../concepts/02-context-memory/context-management.md)）
 3. **按类型订阅**：`@step` 根据入参类型自动路由，这种"类型即契约"的模式比显式定义边更符合 .NET 强类型语义
 4. **Reader 生态**：数据源插件化（类比 Linux VFS）是 OS 隐喻的强化
 

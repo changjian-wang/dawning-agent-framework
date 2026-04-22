@@ -2,7 +2,7 @@
 title: ".NET / Rust / Go Agent 生态对比：非 Python 语言的 Agent 现状"
 type: comparison
 tags: [ecosystem, dotnet, rust, go, java, typescript, non-python, polyglot]
-sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/dawning-capability-matrix.zh-CN.md]
+sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/01-agent-core/dawning-capability-matrix.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

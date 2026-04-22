@@ -71,7 +71,7 @@ tier-3 模块（按推荐顺序）：
 
 ## 跨参考
 
-- **基础概念**：[../../../concepts/dataflow-channel-version.zh-CN.md](../../concepts/dataflow-channel-version.zh-CN.md)（channel 版本号机制，所有数据流框架通用）
+- **基础概念**：[../../../concepts/02-context-memory/dataflow-channel-version.zh-CN.md](../../concepts/02-context-memory/dataflow-channel-version.zh-CN.md)（channel 版本号机制，所有数据流框架通用）
 - **横向对比**：[../../../comparisons/maf-vs-langgraph.zh-CN.md](../../comparisons/maf-vs-langgraph.zh-CN.md)、[agent-framework-landscape](../../comparisons/agent-framework-landscape.zh-CN.md)
 - **Dawning 对应**：[_cross-module-comparison](_cross-module-comparison.zh-CN.md)
 

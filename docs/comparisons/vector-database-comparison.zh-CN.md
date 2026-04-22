@@ -2,7 +2,7 @@
 title: "向量数据库对比：Pinecone、Weaviate、Qdrant、Milvus、pgvector、Chroma、LanceDB"
 type: comparison
 tags: [vector-database, pinecone, weaviate, qdrant, milvus, pgvector, chroma, lancedb]
-sources: [comparisons/rag-pipeline-comparison.zh-CN.md, concepts/memory-architecture.zh-CN.md]
+sources: [comparisons/rag-pipeline-comparison.zh-CN.md, concepts/02-context-memory/memory-architecture.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

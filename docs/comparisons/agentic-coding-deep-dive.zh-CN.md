@@ -2,7 +2,7 @@
 title: "Agentic Coding 深度解析：Claude Code / Cursor / Aider / Devin 架构对比"
 type: comparison
 tags: [agentic-coding, claude-code, cursor, aider, devin, windsurf, cline, roo-code]
-sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/multi-agent-patterns.zh-CN.md]
+sources: [comparisons/agent-framework-landscape.zh-CN.md, concepts/01-agent-core/multi-agent-patterns.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

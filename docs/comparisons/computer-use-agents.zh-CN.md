@@ -2,7 +2,7 @@
 title: "Computer-Use / Browser Agent：Anthropic Computer Use、Operator、Stagehand、Skyvern、UFO 深度解析"
 type: comparison
 tags: [computer-use, browser-agent, operator, stagehand, skyvern, ufo, browser-use, playwright, cdp, automation]
-sources: [comparisons/agentic-coding-deep-dive.zh-CN.md, concepts/multimodal-agents.zh-CN.md]
+sources: [comparisons/agentic-coding-deep-dive.zh-CN.md, concepts/03-io-data/multimodal-agents.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active

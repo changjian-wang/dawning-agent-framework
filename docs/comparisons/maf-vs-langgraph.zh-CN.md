@@ -2,7 +2,7 @@
 title: "MAF Workflow vs LangGraph：两大图编排引擎头对头"
 type: comparison
 tags: [workflow, langgraph, maf, state-machine, orchestration]
-sources: [comparisons/agent-framework-landscape.zh-CN.md, comparisons/framework-modules-mapping.zh-CN.md, concepts/agent-loop.md]
+sources: [comparisons/agent-framework-landscape.zh-CN.md, comparisons/framework-modules-mapping.zh-CN.md, concepts/01-agent-core/agent-loop.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active
@@ -496,7 +496,7 @@ mainBuilder.AddSubWorkflow(subWorkflow);
 
 ## 17. 延伸阅读
 
-- [[concepts/agent-loop.md]] — 状态图编排模式（§2.4）
+- [[concepts/01-agent-core/agent-loop.md]] — 状态图编排模式（§2.4）
 - [[comparisons/framework-modules-mapping.zh-CN]] — MAF / LangGraph 模块地图
 - [[concepts/dawning-capability-matrix.zh-CN]] — Layer 3 接口
 - [[concepts/skill-evolution.zh-CN]] — Layer 5 与 Layer 3 的联动

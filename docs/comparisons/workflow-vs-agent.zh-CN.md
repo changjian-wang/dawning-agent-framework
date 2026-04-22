@@ -2,7 +2,7 @@
 title: "工作流引擎 vs Agent：Temporal、Restate、Dapr Workflow、Airflow、Prefect 与 Agent 的边界"
 type: comparison
 tags: [workflow, temporal, restate, dapr, airflow, prefect, dagster, agent-vs-workflow, durable-execution]
-sources: [concepts/state-persistence.zh-CN.md, concepts/multi-agent-patterns.zh-CN.md]
+sources: [concepts/02-context-memory/state-persistence.zh-CN.md, concepts/01-agent-core/multi-agent-patterns.zh-CN.md]
 created: 2026-04-17
 updated: 2026-04-17
 status: active
