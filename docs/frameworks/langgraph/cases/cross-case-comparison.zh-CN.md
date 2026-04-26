@@ -1,11 +1,14 @@
 ---
 framework: langgraph
-type: cross-case-comparison
+type: comparison
 cases: [klarna, open-deep-research, replit-agent, linkedin-hr-agent]
 tags: [langgraph, comparison, patterns, lessons]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: cross-comparison
+title: LangGraph 案例横向对比
+sources: []
 ---
 
 # LangGraph 案例横向对比

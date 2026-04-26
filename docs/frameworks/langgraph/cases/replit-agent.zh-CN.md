@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 version: case-2024-12
-type: case-analysis
+type: synthesis
 case-id: replit-agent
 domain: code-generation
 production: true
@@ -10,6 +10,9 @@ tags: [replit, code-gen, multi-agent, code-execution]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: case-study
+title: 案例：Replit Agent — 浏览器内的代码生成 Agent
+sources: []
 ---
 
 # 案例：Replit Agent — 浏览器内的代码生成 Agent

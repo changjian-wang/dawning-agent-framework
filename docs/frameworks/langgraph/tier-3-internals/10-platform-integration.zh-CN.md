@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: platform-integration
 repo-path: langgraph-platform / langgraph-cli / langsmith
 tags: [langgraph, platform, deployment, langsmith, studio]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 10 Platform Integration：部署、Studio、LangSmith
+sources: []
 ---
 
 # LangGraph — 10 Platform Integration：部署、Studio、LangSmith
@@ -276,8 +279,8 @@ docker run -p 8123:8123 \
 
 - 已读 → 全 02..09
 - 案例 → [[cases/linkedin-hr-agent]] 看企业部署形态
-- 跨案例 → [[cases/_cross-case-comparison]]（待写）
-- 跨模块 → [[../_cross-module-comparison]]（待写）
+- 跨案例 → [[cases/cross-case-comparison]]（待写）
+- 跨模块 → [[../cross-module-comparison]]（待写）
 - 横向 → 进入下一框架 OpenAI Agents SDK
 
 ---

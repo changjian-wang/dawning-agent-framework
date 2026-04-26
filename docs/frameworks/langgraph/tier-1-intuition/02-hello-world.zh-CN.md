@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 tier: 1
-type: intuition
+type: synthesis
 chapter: 02
 title: Hello World — 15 行跑起来
 tags: [langgraph, tier-1, hello-world]
@@ -10,6 +10,8 @@ reading-time: 20 min
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+subtype: intuition
+sources: []
 ---
 
 # 02 · Hello World —— 15 行跑起来

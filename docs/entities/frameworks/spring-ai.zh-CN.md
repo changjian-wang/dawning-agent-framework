@@ -1,9 +1,12 @@
 ---
 title: "Spring AI 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, spring-ai, java, enterprise, jvm]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # Spring AI 详细分析

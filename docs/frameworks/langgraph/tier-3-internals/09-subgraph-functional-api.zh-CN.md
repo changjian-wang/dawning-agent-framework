@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: subgraph-functional-api
 repo-path: libs/langgraph/langgraph/{graph/state.py,func/}
 tags: [langgraph, subgraph, functional-api, entrypoint, task]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 09 子图与 Functional API
+sources: []
 ---
 
 # LangGraph — 09 子图与 Functional API

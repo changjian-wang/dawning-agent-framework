@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: checkpointer
 repo-path: libs/checkpoint*/
 tags: [langgraph, checkpoint, persistence, durability]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 05 Checkpointer：持久化、durability 与时间旅行
+sources: []
 ---
 
 # LangGraph — 05 Checkpointer：持久化、durability 与时间旅行

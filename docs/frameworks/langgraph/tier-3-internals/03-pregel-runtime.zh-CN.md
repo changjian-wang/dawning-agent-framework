@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: pregel-runtime
 repo-path: libs/langgraph/langgraph/pregel/
 tags: [langgraph, pregel, runtime, bsp, scheduler]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 03 Pregel 运行时：BSP 调度核心
+sources: []
 ---
 
 # LangGraph — 03 Pregel 运行时：BSP 调度核心
@@ -476,4 +479,4 @@ update_state(config, values, as_node="x")
 - 官方 Conceptual Guide - Low Level：<https://langchain-ai.github.io/langgraph/concepts/low_level/>
 - BSP 模型综述：<https://en.wikipedia.org/wiki/Bulk_synchronous_parallel>
 - [[01-architecture]] §3 一次运行的生命周期（高层视角）
-- [[../_cross-module-comparison/runtime-model.zh-CN]]（待写：vs Temporal / vs Akka）
+- [[../cross-module-comparison/runtime-model.zh-CN]]（待写：vs Temporal / vs Akka）

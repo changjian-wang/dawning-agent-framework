@@ -1,9 +1,12 @@
 ---
 title: "LangChain 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, langchain, python, ecosystem, chains]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # LangChain 详细分析

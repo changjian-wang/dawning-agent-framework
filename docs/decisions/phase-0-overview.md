@@ -1,3 +1,13 @@
+---
+title: Phase 0: AI Agent Framework 全景概览
+type: decision
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Phase 0: AI Agent Framework 全景概览
 
 > **历史文档**：本文档创建于项目初期（Agent Framework 时期），记录从零构建的技术决策和原因。

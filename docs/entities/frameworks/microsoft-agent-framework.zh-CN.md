@@ -1,3 +1,13 @@
+---
+title: Microsoft Agent Framework (MAF) 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Microsoft Agent Framework (MAF) 详细分析
 
 > AutoGen 的企业级继任者，首个同时官方支持 .NET 和 Python 的 Agent 框架。

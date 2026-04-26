@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: interrupt-hitl
 repo-path: libs/langgraph/langgraph/{types.py,pregel/}
 tags: [langgraph, interrupt, hitl, command, resume]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 06 Interrupt 与 HITL：暂停、决策、续跑
+sources: []
 ---
 
 # LangGraph — 06 Interrupt 与 HITL：暂停、决策、续跑

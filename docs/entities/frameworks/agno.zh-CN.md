@@ -1,9 +1,12 @@
 ---
 title: "Agno 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, agno, python, performance, memory]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # Agno 详细分析

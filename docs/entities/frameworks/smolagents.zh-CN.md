@@ -1,9 +1,12 @@
 ---
 title: "smolagents 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, smolagents, huggingface, code-agent, minimal]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # smolagents 详细分析

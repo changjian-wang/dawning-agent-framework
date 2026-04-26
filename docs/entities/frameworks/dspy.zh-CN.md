@@ -1,9 +1,12 @@
 ---
 title: "DSPy 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, dspy, stanford, declarative, optimization, prompt-engineering]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # DSPy 详细分析

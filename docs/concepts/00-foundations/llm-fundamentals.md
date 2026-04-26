@@ -1,3 +1,13 @@
+---
+title: LLM 技术原理
+type: concept
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # LLM 技术原理
 
 > Agent 开发者视角的 LLM 核心概念。

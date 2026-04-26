@@ -1,9 +1,12 @@
 ---
 title: "Pydantic AI 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, pydantic-ai, python, type-safe, structured]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # Pydantic AI 详细分析

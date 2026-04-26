@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 tier: 1
-type: intuition
+type: synthesis
 chapter: 04
 title: 一个逐步演进的例子 —— 把所有概念用一遍
 tags: [langgraph, tier-1, tour, example]
@@ -10,6 +10,8 @@ reading-time: 45 min
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+subtype: intuition
+sources: []
 ---
 
 # 04 · 逐步演进 —— 把所有概念用一遍
@@ -432,4 +434,4 @@ END
 - **想看完整模块调用关系** → [[../tier-2-architecture/01-architecture]]
 - **想看源码怎么写的** → [[../tier-3-internals/]] 按需读
 - **想看真实企业案例** → [[../cases/]]（klarna / open-deep-research / replit-agent / linkedin-hr-agent）
-- **想看 LangGraph vs Dawning 映射** → [[../_cross-module-comparison]]
+- **想看 LangGraph vs Dawning 映射** → [[../cross-module-comparison]]

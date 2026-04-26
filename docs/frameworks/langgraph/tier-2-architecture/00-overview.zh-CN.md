@@ -1,12 +1,15 @@
 ---
 framework: langgraph
 version: v1.1.x (2026-04 快照)
-type: overview
+type: synthesis
 repo: https://github.com/langchain-ai/langgraph
 tags: [langgraph, pregel, state-graph, python, typescript]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: overview
+title: LangGraph — 00 Overview
+sources: []
 ---
 
 # LangGraph — 00 Overview
@@ -211,8 +214,8 @@ for event in app.stream({"messages": [], "step": 0}, config):
 
 横向：
 
-- [[_cross-module-comparison]] — LangGraph 模块 ↔ Dawning 全表映射
-- [[cases/_cross-case-comparison]] — 4 个案例横向对比
+- [[cross-module-comparison]] — LangGraph 模块 ↔ Dawning 全表映射
+- [[cases/cross-case-comparison]] — 4 个案例横向对比
 
 案例（按复杂度排序）：
 

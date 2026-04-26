@@ -7,6 +7,7 @@ sources:
   - https://github.com/microsoft/agent-framework
 created: 2026-04-09
 status: active
+updated: 2026-04-09
 ---
 
 # MAF 源码解析：项目结构全景

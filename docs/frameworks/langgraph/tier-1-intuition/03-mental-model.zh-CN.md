@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 tier: 1
-type: intuition
+type: synthesis
 chapter: 03
 title: 心智模型 —— 图 / State / Channel / Checkpoint
 tags: [langgraph, tier-1, mental-model, channel, checkpoint]
@@ -10,6 +10,8 @@ reading-time: 30 min
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+subtype: intuition
+sources: []
 ---
 
 # 03 · 心智模型 —— 图 / State / Channel / Checkpoint

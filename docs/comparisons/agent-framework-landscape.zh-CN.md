@@ -1,3 +1,13 @@
+---
+title: Agent 框架全景分析
+type: comparison
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Agent 框架全景分析
 
 > 截至 2026 年 4 月，市面上所有主流 AI Agent 框架的全面调研。

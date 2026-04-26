@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 case: open-deep-research
-type: case-study
+type: synthesis
 domain: research-agent
 source-of-truth: open-source
 repo: https://github.com/langchain-ai/open_deep_research
@@ -10,6 +10,9 @@ tags: [langgraph, open-source, research, multi-agent, send, supervisor]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: case-study
+title: 案例：Open Deep Research（开源研究 Agent）
+sources: []
 ---
 
 # 案例：Open Deep Research（开源研究 Agent）
@@ -405,7 +408,7 @@ def reflect_or_finish(state: SectionState):
 | L1 | 在本地跑一遍，调一个主题 | 仓库 README |
 | L2 | 改 supervisor prompt，加章节约束 | 源码 `src/open_deep_research/prompts.py` |
 | L3 | 把 search backend 换成 Dawning.Tools 实现 | [[../../../entities/frameworks/]] + 自写 adapter |
-| L4 | 用 Dawning 重写顶层 supervisor，对齐两个框架 | [[../../_cross-module-comparison/multi-agent-orchestration]]（待写） |
+| L4 | 用 Dawning 重写顶层 supervisor，对齐两个框架 | [[../../cross-module-comparison/multi-agent-orchestration]]（待写） |
 
 ---
 

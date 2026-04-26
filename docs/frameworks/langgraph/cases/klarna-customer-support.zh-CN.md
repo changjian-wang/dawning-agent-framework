@@ -1,10 +1,14 @@
 ---
+title: Klarna Customer Support Agent（基于 LangGraph）
+type: synthesis
+subtype: case-study
 framework: langgraph
 case: klarna-customer-support
 case-type: production
 url: https://blog.langchain.com/customers-klarna/
 last-verified: 2026-04
 tags: [langgraph, klarna, customer-support, fintech, production, case-study]
+sources: []
 created: 2026-04-18
 updated: 2026-04-18
 status: active
@@ -429,7 +433,7 @@ Klarna 未公开披露：
 - [[README]] — 本案例集索引
 - [[../00-overview]] — LangGraph 定位
 - [[../01-architecture]] — LangGraph 架构
-- [[../../_cross-case-comparison/customer-support-agents.zh-CN]] — 客服 Agent 跨框架对比（规划中）
+- [[../../cross-case-comparison/customer-support-agents.zh-CN]] — 客服 Agent 跨框架对比（规划中）
 - [[../../../concepts/agent-ux-patterns.zh-CN]] — HITL / Streaming UX
 - [[../../../concepts/observability-deep.zh-CN]] — 可观测
 - [[../../../concepts/state-persistence.zh-CN]] — 状态持久化

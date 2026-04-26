@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: prebuilt-agents
 repo-path: libs/langgraph/langgraph/prebuilt/
 tags: [langgraph, prebuilt, react-agent, supervisor, swarm, tool-node]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 08 Prebuilt Agents：现成可用的图模板
+sources: []
 ---
 
 # LangGraph — 08 Prebuilt Agents：现成可用的图模板

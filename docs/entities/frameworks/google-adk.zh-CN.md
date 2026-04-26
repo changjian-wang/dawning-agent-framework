@@ -1,3 +1,13 @@
+---
+title: Google ADK (Agent Development Kit) 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Google ADK (Agent Development Kit) 详细分析
 
 > Google 的代码优先 Agent 框架，原生 A2A 协议支持，多语言（Python + Java + Go）。

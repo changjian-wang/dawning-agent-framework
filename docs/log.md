@@ -5,6 +5,25 @@
 
 ---
 
+## [2026-04-26] lint | SCHEMA 1.1 升级 + 全量健康修复
+
+- 检查页面数：94（raw/ 不计）
+- 工具：新增 `scripts/wiki_lint.py`、`scripts/wiki_migrate_frontmatter.py`
+- 创建 `.github/copilot-instructions.md` + 三个 SKILL（wiki-ingest / wiki-query / wiki-lint）
+- **SCHEMA 1.0 → 1.1**：
+  - 新增 `reading` 主类型、`subtype` 可选字段
+  - 顶层目录承认 `frameworks/`、`readings/`、`images/`
+  - 双语单语合法化（不再强制对称）
+  - `README.md` 白名单（仍需 frontmatter）
+  - `sources` 允许空数组
+- **修复**：
+  - frontmatter 81 处 → 0 处（13 个文件补完整块、49 个文件迁移 type/补字段、autogen status: maintenance → stale）
+  - 命名 2 处 → 0 处（`_cross-*.zh-CN.md` 重命名 + 21 处反向链接更新）
+  - index.md 漂移 69 处 → 0 处（重写为 8 节分层索引，覆盖 94 页）
+  - 孤立页 4 → 0（README 白名单 + index 收录）
+- **保留**：autogen 标 `status: stale`（上游 maintenance 状态）
+- 待办：`synthesis/` 仍为空、`readings/frameworks/maf/03-10` 计划中
+
 ## [2026-04-07] init | Wiki 结构初始化
 
 - 操作：从平面文档结构迁移到 LLM Wiki 三层架构

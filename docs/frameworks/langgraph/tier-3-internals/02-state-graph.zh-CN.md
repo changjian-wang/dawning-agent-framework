@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: state-graph
 repo-path: libs/langgraph/langgraph/graph/
 tags: [langgraph, state-graph, dsl, compile]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 02 StateGraph：构图 DSL 的源码解剖
+sources: []
 ---
 
 # LangGraph — 02 StateGraph：构图 DSL 的源码解剖
@@ -491,4 +494,4 @@ MessageGraph = lambda: StateGraph(MessagesState)   # 简化
 - Conceptual Guide - Low Level：<https://langchain-ai.github.io/langgraph/concepts/low_level/>
 - Source：`libs/langgraph/langgraph/graph/state.py`
 - [[01-architecture]] §3 一次运行的生命周期
-- [[../_cross-module-comparison/state-model.zh-CN]]（待写）
+- [[../cross-module-comparison/state-model.zh-CN]]（待写）

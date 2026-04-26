@@ -1,3 +1,13 @@
+---
+title: CrewAI 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # CrewAI 详细分析
 
 > Stars 最高的纯 Agent 框架，Crew（自主协作）+ Flow（事件驱动）双模式架构。

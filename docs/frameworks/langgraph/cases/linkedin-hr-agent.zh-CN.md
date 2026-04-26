@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 case: linkedin-hr-agent
-type: case-study
+type: synthesis
 domain: enterprise-internal-agent
 source-of-truth: blog-and-talks
 references:
@@ -11,6 +11,9 @@ tags: [langgraph, linkedin, hitl, multi-agent, supervisor]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: case-study
+title: 案例：LinkedIn HR Agent（企业级 HITL 多 Agent）
+sources: []
 ---
 
 # 案例：LinkedIn HR Agent（企业级 HITL 多 Agent）

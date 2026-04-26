@@ -1,9 +1,12 @@
 ---
 title: "LlamaIndex Workflows 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, llamaindex, workflow, event-driven, rag]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # LlamaIndex Workflows 详细分析

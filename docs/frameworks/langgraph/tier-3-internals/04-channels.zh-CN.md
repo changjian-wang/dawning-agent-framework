@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: channels
 repo-path: libs/langgraph/langgraph/channels/
 tags: [langgraph, channels, reducer, concurrency]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 04 Channels：Reducer 与并发安全的另一半
+sources: []
 ---
 
 # LangGraph — 04 Channels：Reducer 与并发安全的另一半

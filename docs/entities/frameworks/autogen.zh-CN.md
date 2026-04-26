@@ -1,9 +1,12 @@
 ---
 title: "AutoGen 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, autogen, microsoft, multi-agent, actor-model]
-status: maintenance
+status: stale
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # AutoGen 详细分析

@@ -1,3 +1,13 @@
+---
+title: 上下文管理：五种流派与 Dawning 设计决策
+type: concept
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # 上下文管理：五种流派与 Dawning 设计决策
 
 > Agent 场景下上下文窗口管理的竞品分析和 Dawning Agent OS 存储层（Memory Plane）的双层记忆架构设计。

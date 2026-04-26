@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: streaming
 repo-path: libs/langgraph/langgraph/pregel/{io,messages,debug}.py
 tags: [langgraph, streaming, sse, websocket, stream-mode]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 07 Streaming：5 种 stream_mode 的源码解剖
+sources: []
 ---
 
 # LangGraph — 07 Streaming：5 种 stream_mode 的源码解剖

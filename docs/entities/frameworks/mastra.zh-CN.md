@@ -1,9 +1,12 @@
 ---
 title: "Mastra 详细分析"
-type: framework-entity
+type: entity
 tags: [framework, mastra, typescript, nodejs, fullstack]
 status: active
 created: 2026-04-22
+subtype: framework
+sources: []
+updated: 2026-04-22
 ---
 
 # Mastra 详细分析

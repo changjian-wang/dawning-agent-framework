@@ -1,9 +1,19 @@
+---
+title: Agent Framework 源码解剖库
+type: synthesis
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Agent Framework 源码解剖库
 
 > 以**模块为单位**逐框架深读开源 Agent 框架源码，产出可供架构师 / 研发 / Dawning 设计参考的"第二官方文档"。
 >
 > - 纵向：每个框架独立子目录，从 overview 到核心模块 5-10 篇
-> - 横向：`_cross-module-comparison/` 同类模块跨框架对比
+> - 横向：`cross-module-comparison/` 同类模块跨框架对比
 > - 可视化：每模块配 Mermaid 架构图 / 时序图 / 模块 DAG
 > - 映射：每模块末尾给出对 Dawning 对应 Layer / Interface 的映射
 
@@ -25,14 +35,14 @@ frameworks/
 │   └── diagrams/
 │       ├── module-map.mmd
 │       └── *.mmd
-├── _cross-module-comparison/          # 同类模块横切对比
+├── cross-module-comparison/          # 同类模块横切对比
 │   ├── state-model.zh-CN.md
 │   ├── tool-schema.zh-CN.md
 │   ├── streaming-event.zh-CN.md
 │   ├── checkpoint-impl.zh-CN.md
 │   ├── handoff-routing.zh-CN.md
 │   └── observability.zh-CN.md
-└── _cross-case-comparison/            # 同场景跨框架案例对比
+└── cross-case-comparison/            # 同场景跨框架案例对比
     ├── customer-support-agents.zh-CN.md
     ├── coding-agents.zh-CN.md
     ├── research-agents.zh-CN.md
@@ -145,7 +155,7 @@ last-verified: <YYYY-MM>
 
 ### 4.3 读同类模块（横切）
 
-进入 `_cross-module-comparison/`：
+进入 `cross-module-comparison/`：
 
 - `state-model.zh-CN.md` —— 各框架"State"实现对比
 - `tool-schema.zh-CN.md` —— 工具定义方式对比
@@ -157,7 +167,7 @@ last-verified: <YYYY-MM>
 ### 4.4 看产品案例（实战）
 
 - 进入 `<framework>/cases/`：读该框架下的生产 / 开源案例
-- 进入 `_cross-case-comparison/`：同一场景（客服 / 代码 / 研究 / 企业 copilot）下不同框架的选型对比
+- 进入 `cross-case-comparison/`：同一场景（客服 / 代码 / 研究 / 企业 copilot）下不同框架的选型对比
 
 ### 4.5 四重视角小结
 
@@ -165,9 +175,9 @@ last-verified: <YYYY-MM>
 |------|------|------|
 | 源码模块 | `<framework>/02..N-*` | "这块代码怎么工作" |
 | 框架全貌 | `<framework>/00-01` | "这个框架整体设计" |
-| 同类模块 | `_cross-module-comparison/` | "不同框架的 State / Tool 都怎么做" |
+| 同类模块 | `cross-module-comparison/` | "不同框架的 State / Tool 都怎么做" |
 | 产品案例 | `<framework>/cases/` | "用这个框架真的建出什么" |
-| 同场景跨框架 | `_cross-case-comparison/` | "同一种产品用不同框架怎么选" |
+| 同场景跨框架 | `cross-case-comparison/` | "同一种产品用不同框架怎么选" |
 
 ---
 
@@ -253,7 +263,7 @@ flowchart TB
 3. 在 `01-architecture` 给出**模块地图（DAG）**
 4. 按模块逐篇写 `02..N`
 5. 更新本 README 的"框架矩阵"
-6. 在 `_cross-module-comparison/` 相应主题追加该框架的段落
+6. 在 `cross-module-comparison/` 相应主题追加该框架的段落
 7. 交叉链接至 `comparisons/` 中已有的主题对比
 
 ---

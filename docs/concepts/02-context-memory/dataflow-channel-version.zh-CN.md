@@ -6,6 +6,7 @@ related-frameworks: [langgraph, temporal, flink]
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+sources: []
 ---
 
 # Dataflow 编排基础：Channel、版本号、激活判定

@@ -1,10 +1,13 @@
 ---
 framework: langgraph
-type: index
+type: synthesis
 tags: [langgraph, index, reading-guide]
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+subtype: overview
+title: LangGraph 深度解剖
+sources: []
 ---
 
 # LangGraph 深度解剖
@@ -21,7 +24,7 @@ langgraph/
 ├── tier-2-architecture/  # 整体架构：模块地图、调用链
 ├── tier-3-internals/     # 源码深读：每个模块逐行解剖
 ├── cases/                # 真实案例 + 横向对比
-├── _cross-module-comparison.zh-CN.md   # 模块 ↔ Dawning 映射总表
+├── cross-module-comparison.zh-CN.md   # 模块 ↔ Dawning 映射总表
 └── diagrams/             # 所有 Mermaid 源文件 + 渲染 PNG
 ```
 
@@ -47,8 +50,8 @@ langgraph/
 跳过 tier-1，直接对标设计。
 
 1. [tier-2/01-architecture](tier-2-architecture/01-architecture.zh-CN.md)
-2. [_cross-module-comparison](_cross-module-comparison.zh-CN.md) — LangGraph ↔ Dawning 映射
-3. [cases/_cross-case-comparison](cases/_cross-case-comparison.zh-CN.md) — 4 案例横评
+2. [cross-module-comparison](cross-module-comparison.zh-CN.md) — LangGraph ↔ Dawning 映射
+3. [cases/cross-case-comparison](cases/cross-case-comparison.zh-CN.md) — 4 案例横评
 4. 按 RFC 优先级挑 tier-3 模块
 
 ### 🔬 路径 C：源码工程师（~10 小时）
@@ -73,7 +76,7 @@ tier-3 模块（按推荐顺序）：
 
 - **基础概念**：[../../../concepts/02-context-memory/dataflow-channel-version.zh-CN.md](../../concepts/02-context-memory/dataflow-channel-version.zh-CN.md)（channel 版本号机制，所有数据流框架通用）
 - **横向对比**：[../../../comparisons/maf-vs-langgraph.zh-CN.md](../../comparisons/maf-vs-langgraph.zh-CN.md)、[agent-framework-landscape](../../comparisons/agent-framework-landscape.zh-CN.md)
-- **Dawning 对应**：[_cross-module-comparison](_cross-module-comparison.zh-CN.md)
+- **Dawning 对应**：[cross-module-comparison](cross-module-comparison.zh-CN.md)
 
 ---
 
@@ -86,7 +89,7 @@ tier-3 模块（按推荐顺序）：
 | [replit-agent](cases/replit-agent.zh-CN.md) | 代码生成 | 反馈环 + 沙箱 |
 | [linkedin-hr-agent](cases/linkedin-hr-agent.zh-CN.md) | 招聘 | 多次 HITL + 长 thread |
 
-案例横评：[_cross-case-comparison](cases/_cross-case-comparison.zh-CN.md)
+案例横评：[cross-case-comparison](cases/cross-case-comparison.zh-CN.md)
 
 ---
 

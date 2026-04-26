@@ -1,10 +1,13 @@
 ---
 framework: langgraph
-type: cross-module-comparison
+type: comparison
 tags: [langgraph, dawning, mapping, comparison]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: cross-comparison
+title: LangGraph ↔ Dawning 模块映射总表
+sources: []
 ---
 
 # LangGraph ↔ Dawning 模块映射总表
@@ -159,8 +162,8 @@ flowchart LR
 ## 8. 阅读顺序
 
 - 已读 → 全部 LangGraph 模块 00-10
-- 模块对比 → [[../_cross-module-comparison]]（跨框架，待写）
-- 案例对比 → [[_cross-case-comparison]]
+- 模块对比 → [[../cross-module-comparison]]（跨框架，待写）
+- 案例对比 → [[cross-case-comparison]]
 - 进入下一框架 → OpenAI Agents SDK / Microsoft Agent Framework / 等
 
 ---

@@ -1,3 +1,13 @@
+---
+title: OpenAI Agents SDK 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # OpenAI Agents SDK 详细分析
 
 > OpenAI 官方出品的极简 Agent 框架，Dawning.Agents 的原始设计灵感来源。

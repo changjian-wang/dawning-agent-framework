@@ -1,10 +1,13 @@
 ---
 framework: langgraph
-type: case-index
+type: synthesis
 tags: [langgraph, cases, production, open-source]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: overview
+title: LangGraph — 产品案例索引
+sources: []
 ---
 
 # LangGraph — 产品案例索引
@@ -60,9 +63,9 @@ status: active
 
 如果你想看"同一场景用不同框架怎么做"，请去：
 
-- [[../../_cross-case-comparison/customer-support-agents.zh-CN]]（客服 Agent：LangGraph vs others）
-- [[../../_cross-case-comparison/coding-agents.zh-CN]]（Replit vs Cursor vs Devin）
-- [[../../_cross-case-comparison/research-agents.zh-CN]]（Deep Research 流派对比）
+- [[../../cross-case-comparison/customer-support-agents.zh-CN]]（客服 Agent：LangGraph vs others）
+- [[../../cross-case-comparison/coding-agents.zh-CN]]（Replit vs Cursor vs Devin）
+- [[../../cross-case-comparison/research-agents.zh-CN]]（Deep Research 流派对比）
 
 ---
 

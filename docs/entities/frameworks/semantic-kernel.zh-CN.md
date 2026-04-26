@@ -1,3 +1,13 @@
+---
+title: Semantic Kernel 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Semantic Kernel 详细分析
 
 > 微软的模型无关 SDK，.NET 生态中最成熟的 AI Agent 开发框架。

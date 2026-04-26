@@ -1,7 +1,7 @@
 ---
 framework: langgraph
 tier: 1
-type: intuition
+type: synthesis
 chapter: 01
 title: LangGraph 是什么，解决什么问题
 tags: [langgraph, tier-1, intro]
@@ -10,6 +10,8 @@ reading-time: 15 min
 created: 2026-04-21
 updated: 2026-04-21
 status: active
+subtype: intuition
+sources: []
 ---
 
 # 01 · LangGraph 是什么，解决什么问题

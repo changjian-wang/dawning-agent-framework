@@ -1,13 +1,16 @@
 ---
 framework: langgraph
 version: v1.1.x
-type: source-analysis
+type: synthesis
 module: architecture-overview
 repo-path: libs/langgraph/
 tags: [langgraph, architecture, pregel, module-map]
 created: 2026-04-18
 updated: 2026-04-18
 status: active
+subtype: internals
+title: LangGraph — 01 整体架构
+sources: []
 ---
 
 # LangGraph — 01 整体架构
@@ -334,7 +337,7 @@ flowchart LR
 | `func/` (Functional API) | Layer 6 | `ISkillDsl` | 提供 decorator 风格构图 |
 | `checkpoint-postgres` 等 | Layer 2 / Layer 5 持久化 | 适配器 | Dawning.Workflow.Postgres 参考 |
 
-完整映射表见后续 [[../_cross-module-comparison/checkpoint-impl.zh-CN]] 与 [[../_cross-module-comparison/state-model.zh-CN]]。
+完整映射表见后续 [[../cross-module-comparison/checkpoint-impl.zh-CN]] 与 [[../cross-module-comparison/state-model.zh-CN]]。
 
 ---
 

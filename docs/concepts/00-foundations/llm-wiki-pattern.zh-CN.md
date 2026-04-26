@@ -1,3 +1,13 @@
+---
+title: LLM Wiki 模式：编译式知识管理
+type: concept
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # LLM Wiki 模式：编译式知识管理
 
 > 来源：[Andrej Karpathy — LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)（2026-04-04）

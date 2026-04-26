@@ -1,3 +1,13 @@
+---
+title: Agent Loop：内核执行模式
+type: concept
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # Agent Loop：内核执行模式
 
 > Agent 的核心在于循环执行：接收任务 → LLM 推理 → 执行动作 → 观察结果 → 决定下一步。

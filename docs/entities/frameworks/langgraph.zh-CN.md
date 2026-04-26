@@ -1,3 +1,13 @@
+---
+title: LangGraph 详细分析
+type: entity
+tags: []
+sources: []
+created: 2026-04-26
+updated: 2026-04-26
+status: active
+---
+
 # LangGraph 详细分析
 
 > 面向有状态 Agent 的底层编排框架，以 Pregel 图模型为核心的持久执行引擎。
