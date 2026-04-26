@@ -33,7 +33,19 @@ docs/                              # Obsidian 知识库根目录
 │
 ├── decisions/                     # 🏗️  架构决策记录（ADR）
 │
-└── synthesis/                     # 🔬 综合分析（跨源交叉洞察）
+├── synthesis/                     # 🔬 综合分析（跨源交叉洞察）
+│
+├── readings/                      # 📖 阅读笔记（按源逐章节解读）
+│   └── frameworks/                #    框架文档/源码精读
+│
+├── frameworks/                    # 🧪 框架深读体系（tier 化精读）
+│   └── {framework}/
+│       ├── tier-1-intuition/      #    直觉层
+│       ├── tier-2-architecture/   #    架构层
+│       ├── tier-3-internals/      #    源码层
+│       └── cases/                 #    案例分析
+│
+└── images/                        # 🖼️  图片资源
 ```
 
 ## 2. 层级规则
@@ -48,18 +60,29 @@ docs/                              # Obsidian 知识库根目录
 
 ### 2.2 Wiki Pages（编译产物层）
 
-Wiki 页面分为四类：
+Wiki 页面分为六个**主类型**，路径与 type 字段一一对应：
 
-| 类型 | 路径 | 说明 | 示例 |
+| 主类型 type | 路径 | 说明 | 示例 |
 |------|------|------|------|
-| **Entity** | `entities/{subcategory}/` | 具名事物的专属页面 | `entities/frameworks/semantic-kernel.md` |
-| **Concept** | `concepts/` | 模式、原理、技术概念 | `concepts/memento-skills.md` |
-| **Comparison** | `comparisons/` | 多实体对比分析 | `comparisons/agent-framework-landscape.md` |
-| **Decision** | `decisions/` | 架构决策记录 | `decisions/roadmap-90-days.md` |
-| **Synthesis** | `synthesis/` | 跨领域综合洞察 | `synthesis/memory-plane-design.md` |
+| **entity** | `entities/{subcategory}/` | 具名事物的专属页面 | `entities/frameworks/semantic-kernel.md` |
+| **concept** | `concepts/` | 模式、原理、技术概念 | `concepts/memento-skills.md` |
+| **comparison** | `comparisons/` | 多实体对比分析 | `comparisons/agent-framework-landscape.md` |
+| **decision** | `decisions/` | 架构决策记录（ADR） | `decisions/roadmap.md` |
+| **synthesis** | `synthesis/` 或 `frameworks/{x}/` | 跨源/跨章节综合分析、深读产物 | `frameworks/langgraph/tier-2-architecture/01-architecture.md` |
+| **reading** | `readings/{source}/` | 单一来源的章节级阅读笔记 | `readings/frameworks/maf/01-abstractions.md` |
+
+**subtype（可选）** — 用于在主类型内进一步标注语义，仅做展示与查询，不参与目录约束：
+
+| 主类型 | 推荐 subtype 集合 |
+|---|---|
+| `synthesis` | `intuition`, `architecture`, `internals`, `case-study`, `cross-comparison`, `overview` |
+| `reading` | `chapter`, `module`, `overview` |
+| `entity` | `framework`, `tool`, `protocol`, `paper` |
 
 - **所有者**：LLM（人类阅读、LLM 编写和维护）
 - **可变性**：持续更新。每次 Ingest 可能触及多个页面
+- **目录约束**：主类型与顶层目录必须对应；`synthesis` 例外，可落在 `synthesis/` 或 `frameworks/{name}/` 下
+- **README 白名单**：每个目录可以有 `README.md` / `README.zh-CN.md` 作为目录索引页，frontmatter 仍然必填，type 取该目录主类型
 
 ## 3. 页面格式
 
@@ -70,7 +93,8 @@ Wiki 页面分为四类：
 ```yaml
 ---
 title: 页面标题
-type: entity | concept | comparison | decision | synthesis
+type: entity | concept | comparison | decision | synthesis | reading
+subtype: intuition | architecture | internals | case-study | cross-comparison | overview | chapter | module | framework | tool | protocol | paper   # 可选
 tags: [tag1, tag2]
 sources: [raw/papers/xxx.md, raw/articles/yyy.md]
 created: 2026-04-07
@@ -82,9 +106,10 @@ status: draft | active | stale | archived
 | 字段 | 必填 | 说明 |
 |------|------|------|
 | `title` | ✅ | 页面标题 |
-| `type` | ✅ | 页面类型 |
+| `type` | ✅ | 主类型（六选一）|
+| `subtype` | ⬜ | 子类型（可选，仅用于展示/查询）|
 | `tags` | ✅ | 分类标签（用于 Dataview 查询） |
-| `sources` | ✅ | 引用的原始资料路径列表 |
+| `sources` | ✅ | 引用的原始资料路径列表（可为空数组 `[]`，但字段必填）|
 | `created` | ✅ | 创建日期 |
 | `updated` | ✅ | 最后更新日期 |
 | `status` | ✅ | 页面状态 |
@@ -217,8 +242,9 @@ wiki 使用以下标签分类体系（用于 Obsidian Dataview 查询）：
 
 ## 7. 双语约定
 
-- 每个 wiki 页面优先写中文版（`.zh-CN.md`），按需提供英文版
-- 双语版本必须同步：更新一个时必须检查另一个是否需要同步更新
+- 每个 wiki 页面优先写中文版（`.zh-CN.md`），**英文版按需提供，不强制**
+- **双语存在性规则**：`{name}.zh-CN.md` 单独存在 = 仅中文版（合法）；`{name}.md` 单独存在 = 仅英文版（合法）；两者并存时必须同步
+- 双语版本同步：更新一个时必须检查另一个是否需要同步更新
 - `index.md` 统一使用中文
 - `SCHEMA.md` 使用中文
 - 原始资料保持其原始语言
@@ -237,6 +263,13 @@ wiki 使用以下标签分类体系（用于 Obsidian Dataview 查询）：
 - ❌ 创建无 frontmatter 的 wiki 页面
 - ❌ 删除 wiki 页面（用 `status: archived` 标记）
 
+## 9. 版本历史
+
+| 版本 | 日期 | 关键变更 |
+|---|---|---|
+| 1.0 | 2026-04-07 | 初版：5 主类型、3 操作、frontmatter 规范 |
+| 1.1 | 2026-04-26 | 新增 `reading` 主类型；新增 `frameworks/` `readings/` `images/` 顶层目录；新增可选 `subtype` 字段；明确双语存在性规则；明确 `README.md` 白名单；`sources` 允许空数组但字段必填 |
+
 ---
 
-*Schema 版本：1.0 | 最后更新：2026-04-07 | 协作演化：人类 + LLM*
+*Schema 版本：1.1 | 最后更新：2026-04-26 | 协作演化：人类 + LLM*
