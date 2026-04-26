@@ -20,6 +20,23 @@ sources: []
 > 与 Klarna 案例（生产但闭源）相反，这是 **LangChain 官方开源**的研究 Agent，源码完整可读。
 > 用它来回答："多 Agent 协作 + 长任务 + 结构化输出" 在 LangGraph 里到底怎么搭？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 背景](#1-背景)
+- [2. 系统架构](#2-系统架构)
+- [3. 状态模型](#3-状态模型)
+- [4. 图结构（源码级）](#4-图结构源码级)
+- [5. 用到的 LangGraph 关键能力](#5-用到的-langgraph-关键能力)
+- [6. 工程实践亮点](#6-工程实践亮点)
+- [7. 性能与成本](#7-性能与成本)
+- [8. 4 个生产化坑](#8-4-个生产化坑)
+- [9. 与 Klarna 案例的对比](#9-与-klarna-案例的对比)
+- [10. 与 Dawning 的映射](#10-与-dawning-的映射)
+- [11. 学习清单](#11-学习清单)
+- [12. 参考](#12-参考)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 背景
@@ -421,3 +438,16 @@ def reflect_or_finish(state: SectionState):
 - [[klarna-customer-support.zh-CN]]
 - [[../03-pregel-runtime]] §8 Send/Command
 - [[../09-subgraph-functional-api]]
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

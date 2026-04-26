@@ -16,6 +16,22 @@ updated: 2026-04-09
 >
 > 这是 MAF 整个 .NET 端的根基包，**唯一外部依赖**是 `Microsoft.Extensions.AI.Abstractions`。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 类型关系全局图](#1-类型关系全局图)
+- [2. AIAgent：抽象基类详解](#2-aiagent抽象基类详解)
+- [3. DelegatingAIAgent：Decorator 模式](#3-delegatingaiagentdecorator-模式)
+- [4. AgentSession：会话状态](#4-agentsession会话状态)
+- [5. AgentResponse / AgentResponseUpdate：响应体系](#5-agentresponse--agentresponseupdate响应体系)
+- [6. AgentRunContext 与 AgentRunOptions](#6-agentruncontext-与-agentrunoptions)
+- [7. AIContext 与 AIContextProvider：上下文注入体系](#7-aicontext-与-aicontextprovider上下文注入体系)
+- [8. ChatHistoryProvider：聊天历史管理](#8-chathistoryprovider聊天历史管理)
+- [9. AIAgentMetadata](#9-aiagentmetadata)
+- [10. Abstractions 层的设计原则总结](#10-abstractions-层的设计原则总结)
+- [11. 对 dawning-agent-framework 的启示](#11-对-dawning-agent-framework-的启示)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 类型关系全局图
@@ -680,3 +696,8 @@ MAF Abstractions 层的每个公开类型都有安全提醒文档：
 - [[readings/frameworks/maf/00-overview.zh-CN|MAF 项目结构全景]] — 25+ NuGet 包总览
 - [[decisions/layer-0-tech-spec.zh-CN|L0 技术规格]] — dawning-agent-framework 的 ILLMProvider 设计
 - [[decisions/layer-0-features.zh-CN|L0 功能清单]] — 对照 MAF Abstractions 的功能覆盖
+
+## 来源 <!-- SRC-STUB -->
+
+- [[readings/frameworks/maf/00-overview.zh-CN|00-overview.zh-CN]] (交叉引用，非原始来源)
+- <https://github.com/microsoft/agent-framework/tree/main/dotnet/src/Microsoft.Agents.AI.Abstractions>

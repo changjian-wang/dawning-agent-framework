@@ -18,6 +18,24 @@ sources: []
 > 本文回答：子图怎么作为节点？schema 怎么映射？
 > Functional API（`@entrypoint` / `@task`）和 StateGraph 是什么关系？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 子图：3 种嵌入模式](#2-子图3-种嵌入模式)
+- [3. 父子图 state 流动](#3-父子图-state-流动)
+- [4. `checkpoint_ns` 命名空间](#4-checkpointns-命名空间)
+- [5. interrupt 在子图中](#5-interrupt-在子图中)
+- [6. 子图常见模式](#6-子图常见模式)
+- [7. Functional API：`@entrypoint` / `@task`](#7-functional-apientrypoint--task)
+- [8. Functional API 的 HITL](#8-functional-api-的-hitl)
+- [9. 性能与陷阱](#9-性能与陷阱)
+- [10. 错误清单](#10-错误清单)
+- [11. 与 Dawning 的对应](#11-与-dawning-的对应)
+- [12. 阅读顺序](#12-阅读顺序)
+- [13. 延伸阅读](#13-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 > 重点路径：`graph/state.py` 的子图嵌入逻辑、`func/{__init__,types}.py`。
 
 ---
@@ -328,3 +346,16 @@ def workflow(query: str) -> str:
 - 子图：<https://langchain-ai.github.io/langgraph/concepts/subgraphs/>
 - Functional API：<https://langchain-ai.github.io/langgraph/concepts/functional_api/>
 - 源码：`libs/langgraph/langgraph/{graph/state.py, func/}`
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

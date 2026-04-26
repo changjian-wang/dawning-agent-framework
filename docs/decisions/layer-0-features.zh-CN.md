@@ -15,6 +15,21 @@ status: active
 > **注意**：Dawning Agent OS 是全新项目，所有功能均需从零实现。
 > “参考”列表示 dawning-agents 中是否有可借鉴的设计，不代表代码复用。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [优先级定义](#优先级定义)
+- [复杂度定义](#复杂度定义)
+- [域 1：核心抽象（Abstractions）](#域-1核心抽象abstractions)
+- [域 2：Provider 实现](#域-2provider-实现)
+- [域 3：流式处理](#域-3流式处理)
+- [域 4：弹性与降级](#域-4弹性与降级)
+- [域 5：可观测性](#域-5可观测性)
+- [域 6：配置与 DI](#域-6配置与-di)
+- [域 7：测试基础设施（Harness Engineering）](#域-7测试基础设施harness-engineering)
+- [功能统计](#功能统计)
+<!-- /TOC-AUTOGEN -->
+
 ## 优先级定义
 
 | 优先级 | 含义 |
@@ -201,3 +216,8 @@ status: active
 - [[decisions/layer-0-tech-spec.zh-CN]] — 技术规格
 - [[decisions/success-criteria.zh-CN]] — SC-7 验收标准
 - [[decisions/roadmap.zh-CN]] — Layer 0 概览
+
+## 来源 <!-- SRC-STUB -->
+
+- [[decisions/layer-0-requirements.zh-CN|layer-0-requirements.zh-CN]] (交叉引用，非原始来源)
+- [[decisions/success-criteria.zh-CN|success-criteria.zh-CN]] (交叉引用，非原始来源)

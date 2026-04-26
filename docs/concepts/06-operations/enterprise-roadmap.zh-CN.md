@@ -15,6 +15,32 @@ status: active
 >
 > 本文给出 12 阶段成熟度模型，每阶段的目标、产出、常见失败与 Dawning 的对应能力。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要路线图](#1-为什么需要路线图)
+- [2. 12 阶段路线图](#2-12-阶段路线图)
+- [3. 阶段 1：识别场景（Identify）](#3-阶段-1识别场景identify)
+- [4. 阶段 2：搭认知（Learn）](#4-阶段-2搭认知learn)
+- [5. 阶段 3：小组成立（Team）](#5-阶段-3小组成立team)
+- [6. 阶段 4：搭 PoC（Proof of Concept）](#6-阶段-4搭-pocproof-of-concept)
+- [7. 阶段 5：基线评估（Baseline Eval）](#7-阶段-5基线评估baseline-eval)
+- [8. 阶段 6：红队测试（Red Team）](#8-阶段-6红队测试red-team)
+- [9. 阶段 7：Dataset 工程化（Dataset）](#9-阶段-7dataset-工程化dataset)
+- [10. 阶段 8：限流 / 治理（Governance）](#10-阶段-8限流--治理governance)
+- [11. 阶段 9：可观测性（Observability）](#11-阶段-9可观测性observability)
+- [12. 阶段 10：Pilot 上线（Pilot）](#12-阶段-10pilot-上线pilot)
+- [13. 阶段 11：规模化（Scale）](#13-阶段-11规模化scale)
+- [14. 阶段 12：演化 / 平台化（Evolve / Platform）](#14-阶段-12演化--平台化evolve--platform)
+- [15. 跨阶段的横切关注](#15-跨阶段的横切关注)
+- [16. 成熟度自检清单](#16-成熟度自检清单)
+- [17. 常见陷阱](#17-常见陷阱)
+- [18. Dawning 的阶段适配](#18-dawning-的阶段适配)
+- [19. 失败案例教训](#19-失败案例教训)
+- [20. 小结](#20-小结)
+- [21. 延伸阅读](#21-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要路线图
@@ -520,3 +546,16 @@ Dawning 的 8 层架构每层都在不同阶段发挥作用——
 - [[concepts/agent-security.zh-CN]] — 各阶段安全
 - Gartner AI Maturity Model
 - Andrew Ng AI Transformation Playbook
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/deployment-architectures.zh-CN|deployment-architectures.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/04-prompt-eval/agent-evaluation.zh-CN|agent-evaluation.zh-CN]] (交叉引用，非原始来源)

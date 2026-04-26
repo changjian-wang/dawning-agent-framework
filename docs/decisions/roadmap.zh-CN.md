@@ -14,6 +14,21 @@ status: active
 >
 > OS 架构总览见 [[concepts/agent-os-architecture.zh-CN]]。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [指导原则](#指导原则)
+- [依赖图](#依赖图)
+- [Layer 0：LLM Driver（硬件驱动）](#layer-0llm-driver硬件驱动)
+- [Layer 1：Agent Loop 与 Tool 协议（内核执行引擎）](#layer-1agent-loop-与-tool-协议内核执行引擎)
+- [Layer 2：Memory Plane（存储层）](#layer-2memory-plane存储层)
+- [Layer 3：Scheduler（进程调度器）](#layer-3scheduler进程调度器)
+- [Layer 4：Skill Router（动态链接器）](#layer-4skill-router动态链接器)
+- [Layer 5：Skill Evolution（包管理器）](#layer-5skill-evolution包管理器)
+- [Layer 6：IPC 与分布式内核](#layer-6ipc-与分布式内核)
+- [Layer 7：Security 子系统（治理、合规与可观测性）](#layer-7security-子系统治理合规与可观测性)
+<!-- /TOC-AUTOGEN -->
+
 ## 指导原则
 
 - **深度优先于速度** —— 每一层先彻底理解，再动手实现。
@@ -288,3 +303,9 @@ graph TB
 - [[comparisons/agent-framework-landscape.zh-CN]] —— 18 框架竞品分析
 - [[concepts/llm-fundamentals]] —— LLM 基础知识参考
 - [[raw/papers/memento-skills-2603.18743]] —— 技能自演化研究基础
+
+## 来源 <!-- SRC-STUB -->
+
+- [[decisions/success-criteria|success-criteria]] (交叉引用，非原始来源)
+- [[decisions/success-criteria.zh-CN|success-criteria.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/agent-os-architecture.zh-CN|agent-os-architecture.zh-CN]] (交叉引用，非原始来源)

@@ -16,6 +16,28 @@ status: active
 >
 > 本文梳理主流 Agent UX 模式、常见反模式，以及前后端协议设计（AI Elements / Vercel AI SDK / CopilotKit）。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么 Agent UX 特殊](#1-为什么-agent-ux-特殊)
+- [2. 核心 UX 模式](#2-核心-ux-模式)
+- [3. 前端协议](#3-前端协议)
+- [4. 事件模型](#4-事件模型)
+- [5. 延迟体感优化](#5-延迟体感优化)
+- [6. 错误呈现](#6-错误呈现)
+- [7. 上下文与记忆 UI](#7-上下文与记忆-ui)
+- [8. Artifact 深度](#8-artifact-深度)
+- [9. 流式对话的交互细节](#9-流式对话的交互细节)
+- [10. 代表产品拆解](#10-代表产品拆解)
+- [11. 反模式](#11-反模式)
+- [12. 移动端 / 多端](#12-移动端--多端)
+- [13. 可访问性](#13-可访问性)
+- [14. Dawning 交付](#14-dawning-交付)
+- [15. UX 设计清单](#15-ux-设计清单)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么 Agent UX 特殊
@@ -561,3 +583,16 @@ public abstract record AgentEvent
 - CopilotKit：<https://docs.copilotkit.ai/>
 - Assistant UI：<https://www.assistant-ui.com/>
 - Claude Artifacts：<https://www.anthropic.com/news/artifacts>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/deployment-architectures.zh-CN|deployment-architectures.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/05-security-compliance/agent-security.zh-CN|agent-security.zh-CN]] (交叉引用，非原始来源)

@@ -15,6 +15,28 @@ status: active
 >
 > 本文梳理结构化输出的三代技术（Prompt、Function Calling、Constrained Decoding），对比 Outlines / Instructor / XGrammar，以及 Dawning 的统一策略。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么结构化输出难](#1-为什么结构化输出难)
+- [2. 三代技术](#2-三代技术)
+- [3. Gen 1：Prompt Engineering](#3-gen-1prompt-engineering)
+- [4. Gen 2：Function Calling / Tools](#4-gen-2function-calling--tools)
+- [5. Gen 3：Constrained Decoding](#5-gen-3constrained-decoding)
+- [6. Outlines 详解](#6-outlines-详解)
+- [7. Instructor 详解](#7-instructor-详解)
+- [8. XGrammar / SGLang](#8-xgrammar--sglang)
+- [9. JSON Schema 最佳实践](#9-json-schema-最佳实践)
+- [10. Streaming Structured Output](#10-streaming-structured-output)
+- [11. 结构化输出 + Agent](#11-结构化输出--agent)
+- [12. 性能与质量权衡](#12-性能与质量权衡)
+- [13. 常见坑](#13-常见坑)
+- [14. Dawning 统一抽象](#14-dawning-统一抽象)
+- [15. 工程实践清单](#15-工程实践清单)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么结构化输出难
@@ -559,3 +581,16 @@ var user = await structured.GenerateAsync<ExtractedUser>(
 - XGrammar：<https://github.com/mlc-ai/xgrammar>
 - OpenAI Structured Outputs：<https://platform.openai.com/docs/guides/structured-outputs>
 - JSON Schema：<https://json-schema.org/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/function-calling-comparison.zh-CN|function-calling-comparison.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/local-llm-comparison.zh-CN|local-llm-comparison.zh-CN]] (交叉引用，非原始来源)

@@ -15,6 +15,28 @@ status: active
 >
 > 本文做一次彻底的头对头对比，作为 Dawning 编排层（Layer 3）设计的关键输入。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 共识：为什么都选"图"](#1-共识为什么都选图)
+- [2. 核心概念对照](#2-核心概念对照)
+- [3. 状态模型：reducer vs 可变容器](#3-状态模型reducer-vs-可变容器)
+- [4. 条件路由](#4-条件路由)
+- [5. 检查点与持久化](#5-检查点与持久化)
+- [6. 人机协同（HITL）](#6-人机协同hitl)
+- [7. 并发与并行](#7-并发与并行)
+- [8. 流式输出](#8-流式输出)
+- [9. 分布式与扩展](#9-分布式与扩展)
+- [10. 调试与可观测性](#10-调试与可观测性)
+- [11. 子图与复用](#11-子图与复用)
+- [12. 生态与集成](#12-生态与集成)
+- [13. 横向对比总表](#13-横向对比总表)
+- [14. 对 Dawning Layer 3 的启示](#14-对-dawning-layer-3-的启示)
+- [15. 选型指南（对用户）](#15-选型指南对用户)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 共识：为什么都选"图"
@@ -502,3 +524,17 @@ mainBuilder.AddSubWorkflow(subWorkflow);
 - [[concepts/skill-evolution.zh-CN]] — Layer 5 与 Layer 3 的联动
 - LangGraph 官方文档：<https://langchain-ai.github.io/langgraph/>
 - MAF 官方文档：<https://learn.microsoft.com/en-us/agent-framework/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agent-framework-landscape.zh-CN|agent-framework-landscape.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/framework-modules-mapping.zh-CN|framework-modules-mapping.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)

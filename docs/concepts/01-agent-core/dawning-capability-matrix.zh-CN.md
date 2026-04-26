@@ -292,3 +292,17 @@ builder.Services
 > Dawning 把这个模式扩展到整个 Agent OS 栈——16 个抽象接口 × N 个后端实现 × 8 层 OS 架构。
 >
 > 结果：一个项目从 Hello World 到生产级分布式 Agent 系统，**不需要重写代码，只需要换配置**。
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/agent-os-architecture.zh-CN|agent-os-architecture.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/07-interop-ux/protocols-a2a-mcp.zh-CN|protocols-a2a-mcp.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/agent-framework-landscape.zh-CN|agent-framework-landscape.zh-CN]] (交叉引用，非原始来源)

@@ -184,3 +184,16 @@ public ChatClient chatClient(ChatClient.Builder builder, VectorStore vectorStore
 - 官方文档：<https://docs.spring.io/spring-ai/reference/>
 - Spring AI Workshop：<https://github.com/spring-projects/spring-ai-workshop>
 - [comparisons/framework-modules-mapping.zh-CN.md](../../comparisons/framework-modules-mapping.zh-CN.md)
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

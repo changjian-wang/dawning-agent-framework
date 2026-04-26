@@ -18,6 +18,25 @@ sources: []
 > 本文回答：把 LangGraph 上生产，社区版 / 自托管 / 托管 Platform 三条路怎么选？
 > Studio / LangSmith / langgraph-cli 各自负责什么？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 三种部署形态](#2-三种部署形态)
+- [3. DIY 部署](#3-diy-部署)
+- [4. LangGraph CLI / Server](#4-langgraph-cli--server)
+- [5. LangGraph Studio](#5-langgraph-studio)
+- [6. LangSmith 集成](#6-langsmith-集成)
+- [7. Cloud / Self-Hosted Platform 增量功能](#7-cloud--self-hosted-platform-增量功能)
+- [8. 自托管 Platform 部署](#8-自托管-platform-部署)
+- [9. 与 Cloud Platform 对比](#9-与-cloud-platform-对比)
+- [10. 多种部署形态共存](#10-多种部署形态共存)
+- [11. 性能与运维](#11-性能与运维)
+- [12. 与 Dawning 的对应](#12-与-dawning-的对应)
+- [13. 阅读顺序](#13-阅读顺序)
+- [14. 延伸阅读](#14-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 范围
@@ -291,3 +310,16 @@ docker run -p 8123:8123 \
 - 部署：<https://langchain-ai.github.io/langgraph/cloud/deployment/setup/>
 - LangSmith：<https://docs.smith.langchain.com/>
 - langgraph-cli：<https://github.com/langchain-ai/langgraph/tree/main/libs/cli>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

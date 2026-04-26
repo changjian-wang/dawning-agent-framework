@@ -15,6 +15,29 @@ status: active
 >
 > 本文拆解下一代 RAG 的 8 条技术路线，覆盖模式、适用场景、工程代价、对 Dawning 的启发。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么基础 RAG 不够](#1-为什么基础-rag-不够)
+- [2. 路线一：GraphRAG（微软）](#2-路线一graphrag微软)
+- [3. 路线二：HippoRAG（仿海马体）](#3-路线二hipporag仿海马体)
+- [4. 路线三：Self-RAG / 自反思 RAG](#4-路线三self-rag--自反思-rag)
+- [5. 路线四：Corrective RAG (CRAG)](#5-路线四corrective-rag-crag)
+- [6. 路线五：HyDE（Hypothetical Document Embeddings）](#6-路线五hydehypothetical-document-embeddings)
+- [7. 路线六：RAG-Fusion / Multi-Query](#7-路线六rag-fusion--multi-query)
+- [8. 路线七：ColPali / ColBERT v2（Late Interaction）](#8-路线七colpali--colbert-v2late-interaction)
+- [9. 路线八：Agentic RAG](#9-路线八agentic-rag)
+- [10. 其他前沿技术](#10-其他前沿技术)
+- [11. 选型决策树](#11-选型决策树)
+- [12. 组合架构（生产级）](#12-组合架构生产级)
+- [13. 评估](#13-评估)
+- [14. 向量库对各技术的支持](#14-向量库对各技术的支持)
+- [15. Dawning RAG 策略](#15-dawning-rag-策略)
+- [16. 实战建议](#16-实战建议)
+- [17. 小结](#17-小结)
+- [18. 延伸阅读](#18-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么基础 RAG 不够
@@ -673,3 +696,16 @@ Dawning.RAG.Hybrid     → BM25 + vector + rerank
 - ColPali: <https://huggingface.co/vidore/colpali>
 - Contextual Retrieval (Anthropic): <https://www.anthropic.com/news/contextual-retrieval>
 - RAGAS: <https://docs.ragas.io/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/rag-pipeline-comparison.zh-CN|rag-pipeline-comparison.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/00-foundations/embedding-models.zh-CN|embedding-models.zh-CN]] (交叉引用，非原始来源)

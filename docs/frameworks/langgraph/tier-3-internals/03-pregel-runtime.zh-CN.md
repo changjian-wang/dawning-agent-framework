@@ -19,6 +19,26 @@ sources: []
 >
 > 重点路径：`langgraph/pregel/__init__.py`、`pregel/loop.py`、`pregel/algo.py`、`pregel/runner.py`、`pregel/_executor.py`。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围与边界](#1-范围与边界)
+- [2. 一句话回答](#2-一句话回答)
+- [3. 模块结构](#3-模块结构)
+- [4. 顶层入口：`Pregel.stream()`](#4-顶层入口pregelstream)
+- [5. 单次超步的内部时序](#5-单次超步的内部时序)
+- [6. 并发模型](#6-并发模型)
+- [7. Checkpoint 与超步的关系](#7-checkpoint-与超步的关系)
+- [8. Send / Command / interrupt 的运行时落点](#8-send--command--interrupt-的运行时落点)
+- [9. Stream 子系统的接入点](#9-stream-子系统的接入点)
+- [10. 几个关键 invariants](#10-几个关键-invariants)
+- [11. 错误处理](#11-错误处理)
+- [12. 性能优化清单](#12-性能优化清单)
+- [13. 与 Dawning 的对应](#13-与-dawning-的对应)
+- [14. 阅读顺序](#14-阅读顺序)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 范围与边界
@@ -480,3 +500,16 @@ update_state(config, values, as_node="x")
 - BSP 模型综述：<https://en.wikipedia.org/wiki/Bulk_synchronous_parallel>
 - [[01-architecture]] §3 一次运行的生命周期（高层视角）
 - [[../cross-module-comparison/runtime-model.zh-CN]]（待写：vs Temporal / vs Akka）
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

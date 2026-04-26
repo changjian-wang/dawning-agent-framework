@@ -602,3 +602,8 @@ Dawning.AgentOS.Testing               ← InMemoryProvider + RecordingProvider +
 - [[decisions/success-criteria.zh-CN]] — SC-7 验收标准
 - [[decisions/phase-0-overview]] — 原始架构概览与 Function Calling 决策记录
 - [[decisions/roadmap.zh-CN]] — Layer 0 在分层路线图中的位置
+
+## 来源 <!-- SRC-STUB -->
+
+- [[decisions/layer-0-requirements.zh-CN|layer-0-requirements.zh-CN]] (交叉引用，非原始来源)
+- [[decisions/layer-0-features.zh-CN|layer-0-features.zh-CN]] (交叉引用，非原始来源)

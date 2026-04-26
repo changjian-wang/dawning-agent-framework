@@ -16,6 +16,33 @@ status: active
 >
 > 本文拆解 Computer-Use 与 Browser-Use 的技术路径、9 个主流产品架构、对 Dawning 的启发。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要 Computer-Use Agent](#1-为什么需要-computer-use-agent)
+- [2. 技术路径分类](#2-技术路径分类)
+- [3. 主流产品矩阵（2026）](#3-主流产品矩阵2026)
+- [4. Anthropic Computer Use 深度剖析](#4-anthropic-computer-use-深度剖析)
+- [5. OpenAI Operator 深度剖析](#5-openai-operator-深度剖析)
+- [6. Browser-Use 深度剖析（开源代表）](#6-browser-use-深度剖析开源代表)
+- [7. Stagehand 深度剖析](#7-stagehand-深度剖析)
+- [8. Skyvern 深度剖析](#8-skyvern-深度剖析)
+- [9. Microsoft UFO 深度剖析](#9-microsoft-ufo-深度剖析)
+- [10. UI-TARS / OmniParser 等"视觉理解专门模型"](#10-ui-tars--omniparser-等视觉理解专门模型)
+- [11. 对比矩阵](#11-对比矩阵)
+- [12. 关键工程问题](#12-关键工程问题)
+- [13. 沙箱与隔离](#13-沙箱与隔离)
+- [14. 评估基准](#14-评估基准)
+- [15. 成本模型](#15-成本模型)
+- [16. 安全与风险](#16-安全与风险)
+- [17. 典型企业用例](#17-典型企业用例)
+- [18. Dawning 适配策略](#18-dawning-适配策略)
+- [19. 设计原则总结](#19-设计原则总结)
+- [20. 未来趋势](#20-未来趋势)
+- [21. 小结](#21-小结)
+- [22. 延伸阅读](#22-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要 Computer-Use Agent
@@ -844,3 +871,16 @@ RPA 替代 → 混合 (Skyvern)
 - UI-TARS: <https://github.com/bytedance/UI-TARS>
 - OSWorld: <https://os-world.github.io/>
 - WebArena: <https://webarena.dev/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agentic-coding-deep-dive.zh-CN|agentic-coding-deep-dive.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/03-io-data/multimodal-agents.zh-CN|multimodal-agents.zh-CN]] (交叉引用，非原始来源)

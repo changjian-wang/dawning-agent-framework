@@ -20,6 +20,26 @@ sources: []
 > 在 Replit 网页编辑器内部，用 LangGraph 编排"读 → 规划 → 编辑 → 执行 → 修复"全流程的代码生成 Agent。
 > 信息来源：Replit 官方博客、LangChain 案例分享、产品观察。Replit Agent 闭源，本文聚焦**架构与编排**而非具体源码。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 问题域](#1-问题域)
+- [2. 架构总览](#2-架构总览)
+- [3. 关键编排模式](#3-关键编排模式)
+- [4. State 设计推测](#4-state-设计推测)
+- [5. 工具集](#5-工具集)
+- [6. 拓扑](#6-拓扑)
+- [7. Sequence：一次任务生命周期](#7-sequence一次任务生命周期)
+- [8. Streaming 与用户体验](#8-streaming-与用户体验)
+- [9. HITL 场景](#9-hitl-场景)
+- [10. Checkpoint 与历史](#10-checkpoint-与历史)
+- [11. 工程关键点](#11-工程关键点)
+- [12. 与 Open Deep Research 对比](#12-与-open-deep-research-对比)
+- [13. 与 Dawning 的对应](#13-与-dawning-的对应)
+- [14. 复用清单](#14-复用清单)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 问题域
@@ -324,3 +344,16 @@ UI 同一聊天框可有多个 task 并行（不同 thread_id），共用一个 
 - LangChain 案例库：<https://www.langchain.com/built-with-langgraph>
 - 工具沙箱：gVisor / Firecracker
 - 模式启示：[[../../../concepts/agent-loop]]
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

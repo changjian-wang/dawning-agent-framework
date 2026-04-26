@@ -247,3 +247,16 @@ status: active
 ---
 
 > **路线图、90 天计划、KPI、风险与版本节奏** → 详见 [[decisions/roadmap.zh-CN]]。
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[raw/papers/memento-skills-2603.18743.md|memento-skills-2603.18743]]
+- [[concepts/01-agent-core/agent-os-architecture.zh-CN|agent-os-architecture.zh-CN]] (交叉引用，非原始来源)

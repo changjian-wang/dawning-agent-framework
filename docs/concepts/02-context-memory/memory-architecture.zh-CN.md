@@ -13,6 +13,23 @@ status: active
 > 记忆是 Agent 与**无状态 LLM 调用**的核心分界线。
 > 本文梳理主流框架的记忆模型，说明 Dawning 双层记忆 + 四级 Scope 隔离的工程细节，以及这为什么是 Layer 2 的核心差异化能力。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么记忆难？](#1-为什么记忆难)
+- [2. 通用记忆模型：双层架构](#2-通用记忆模型双层架构)
+- [3. 主流框架记忆模型对比](#3-主流框架记忆模型对比)
+- [4. Dawning 的核心差异：四级 Scope 隔离](#4-dawning-的核心差异四级-scope-隔离)
+- [5. Working Memory 的工程细节](#5-working-memory-的工程细节)
+- [6. Long-Term Memory 的工程细节](#6-long-term-memory-的工程细节)
+- [7. Entity Memory（实体记忆）](#7-entity-memory实体记忆)
+- [8. Observation Memory（观察记忆）](#8-observation-memory观察记忆)
+- [9. 持久化与恢复](#9-持久化与恢复)
+- [10. Dawning Memory Plane 总体架构](#10-dawning-memory-plane-总体架构)
+- [11. 设计原则总结](#11-设计原则总结)
+- [12. 延伸阅读](#12-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么记忆难？
@@ -426,3 +443,16 @@ Agent 在 Node-A 运行到 step 42
 - [[comparisons/rag-pipeline-comparison.zh-CN]] — RAG 与记忆的边界
 - Mem0：<https://github.com/mem0ai/mem0>
 - Letta (原 MemGPT)：<https://github.com/letta-ai/letta>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/framework-modules-mapping.zh-CN|framework-modules-mapping.zh-CN]] (交叉引用，非原始来源)

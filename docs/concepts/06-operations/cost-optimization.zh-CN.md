@@ -15,6 +15,25 @@ status: active
 >
 > 本文梳理六类成本优化技术（压缩、路由、缓存、批处理、降级、预算），并给出 Dawning 的 FinOps 架构。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 成本构成分析](#1-成本构成分析)
+- [2. 六类优化手段](#2-六类优化手段)
+- [3. 减少 tokens（压缩）](#3-减少-tokens压缩)
+- [4. 降单价（模型路由）](#4-降单价模型路由)
+- [5. 缓存（最大单项节省）](#5-缓存最大单项节省)
+- [6. 减次数](#6-减次数)
+- [7. 本地 LLM 降级](#7-本地-llm-降级)
+- [8. 预算控制](#8-预算控制)
+- [9. 监控与告警](#9-监控与告警)
+- [10. Dawning 的 FinOps 架构](#10-dawning-的-finops-架构)
+- [11. 组合优化案例](#11-组合优化案例)
+- [12. 反模式](#12-反模式)
+- [13. 小结](#13-小结)
+- [14. 延伸阅读](#14-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 成本构成分析
@@ -573,3 +592,16 @@ dawning.compression.ratio = 0.5
 - RouteLLM：<https://github.com/lm-sys/RouteLLM>
 - OpenAI Prompt Caching：<https://platform.openai.com/docs/guides/prompt-caching>
 - Anthropic Prompt Caching：<https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/observability-deep.zh-CN|observability-deep.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN|prompt-engineering-dspy.zh-CN]] (交叉引用，非原始来源)

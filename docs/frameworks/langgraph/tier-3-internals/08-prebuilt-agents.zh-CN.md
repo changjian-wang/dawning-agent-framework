@@ -17,6 +17,24 @@ sources: []
 
 > 本文回答：`create_react_agent` 内部到底是个什么图？`ToolNode` 怎么处理工具？supervisor / swarm 这些范式背后是哪些 StateGraph？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 一句话回答](#2-一句话回答)
+- [3. 全家福](#3-全家福)
+- [4. `create_react_agent`（核心）](#4-createreactagent核心)
+- [5. `ToolNode`](#5-toolnode)
+- [6. `create_supervisor`](#6-createsupervisor)
+- [7. `create_swarm`](#7-createswarm)
+- [8. 选型决策树](#8-选型决策树)
+- [9. 自己复刻 ReAct（不用 prebuilt）](#9-自己复刻-react不用-prebuilt)
+- [10. 工程踩坑](#10-工程踩坑)
+- [11. 与 Dawning 的对应](#11-与-dawning-的对应)
+- [12. 阅读顺序](#12-阅读顺序)
+- [13. 延伸阅读](#13-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 > 重点路径：`langgraph/prebuilt/{chat_agent_executor.py, tool_node.py, supervisor.py, swarm.py}`。
 
 ---
@@ -374,3 +392,16 @@ builder.add_edge("tools", "agent")
 - `langgraph-supervisor`：<https://github.com/langchain-ai/langgraph-supervisor-py>
 - `langgraph-swarm`：<https://github.com/langchain-ai/langgraph-swarm-py>
 - 源码：`libs/langgraph/langgraph/prebuilt/`
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

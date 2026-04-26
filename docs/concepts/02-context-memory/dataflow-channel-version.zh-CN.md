@@ -14,6 +14,25 @@ sources: []
 > 阅读前置：无。本文是为看 LangGraph / Pregel / Flink 等**数据流驱动**运行时的入门铺垫。
 > 目标：读完后再看 [[../frameworks/langgraph/01-architecture#运行时]] 或 [[../frameworks/langgraph/03-pregel-runtime]] 不再卡在术语上。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [0. 本文解决的问题](#0-本文解决的问题)
+- [1. 图（Graph）= 节点 + 边](#1-图graph-节点--边)
+- [2. State（状态）= 所有节点共享的数据包](#2-state状态-所有节点共享的数据包)
+- [3. Channel = state 的一个字段 + 合并规则](#3-channel--state-的一个字段--合并规则)
+- [4. 版本号 = 一个单调递增的整数](#4-版本号--一个单调递增的整数)
+- [5. 订阅 & 记忆：节点关心哪些 channel](#5-订阅--记忆节点关心哪些-channel)
+- [6. 把 5 点拼起来：激活判定](#6-把-5-点拼起来激活判定)
+- [7. 一轮（superstep）的完整流程](#7-一轮superstep的完整流程)
+- [8. 类比：Google Docs 协作](#8-类比google-docs-协作)
+- [9. 为什么这么设计](#9-为什么这么设计)
+- [10. BSP（Bulk Synchronous Parallel）](#10-bspbulk-synchronous-parallel)
+- [11. 映射到具体框架](#11-映射到具体框架)
+- [12. 延伸阅读](#12-延伸阅读)
+- [13. 读完以后你应该能看懂这句话](#13-读完以后你应该能看懂这句话)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 0. 本文解决的问题
@@ -292,3 +311,16 @@ graph.add_edge("act", "verify")
 > "每 superstep 先从 channels 版本选出激活节点（类 Pregel 超步语义）；节点并行跑；跑完同步屏障，一起写 channels → 落 checkpoint。"
 
 如果还不行，回到第 3-6 节再过一遍。
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

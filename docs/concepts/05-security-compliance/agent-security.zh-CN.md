@@ -14,6 +14,29 @@ status: active
 >
 > 本文梳理 Agent 特有的安全威胁模型、防御层次，以及 Dawning Layer 7 的安全设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 新的攻击面](#1-新的攻击面)
+- [2. OWASP LLM Top 10（2025 版）](#2-owasp-llm-top-102025-版)
+- [3. Prompt Injection（LLM01）深度](#3-prompt-injectionllm01深度)
+- [4. Jailbreak（越狱）](#4-jailbreak越狱)
+- [5. Excessive Agency（过度自主）LLM06](#5-excessive-agency过度自主llm06)
+- [6. 工具滥用的具体攻击](#6-工具滥用的具体攻击)
+- [7. 数据泄漏（LLM02）](#7-数据泄漏llm02)
+- [8. 跨 Agent 信任链攻击](#8-跨-agent-信任链攻击)
+- [9. 记忆污染（LLM04）](#9-记忆污染llm04)
+- [10. Unbounded Consumption（LLM10）](#10-unbounded-consumptionllm10)
+- [11. 供应链安全（LLM03）](#11-供应链安全llm03)
+- [12. 观察与响应](#12-观察与响应)
+- [13. Dawning Layer 7 安全设计](#13-dawning-layer-7-安全设计)
+- [14. 安全测试](#14-安全测试)
+- [15. 合规对齐](#15-合规对齐)
+- [16. 防御清单（Cheat Sheet）](#16-防御清单cheat-sheet)
+- [17. 小结](#17-小结)
+- [18. 延伸阅读](#18-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 新的攻击面
@@ -626,3 +649,16 @@ public record GuardResult(
 - Anthropic Prompt Injection：<https://www.anthropic.com/news/prompt-injections>
 - Microsoft PyRIT：<https://github.com/Azure/PyRIT>
 - Meta Prompt Guard：<https://github.com/meta-llama/PurpleLlama>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/skill-evolution.zh-CN|skill-evolution.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/07-interop-ux/protocols-a2a-mcp.zh-CN|protocols-a2a-mcp.zh-CN]] (交叉引用，非原始来源)

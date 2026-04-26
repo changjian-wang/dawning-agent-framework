@@ -18,6 +18,31 @@ status: active
 >
 > 本文梳理 Agent 状态持久化的模型、工程模式、主流实现（LangGraph Checkpoint、Temporal、Letta/MemGPT），以及 Dawning 分布式架构的状态设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要持久化](#1-为什么需要持久化)
+- [2. 持久化模型](#2-持久化模型)
+- [3. LangGraph Checkpointer 深度剖析](#3-langgraph-checkpointer-深度剖析)
+- [4. Temporal Durable Execution](#4-temporal-durable-execution)
+- [5. Letta / MemGPT 的 Agent as Stateful Service](#5-letta--memgpt-的-agent-as-stateful-service)
+- [6. OpenAI Assistants v2 的状态模型](#6-openai-assistants-v2-的状态模型)
+- [7. 状态切片维度](#7-状态切片维度)
+- [8. Checkpoint vs Event Sourcing](#8-checkpoint-vs-event-sourcing)
+- [9. 长任务特有挑战](#9-长任务特有挑战)
+- [10. HITL（Human-in-the-Loop）持久化](#10-hitlhuman-in-the-loop持久化)
+- [11. 分布式 Agent 的状态挑战](#11-分布式-agent-的状态挑战)
+- [12. 状态迁移与升级](#12-状态迁移与升级)
+- [13. 可观测性与状态](#13-可观测性与状态)
+- [14. 方案选型决策](#14-方案选型决策)
+- [15. Dawning 分布式状态架构](#15-dawning-分布式状态架构)
+- [16. 实战样例：长研究任务](#16-实战样例长研究任务)
+- [17. 常见陷阱](#17-常见陷阱)
+- [18. 性能优化](#18-性能优化)
+- [19. 小结](#19-小结)
+- [20. 延伸阅读](#20-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要持久化
@@ -758,3 +783,16 @@ JSON → Protobuf / Cap'n Proto / MessagePack。
 - Dapr Workflow: <https://docs.dapr.io/developing-applications/building-blocks/workflow/>
 - OpenAI Assistants API: <https://platform.openai.com/docs/assistants>
 - MemGPT 论文: <https://arxiv.org/abs/2310.08560>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/02-context-memory/memory-architecture.zh-CN|memory-architecture.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/06-operations/deployment-architectures.zh-CN|deployment-architectures.zh-CN]] (交叉引用，非原始来源)

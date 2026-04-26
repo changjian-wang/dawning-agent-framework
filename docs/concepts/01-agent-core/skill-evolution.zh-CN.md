@@ -15,6 +15,26 @@ status: active
 >
 > 本文给出 Layer 5 的完整规约：从 Observation 到 Deployment 的五阶段流水线、Skill 生命周期、质量门禁、灰度与回滚、以及它与其他 Layer 的联动。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么技能演化是必须的](#1-为什么技能演化是必须的)
+- [2. Skill 的定义](#2-skill-的定义)
+- [3. 演化流水线：五阶段](#3-演化流水线五阶段)
+- [4. 阶段 1：Observe（观察）](#4-阶段-1observe观察)
+- [5. 阶段 2：Reflect（反思）](#5-阶段-2reflect反思)
+- [6. 阶段 3：Patch（补丁生成）](#6-阶段-3patch补丁生成)
+- [7. 阶段 4：Gate（质量门禁）](#7-阶段-4gate质量门禁)
+- [8. 阶段 5：Deploy（灰度部署）](#8-阶段-5deploy灰度部署)
+- [9. 与其他 Layer 的联动](#9-与其他-layer-的联动)
+- [10. 对比：DSPy 的自动优化](#10-对比dspy-的自动优化)
+- [11. API 示例](#11-api-示例)
+- [12. 风险与防范](#12-风险与防范)
+- [13. 路线图](#13-路线图)
+- [14. 小结](#14-小结)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么技能演化是必须的
@@ -463,3 +483,16 @@ foreach (var entry in history)
 - [[comparisons/agent-os-vs-frameworks]] — 为什么 Framework 做不到这一点
 - DSPy：<https://github.com/stanfordnlp/dspy>
 - Reflexion 论文：<https://arxiv.org/abs/2303.11366>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/02-context-memory/memory-architecture.zh-CN|memory-architecture.zh-CN]] (交叉引用，非原始来源)

@@ -15,6 +15,29 @@ status: active
 >
 > 本文梳理多模态能力现状、工程落地模式、Dawning 的适配策略。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 多模态的分层](#1-多模态的分层)
+- [2. 核心模型矩阵（2026）](#2-核心模型矩阵2026)
+- [3. 视觉 Agent 模式](#3-视觉-agent-模式)
+- [4. 语音 Agent 模式](#4-语音-agent-模式)
+- [5. 视频 Agent 模式](#5-视频-agent-模式)
+- [6. 多模态工具调用](#6-多模态工具调用)
+- [7. Realtime API 工程细节](#7-realtime-api-工程细节)
+- [8. 多模态 Embedding / 检索](#8-多模态-embedding--检索)
+- [9. 多模态 Agent 评估](#9-多模态-agent-评估)
+- [10. 成本](#10-成本)
+- [11. 安全与合规](#11-安全与合规)
+- [12. 架构模式](#12-架构模式)
+- [13. 开源多模态栈](#13-开源多模态栈)
+- [14. Dawning 的多模态策略](#14-dawning-的多模态策略)
+- [15. 端到端例子：语音客服](#15-端到端例子语音客服)
+- [16. 未来展望](#16-未来展望)
+- [17. 小结](#17-小结)
+- [18. 延伸阅读](#18-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 多模态的分层
@@ -648,3 +671,16 @@ Telemetry:
 - Pipecat：<https://github.com/pipecat-ai/pipecat>
 - Livekit Agents：<https://docs.livekit.io/agents/>
 - Gemini Multimodal：<https://ai.google.dev/gemini-api/docs>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)
+- [[concepts/03-io-data/structured-output.zh-CN|structured-output.zh-CN]] (交叉引用，非原始来源)

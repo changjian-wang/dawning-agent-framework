@@ -183,3 +183,16 @@ agent.run("Compare weather in Paris and Tokyo")
 - 官方文档：<https://huggingface.co/docs/smolagents>
 - Code Agent 论文《Executable Code Actions Elicit Better LLM Agents》
 - 博客：<https://huggingface.co/blog/smolagents>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

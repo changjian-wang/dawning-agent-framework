@@ -13,6 +13,24 @@ status: active
 > Agent 开发者视角的 LLM 核心概念。
 > 框架设计决策见 [上下文管理](../02-context-memory/context-management.md)；Agent 执行模式见 [Agent Loop](../01-agent-core/agent-loop.md)。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. LLM 概述](#1-llm-概述)
+- [2. Token](#2-token)
+- [3. Chat Completion API](#3-chat-completion-api)
+- [4. 消息角色](#4-消息角色)
+- [5. 上下文窗口](#5-上下文窗口)
+- [6. Temperature 与采样](#6-temperature-与采样)
+- [7. Function Calling](#7-function-calling)
+- [8. Streaming](#8-streaming)
+- [9. Structured Output](#9-structured-output)
+- [10. 成本模型](#10-成本模型)
+- [11. Rate Limiting](#11-rate-limiting)
+- [12. LLM 特性 → Framework 抽象映射](#12-llm-特性--framework-抽象映射)
+- [延伸阅读](#延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. LLM 概述
@@ -338,3 +356,16 @@ await foreach (var chunk in llm.ChatStreamAsync(messages, options, ct))
 ---
 
 *最后更新：2026-04-11*
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

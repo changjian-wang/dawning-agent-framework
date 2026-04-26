@@ -20,6 +20,32 @@ status: active
 > 核心思想：**训练到瓶颈，就在推理时多花计算**。
 > 本文系统梳理 Inference-Time Search 方法族、Agent 中的应用、Dawning 抽象。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. Test-Time Compute Scaling 概念](#1-test-time-compute-scaling-概念)
+- [2. 核心方法族](#2-核心方法族)
+- [3. Chain-of-Thought (CoT)](#3-chain-of-thought-cot)
+- [4. Self-Consistency](#4-self-consistency)
+- [5. Best-of-N + Verifier](#5-best-of-n--verifier)
+- [6. Beam Search](#6-beam-search)
+- [7. Tree-of-Thought (ToT)](#7-tree-of-thought-tot)
+- [8. MCTS + LLM](#8-mcts--llm)
+- [9. Self-Refine / Self-Reflection](#9-self-refine--self-reflection)
+- [10. Reasoning Model (o1/R1 风)](#10-reasoning-model-o1r1-风)
+- [11. Process Reward Model (PRM)](#11-process-reward-model-prm)
+- [12. 搜索的成本控制](#12-搜索的成本控制)
+- [13. Agent 中的 Inference-Time Search](#13-agent-中的-inference-time-search)
+- [14. 工具执行回路中的验证](#14-工具执行回路中的验证)
+- [15. 开源实现](#15-开源实现)
+- [16. 成本-质量权衡](#16-成本-质量权衡)
+- [17. 局限与反模式](#17-局限与反模式)
+- [18. Dawning 中的抽象](#18-dawning-中的抽象)
+- [19. 趋势（2026-2028）](#19-趋势2026-2028)
+- [20. 小结](#20-小结)
+- [21. 延伸阅读](#21-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. Test-Time Compute Scaling 概念
@@ -565,3 +591,16 @@ public record ReasoningBudget(
 - OpenR: <https://github.com/openreasoner/openr>
 - DeepSeek-Math Shepherd: <https://arxiv.org/abs/2312.08935>
 - Scaling Test-Time Compute (Google): <https://arxiv.org/abs/2408.03314>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/00-foundations/reasoning-models.zh-CN|reasoning-models.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/00-foundations/reasoning-algorithms.zh-CN|reasoning-algorithms.zh-CN]] (交叉引用，非原始来源)

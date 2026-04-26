@@ -15,6 +15,25 @@ status: active
 >
 > 本文梳理四类部署模式、核心挑战（状态/流式/HITL/超时）、与 Dawning 的分布式运行时（Host/Worker/Sidecar）映射。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. Agent 工作负载特征](#1-agent-工作负载特征)
+- [2. 四种部署模式](#2-四种部署模式)
+- [3. Pattern 1：Serverless（AWS Lambda / Cloud Functions）](#3-pattern-1serverlessaws-lambda--cloud-functions)
+- [4. Pattern 2：Container（K8s / ECS）](#4-pattern-2containerk8s--ecs)
+- [5. Pattern 3：Edge（Cloudflare Workers / Fastly）](#5-pattern-3edgecloudflare-workers--fastly)
+- [6. Pattern 4：Hybrid](#6-pattern-4hybrid)
+- [7. 核心挑战深解](#7-核心挑战深解)
+- [8. Dawning 的三面体运行时](#8-dawning-的三面体运行时)
+- [9. CI/CD](#9-cicd)
+- [10. 多 Region / 多 Cloud](#10-多-region--多-cloud)
+- [11. 成本与 SLA 权衡](#11-成本与-sla-权衡)
+- [12. 部署清单](#12-部署清单)
+- [13. 小结](#13-小结)
+- [14. 延伸阅读](#14-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. Agent 工作负载特征
@@ -533,3 +552,16 @@ services.AddLLMProvider(llm =>
 - Kubernetes KEDA：<https://keda.sh/>
 - Cloudflare Workers AI：<https://developers.cloudflare.com/workers-ai/>
 - Argo Rollouts：<https://argo-rollouts.readthedocs.io/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/observability-deep.zh-CN|observability-deep.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)

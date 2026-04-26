@@ -17,6 +17,28 @@ sources: []
 
 > 本文回答：`checkpointer=PostgresSaver(...)` 之后到底发生了什么？schema 是什么？怎么"时间旅行"回到任意超步？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 一句话回答](#2-一句话回答)
+- [3. 模块结构](#3-模块结构)
+- [4. `BaseCheckpointSaver` 接口](#4-basecheckpointsaver-接口)
+- [5. Checkpoint Schema](#5-checkpoint-schema)
+- [6. 三元寻址：`(thread_id, checkpoint_ns, checkpoint_id)`](#6-三元寻址threadid-checkpointns-checkpointid)
+- [7. PostgresSaver 表结构](#7-postgressaver-表结构)
+- [8. 写入流程](#8-写入流程)
+- [9. 时间旅行（Time Travel）](#9-时间旅行time-travel)
+- [10. 序列化（Serde）](#10-序列化serde)
+- [11. AsyncPostgresSaver 与连接池](#11-asyncpostgressaver-与连接池)
+- [12. 不同 Saver 选型](#12-不同-saver-选型)
+- [13. 与 Dawning 的对应](#13-与-dawning-的对应)
+- [14. 错误清单](#14-错误清单)
+- [15. 性能优化清单](#15-性能优化清单)
+- [16. 阅读顺序](#16-阅读顺序)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 > 重点路径：`langgraph-checkpoint/`、`langgraph-checkpoint-postgres/`、`langgraph-checkpoint-sqlite/`、`langgraph-checkpoint-duckdb/`。
 
 ---
@@ -413,3 +435,16 @@ async with AsyncConnectionPool(
 - 源码：`libs/checkpoint*`
 - [[../../concepts/state-persistence.zh-CN]]
 - [[01-architecture#7]] 持久化分层
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

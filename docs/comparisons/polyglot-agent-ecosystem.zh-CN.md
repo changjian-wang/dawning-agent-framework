@@ -15,6 +15,28 @@ status: active
 >
 > 本文梳理 6 种语言的 Agent 生态，分析技术选型策略，以及 Dawning 作为 .NET-native Agent OS 的定位。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么关心非 Python 生态](#1-为什么关心非-python-生态)
+- [2. 选型策略](#2-选型策略)
+- [3. .NET / C# 生态](#3-net--c-生态)
+- [4. Java 生态](#4-java-生态)
+- [5. TypeScript / Node.js 生态](#5-typescript--nodejs-生态)
+- [6. Go 生态](#6-go-生态)
+- [7. Rust 生态](#7-rust-生态)
+- [8. 其他语言速览](#8-其他语言速览)
+- [9. 跨语言互操作](#9-跨语言互操作)
+- [10. Python 仍有的优势（诚实面对）](#10-python-仍有的优势诚实面对)
+- [11. 性能对比（参考）](#11-性能对比参考)
+- [12. 企业如何分层](#12-企业如何分层)
+- [13. Dawning 战略选择](#13-dawning-战略选择)
+- [14. 团队建议](#14-团队建议)
+- [15. 未来展望](#15-未来展望)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么关心非 Python 生态
@@ -555,3 +577,16 @@ Dawning 的差异化：**不是"Python 框架 .NET 移植"**，
 - Vercel AI SDK：<https://ai-sdk.dev/>
 - Rig (Rust)：<https://github.com/0xPlaygrounds/rig>
 - Eino (Go)：<https://github.com/cloudwego/eino>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agent-framework-landscape.zh-CN|agent-framework-landscape.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)

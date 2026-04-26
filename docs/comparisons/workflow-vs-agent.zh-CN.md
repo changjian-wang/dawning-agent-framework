@@ -17,6 +17,30 @@ status: active
 >
 > 本文厘清工作流引擎谱系、与 Agent 的本质区别、混合架构模式、Dawning 的位置。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 概念辨析](#1-概念辨析)
+- [2. 工作流引擎谱系](#2-工作流引擎谱系)
+- [3. Temporal 深度剖析](#3-temporal-深度剖析)
+- [4. Restate 深度剖析](#4-restate-深度剖析)
+- [5. Dapr Workflow 深度剖析](#5-dapr-workflow-深度剖析)
+- [6. Airflow / Prefect / Dagster 深度剖析](#6-airflow--prefect--dagster-深度剖析)
+- [7. LangGraph 作为"Agent Workflow 引擎"](#7-langgraph-作为agent-workflow-引擎)
+- [8. Workflow vs Agent 决策框架](#8-workflow-vs-agent-决策框架)
+- [9. 混合架构模式](#9-混合架构模式)
+- [10. 何时不要用 Agent](#10-何时不要用-agent)
+- [11. Workflow 中调用 LLM 的最佳实践](#11-workflow-中调用-llm-的最佳实践)
+- [12. Agent 步骤的可靠性补丁](#12-agent-步骤的可靠性补丁)
+- [13. 可观测性融合](#13-可观测性融合)
+- [14. 选型综合矩阵](#14-选型综合矩阵)
+- [15. Dawning 的位置](#15-dawning-的位置)
+- [16. 失败案例教训](#16-失败案例教训)
+- [17. 趋势](#17-趋势)
+- [18. 小结](#18-小结)
+- [19. 延伸阅读](#19-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 概念辨析
@@ -730,3 +754,16 @@ Workflow 的关键点（HITL / 高风险 step）走 Dawning IPolicyEngine 评估
 - Inngest: <https://www.inngest.com/>
 - LangGraph Persistence: <https://langchain-ai.github.io/langgraph/concepts/persistence/>
 - Camunda 8: <https://camunda.com/platform-8/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/02-context-memory/state-persistence.zh-CN|state-persistence.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/multi-agent-patterns.zh-CN|multi-agent-patterns.zh-CN]] (交叉引用，非原始来源)

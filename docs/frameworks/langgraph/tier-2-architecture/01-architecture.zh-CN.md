@@ -24,6 +24,23 @@ sources: []
 >
 > **前置阅读**：如果你对"channel / 版本号 / BSP / 激活判定"这些词陌生，先看 [[../../concepts/dataflow-channel-version]]，再回来读本文。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 模块地图](#1-模块地图)
+- [2. 各模块一句话职责](#2-各模块一句话职责)
+- [3. 一次运行的生命周期](#3-一次运行的生命周期)
+- [4. 数据流：State → Channels → Reducer](#4-数据流state--channels--reducer)
+- [5. 执行模型：Pregel BSP 语义](#5-执行模型pregel-bsp-语义)
+- [6. 控制原语（types.py）](#6-控制原语typespy)
+- [7. 持久化分层](#7-持久化分层)
+- [8. Stream 子系统](#8-stream-子系统)
+- [9. 模块依赖 DAG](#9-模块依赖-dag)
+- [10. 与 Dawning 的 Layer 映射](#10-与-dawning-的-layer-映射)
+- [11. 阅读入口](#11-阅读入口)
+- [12. 延伸阅读](#12-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 模块地图
@@ -364,3 +381,16 @@ flowchart LR
 - [[../../concepts/state-persistence.zh-CN]] — 状态持久化综述
 - Pregel 论文：<https://research.google/pubs/pregel-a-system-for-large-scale-graph-processing/>
 - 官方 Conceptual Guide：<https://langchain-ai.github.io/langgraph/concepts/low_level/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

@@ -15,6 +15,33 @@ status: active
 >
 > 本文系统梳理后训练算法谱系、Agent 特化策略、Dawning 在哪里需要 / 不需要做。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 训练阶段全景](#1-训练阶段全景)
+- [2. SFT（监督微调）](#2-sft监督微调)
+- [3. RLHF（人类反馈强化学习）](#3-rlhf人类反馈强化学习)
+- [4. DPO（Direct Preference Optimization）](#4-dpodirect-preference-optimization)
+- [5. KTO（Kahneman-Tversky Optimization）](#5-ktokahneman-tversky-optimization)
+- [6. ORPO（Odds-Ratio Preference Optimization）](#6-orpoodds-ratio-preference-optimization)
+- [7. IPO / SimPO / GPO 等变体](#7-ipo--simpo--gpo-等变体)
+- [8. RLVR（RL with Verifiable Rewards）](#8-rlvrrl-with-verifiable-rewards)
+- [9. PPO vs GRPO](#9-ppo-vs-grpo)
+- [10. 参数高效微调（PEFT）](#10-参数高效微调peft)
+- [11. Agent 特化训练](#11-agent-特化训练)
+- [12. 蒸馏（Distillation）](#12-蒸馏distillation)
+- [13. 训练硬件 / 时间预算](#13-训练硬件--时间预算)
+- [14. 评估](#14-评估)
+- [15. 何时该微调](#15-何时该微调)
+- [16. 训练栈生态](#16-训练栈生态)
+- [17. Dawning 与微调的关系](#17-dawning-与微调的关系)
+- [18. 实战流程：把 R1 蒸馏成业务专用 7B](#18-实战流程把-r1-蒸馏成业务专用-7b)
+- [19. 常见陷阱](#19-常见陷阱)
+- [20. 趋势](#20-趋势)
+- [21. 小结](#21-小结)
+- [22. 延伸阅读](#22-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 训练阶段全景
@@ -744,3 +771,16 @@ Dawning 提供：数据 + 评估 + 路由 + 部署。
 - ORPO: <https://arxiv.org/abs/2403.07691>
 - BFCL: <https://gorilla.cs.berkeley.edu/leaderboard.html>
 - xLAM: <https://github.com/SalesforceAIResearch/xLAM>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/00-foundations/reasoning-models.zh-CN|reasoning-models.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/03-io-data/dataset-building.zh-CN|dataset-building.zh-CN]] (交叉引用，非原始来源)

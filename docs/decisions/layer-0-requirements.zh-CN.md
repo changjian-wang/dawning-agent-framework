@@ -132,3 +132,9 @@ LLM 是 Agent OS 的“硬件引擎”。不同提供商（OpenAI、Anthropic、
 - [[decisions/phase-0-overview]] — 技术栈与核心概念定义
 - [[decisions/layer-0-features.zh-CN]] — 功能清单
 - [[decisions/layer-0-tech-spec.zh-CN]] — 技术规格
+
+## 来源 <!-- SRC-STUB -->
+
+- [[decisions/success-criteria.zh-CN|success-criteria.zh-CN]] (交叉引用，非原始来源)
+- [[decisions/phase-0-overview|phase-0-overview]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/agent-os-architecture.zh-CN|agent-os-architecture.zh-CN]] (交叉引用，非原始来源)

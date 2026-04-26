@@ -18,6 +18,22 @@ sources: []
 > 本文是源码解剖库对 LangGraph 的入口：介绍定位、仓库布局、版本节奏与依赖。
 > 更细的模块切分见 [[01-architecture]]。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 定位](#1-定位)
+- [2. 仓库结构](#2-仓库结构)
+- [3. 版本节奏与里程碑](#3-版本节奏与里程碑)
+- [4. 依赖](#4-依赖)
+- [5. 代码体量与关注度](#5-代码体量与关注度)
+- [6. 核心概念一览](#6-核心概念一览)
+- [7. 典型心智模型](#7-典型心智模型)
+- [8. 为什么值得深读（面向 Dawning）](#8-为什么值得深读面向-dawning)
+- [9. 已知局限（先建立预期）](#9-已知局限先建立预期)
+- [10. 阅读顺序建议](#10-阅读顺序建议)
+- [11. 延伸阅读](#11-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 定位
@@ -236,3 +252,16 @@ for event in app.stream({"messages": [], "step": 0}, config):
 - 官方文档：<https://langchain-ai.github.io/langgraph/>
 - 源码：<https://github.com/langchain-ai/langgraph>
 - Pregel 论文：<https://research.google/pubs/pregel-a-system-for-large-scale-graph-processing/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

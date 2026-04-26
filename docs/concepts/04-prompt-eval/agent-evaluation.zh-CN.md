@@ -15,6 +15,24 @@ status: active
 >
 > 本文梳理 Agent Eval 的完整知识：四层指标体系、五类评估方法、三大商业工具对比，以及 Dawning 在这一层的设计方向。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么 Agent 比传统软件更难评估](#1-为什么-agent-比传统软件更难评估)
+- [2. 四层指标体系](#2-四层指标体系)
+- [3. 五类评估方法](#3-五类评估方法)
+- [4. RAG 专项评估（RAGAS 体系）](#4-rag-专项评估ragas-体系)
+- [5. Agent 专项评估（Agent Traces）](#5-agent-专项评估agent-traces)
+- [6. 商业工具对比](#6-商业工具对比)
+- [7. Dataset 管理](#7-dataset-管理)
+- [8. 评估流水线（Eval Pipeline）](#8-评估流水线eval-pipeline)
+- [9. LLM-as-Judge 的常见陷阱与修正](#9-llm-as-judge-的常见陷阱与修正)
+- [10. Dawning 的 Eval 设计](#10-dawning-的-eval-设计)
+- [11. 实施路线图](#11-实施路线图)
+- [12. 小结](#12-小结)
+- [13. 延伸阅读](#13-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么 Agent 比传统软件更难评估
@@ -483,3 +501,16 @@ skillEvolution.AddGate(new EvalGate
 - Langfuse：<https://langfuse.com/>
 - Arize Phoenix：<https://docs.arize.com/phoenix>
 - G-Eval 论文：<https://arxiv.org/abs/2303.16634>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/skill-evolution.zh-CN|skill-evolution.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/rag-pipeline-comparison.zh-CN|rag-pipeline-comparison.zh-CN]] (交叉引用，非原始来源)

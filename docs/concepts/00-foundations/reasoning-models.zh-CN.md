@@ -15,6 +15,28 @@ status: active
 >
 > 本文梳理推理模型的原理、代表、与 Agent 编排的冲突与融合，以及 Dawning 的适配策略。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 什么是推理模型](#1-什么是推理模型)
+- [2. 主要产品（2026）](#2-主要产品2026)
+- [3. DeepSeek R1 深度剖析](#3-deepseek-r1-深度剖析)
+- [4. 推理模型的成本 / 延迟特点](#4-推理模型的成本--延迟特点)
+- [5. 推理模型 vs 传统 Agent Loop 的冲突](#5-推理模型-vs-传统-agent-loop-的冲突)
+- [6. 工程落地要点](#6-工程落地要点)
+- [7. 思考链（Thinking Trace）的可见性](#7-思考链thinking-trace的可见性)
+- [8. 推理模型不擅长的地方](#8-推理模型不擅长的地方)
+- [9. 推理模型与工具调用](#9-推理模型与工具调用)
+- [10. 推理模型 + RAG](#10-推理模型--rag)
+- [11. 多 Agent 中的推理模型](#11-多-agent-中的推理模型)
+- [12. 微调推理模型](#12-微调推理模型)
+- [13. 开源生态工具链](#13-开源生态工具链)
+- [14. Dawning 适配策略](#14-dawning-适配策略)
+- [15. 未来趋势](#15-未来趋势)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 什么是推理模型
@@ -672,3 +694,16 @@ Dawning.Agents.Patterns.ReasoningOnDemand  (router)
 - Gemini Thinking: <https://ai.google.dev/gemini-api/docs/thinking>
 - verl: <https://github.com/volcengine/verl>
 - OpenThoughts: <https://github.com/open-thoughts/open-thoughts>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/00-foundations/reasoning-algorithms.zh-CN|reasoning-algorithms.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)

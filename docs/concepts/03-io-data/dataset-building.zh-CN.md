@@ -15,6 +15,26 @@ status: active
 >
 > 本文梳理 Dataset 构建的四条路径（人工 / 合成 / 生产采样 / 公开基准），标注规范，数据治理，以及 Dawning 的 Dataset 管理设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么 Dataset 是根基](#1-为什么-dataset-是根基)
+- [2. 数据集的生命周期](#2-数据集的生命周期)
+- [3. 四条采集路径](#3-四条采集路径)
+- [4. 标注规范](#4-标注规范)
+- [5. 数据治理](#5-数据治理)
+- [6. 质量保证](#6-质量保证)
+- [7. 持续反馈回流](#7-持续反馈回流)
+- [8. 多维度 Dataset](#8-多维度-dataset)
+- [9. 工具与平台](#9-工具与平台)
+- [10. Agent 特有的数据需求](#10-agent-特有的数据需求)
+- [11. Dawning 的 Dataset 设计](#11-dawning-的-dataset-设计)
+- [12. 常见错误](#12-常见错误)
+- [13. 落地节奏](#13-落地节奏)
+- [14. 小结](#14-小结)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么 Dataset 是根基
@@ -602,3 +622,16 @@ var result = await evalRunner.RunAsync(dataset, evaluators, agent);
 - Distilabel：<https://distilabel.argilla.io/>
 - AgentBench：<https://github.com/THUDM/AgentBench>
 - τ-Bench：<https://github.com/sierra-research/tau-bench>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/04-prompt-eval/agent-evaluation.zh-CN|agent-evaluation.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/06-operations/observability-deep.zh-CN|observability-deep.zh-CN]] (交叉引用，非原始来源)

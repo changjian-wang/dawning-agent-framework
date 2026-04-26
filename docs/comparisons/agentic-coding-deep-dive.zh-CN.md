@@ -16,6 +16,27 @@ status: active
 > 这些工具的架构值得所有 Agent 框架作者研究——它们是**经过真实开发者每日打磨**的 Agent 设计范式。
 > 本文深度拆解 9 个主流产品的架构模式，总结对通用 Agent 框架的启发。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. Agentic Coding 的演化](#1-agentic-coding-的演化)
+- [2. 产品谱系（2026 现状）](#2-产品谱系2026-现状)
+- [3. Claude Code 架构解析](#3-claude-code-架构解析)
+- [4. Cursor 架构解析](#4-cursor-架构解析)
+- [5. Aider 架构解析](#5-aider-架构解析)
+- [6. Cline / Roo Code 架构解析](#6-cline--roo-code-架构解析)
+- [7. Devin 架构解析](#7-devin-架构解析)
+- [8. GitHub Copilot 演化](#8-github-copilot-演化)
+- [9. 对比矩阵](#9-对比矩阵)
+- [10. 共性模式（对框架作者的启发）](#10-共性模式对框架作者的启发)
+- [11. 反模式（避免踩坑）](#11-反模式避免踩坑)
+- [12. 对 Dawning 的启发](#12-对-dawning-的启发)
+- [13. 边界与未来](#13-边界与未来)
+- [14. 评估框架](#14-评估框架)
+- [15. 小结](#15-小结)
+- [16. 延伸阅读](#16-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. Agentic Coding 的演化
@@ -714,3 +735,16 @@ L4 Agent 工厂: 定制 Agent + 内部 Skill 库（Dawning.Coding）
 - OpenHands: <https://github.com/All-Hands-AI/OpenHands>
 - SWE-Bench: <https://www.swebench.com/>
 - AGENTS.md 共识: <https://agents.md>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agent-framework-landscape.zh-CN|agent-framework-landscape.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/multi-agent-patterns.zh-CN|multi-agent-patterns.zh-CN]] (交叉引用，非原始来源)

@@ -20,6 +20,22 @@ sources: []
 > 目标：从最简单例子出发，每一步加一个需求，带出一个新概念。
 > 读完你能**写**（不是只读）一个带 HITL + stream + 子图的 Agent。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [场景](#场景)
+- [V1：最简单的线性流程](#v1最简单的线性流程)
+- [V2：加一个润色步骤](#v2加一个润色步骤)
+- [V3：加条件分支](#v3加条件分支)
+- [V4：并行翻译多个段（fan-out）—— 引入 Reducer](#v4并行翻译多个段fan-out-引入-reducer)
+- [V5：加 HITL —— 人工审核敏感词](#v5加-hitl--人工审核敏感词)
+- [V6：加流式输出](#v6加流式输出)
+- [V7：抽成子图，复用](#v7抽成子图复用)
+- [V8：串起所有功能](#v8串起所有功能)
+- [回顾](#回顾)
+- [下一步](#下一步)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 场景
@@ -435,3 +451,16 @@ END
 - **想看源码怎么写的** → [[../tier-3-internals/]] 按需读
 - **想看真实企业案例** → [[../cases/]]（klarna / open-deep-research / replit-agent / linkedin-hr-agent）
 - **想看 LangGraph vs Dawning 映射** → [[../cross-module-comparison]]
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

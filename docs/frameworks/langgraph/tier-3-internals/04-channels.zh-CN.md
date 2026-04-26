@@ -17,6 +17,26 @@ sources: []
 
 > 本文回答：State 字段为什么"会自己合并"？reducer 的合约是什么？什么时候必须显式标注？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 一句话回答](#2-一句话回答)
+- [3. 类层次](#3-类层次)
+- [4. `BaseChannel` 接口](#4-basechannel-接口)
+- [5. 内置 Channel 全集](#5-内置-channel-全集)
+- [6. 完整对照表](#6-完整对照表)
+- [7. `add_messages` 深入](#7-addmessages-深入)
+- [8. 自定义 Reducer 模板](#8-自定义-reducer-模板)
+- [9. 版本号管理（与 Pregel 协作）](#9-版本号管理与-pregel-协作)
+- [10. 与 Pydantic / dataclass 的互操作](#10-与-pydantic--dataclass-的互操作)
+- [11. 性能与陷阱](#11-性能与陷阱)
+- [12. 错误清单](#12-错误清单)
+- [13. 与 Dawning 的对应](#13-与-dawning-的对应)
+- [14. 阅读顺序](#14-阅读顺序)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 > 重点路径：`langgraph/channels/{base,last_value,binop,topic,any_value,ephemeral_value,untracked_value}.py`。
 
 ---
@@ -446,3 +466,16 @@ class State(BaseModel):
 - `add_messages` 源码：`libs/langgraph/langgraph/graph/message.py`
 - [[02-state-graph#5]] schema → channel 的翻译规则
 - [[../../concepts/state-persistence.zh-CN]] 状态持久化综述
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

@@ -21,6 +21,29 @@ status: active
 > 这类 Agent 的共同点：**长时自主 + 工具密集 + 知识综合 + 可引用 + 可复核**。
 > 本文拆解 Research Agent 的技术范式、对比主流产品、讨论落地路径。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 定义与范畴](#1-定义与范畴)
+- [2. 技术范式三大流派](#2-技术范式三大流派)
+- [3. Deep Research 产品对比](#3-deep-research-产品对比)
+- [4. OpenAI Deep Research 深度剖析](#4-openai-deep-research-深度剖析)
+- [5. AI Scientist（Sakana）](#5-ai-scientistsakana)
+- [6. AlphaEvolve（DeepMind）](#6-alphaevolvedeepmind)
+- [7. STORM (Stanford)](#7-storm-stanford)
+- [8. GPT-Researcher 家族（开源）](#8-gpt-researcher-家族开源)
+- [9. 常见工具栈](#9-常见工具栈)
+- [10. 工程挑战](#10-工程挑战)
+- [11. 评估基准](#11-评估基准)
+- [12. 企业落地场景](#12-企业落地场景)
+- [13. 安全与合规](#13-安全与合规)
+- [14. 自建 Research Agent 路径](#14-自建-research-agent-路径)
+- [15. Dawning 与 Research Agent](#15-dawning-与-research-agent)
+- [16. 展望](#16-展望)
+- [17. 小结](#17-小结)
+- [18. 延伸阅读](#18-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 定义与范畴
@@ -545,3 +568,16 @@ Dawning 用 **Skill Set** 承载："deep-research" skill：
 - Stanford STORM: <https://storm.genie.stanford.edu/>
 - GPT-Researcher: <https://github.com/assafelovic/gpt-researcher>
 - DeerFlow: <https://github.com/bytedance/deer-flow>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agentic-coding-deep-dive.zh-CN|agentic-coding-deep-dive.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/00-foundations/reasoning-models.zh-CN|reasoning-models.zh-CN]] (交叉引用，非原始来源)

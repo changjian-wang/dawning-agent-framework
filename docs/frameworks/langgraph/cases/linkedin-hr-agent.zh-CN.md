@@ -21,6 +21,22 @@ sources: []
 > LinkedIn 内部 GenAI Recruiter Experience 的核心架构基于 LangGraph。
 > 用它来回答："**强 HITL + 多 Agent + 严格审计** 在 LangGraph 里到底怎么落"。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 背景](#1-背景)
+- [2. 系统架构](#2-系统架构)
+- [3. 状态模型与命名空间](#3-状态模型与命名空间)
+- [4. 一次招聘的完整时序](#4-一次招聘的完整时序)
+- [5. 用到的 LangGraph 关键能力](#5-用到的-langgraph-关键能力)
+- [6. 关键工程实践](#6-关键工程实践)
+- [7. 落地难点 & 解法](#7-落地难点--解法)
+- [8. 与其他案例对比](#8-与其他案例对比)
+- [9. 与 Dawning 的映射](#9-与-dawning-的映射)
+- [10. 学习清单](#10-学习清单)
+- [11. 参考](#11-参考)
+<!-- /TOC-AUTOGEN -->
+
 > 注：源码闭源，本案例基于 LinkedIn 官方博客、LangChain Customer Story、KubeCon/AI Eng Summit 公开演讲整理。
 
 ---
@@ -400,3 +416,16 @@ config = {"configurable": {"thread_id": ..., "models": {...}}}
 - Talk: "GenAI Recruiter at LinkedIn" — InfoQ AI/ML Conference 2025
 - [[klarna-customer-support.zh-CN]] · [[open-deep-research.zh-CN]]
 - [[../06-interrupt-hitl]]
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

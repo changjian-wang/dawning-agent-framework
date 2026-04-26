@@ -498,3 +498,8 @@ ValidateAndCollectStateKeys(aiContextProviders, chatHistoryProvider);
 - [[readings/frameworks/maf/00-overview.zh-CN|MAF 项目结构全景]] — NuGet 包依赖关系
 - [[decisions/layer-0-tech-spec.zh-CN|L0 技术规格]] — dawning-agent-framework 的 Agent Loop 设计
 - [[decisions/layer-0-features.zh-CN|L0 功能清单]] — 域 4 工具系统 / 域 5 会话管理
+
+## 来源 <!-- SRC-STUB -->
+
+- [[readings/frameworks/maf/01-abstractions.zh-CN|01-abstractions.zh-CN]] (交叉引用，非原始来源)
+- <https://github.com/microsoft/agent-framework/tree/main/dotnet/src/Microsoft.Agents.AI/ChatClient>

@@ -19,6 +19,32 @@ status: active
 > 2025-2026 是端侧 Agent 元年：Apple Intelligence / Gemini Nano / Phi-4 / Qwen3-Small / DeepSeek-R1-Distill 都在落地。
 > 本文梳理小模型生态、设备端推理引擎、边缘 Agent 架构、Dawning 的 hybrid 策略。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要端侧 Agent](#1-为什么需要端侧-agent)
+- [2. 主流小模型矩阵（2026）](#2-主流小模型矩阵2026)
+- [3. Apple Foundation Models 深度剖析](#3-apple-foundation-models-深度剖析)
+- [4. Gemini Nano 深度剖析](#4-gemini-nano-深度剖析)
+- [5. Microsoft Phi 系列 + Copilot+ PC](#5-microsoft-phi-系列--copilot-pc)
+- [6. Qwen3-Small / 中国端侧生态](#6-qwen3-small--中国端侧生态)
+- [7. 设备端推理引擎](#7-设备端推理引擎)
+- [8. 端侧硬件能力（2026）](#8-端侧硬件能力2026)
+- [9. 边缘 Agent 架构模式](#9-边缘-agent-架构模式)
+- [10. 模型路由（Hybrid Routing）](#10-模型路由hybrid-routing)
+- [11. 端侧 RAG](#11-端侧-rag)
+- [12. 端侧工具调用](#12-端侧工具调用)
+- [13. 性能优化技巧](#13-性能优化技巧)
+- [14. 端侧 Agent 安全](#14-端侧-agent-安全)
+- [15. 端侧 Agent 评估](#15-端侧-agent-评估)
+- [16. Dawning 端侧策略](#16-dawning-端侧策略)
+- [17. 实战场景](#17-实战场景)
+- [18. 典型反模式](#18-典型反模式)
+- [19. 趋势](#19-趋势)
+- [20. 小结](#20-小结)
+- [21. 延伸阅读](#21-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要端侧 Agent
@@ -809,3 +835,16 @@ Watch:
 - ONNX Runtime: <https://onnxruntime.ai/>
 - WebLLM: <https://github.com/mlc-ai/web-llm>
 - Executorch: <https://pytorch.org/executorch/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/local-llm-comparison.zh-CN|local-llm-comparison.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/03-io-data/multimodal-agents.zh-CN|multimodal-agents.zh-CN]] (交叉引用，非原始来源)

@@ -19,6 +19,25 @@ sources: []
 >
 > 重点路径：`langgraph/graph/state.py`、`langgraph/graph/graph.py`、`langgraph/_compile.py`。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围与边界](#1-范围与边界)
+- [2. 用户视角：最小例子](#2-用户视角最小例子)
+- [3. 类层次](#3-类层次)
+- [4. 构图阶段：`add_node` / `add_edge` 在记什么](#4-构图阶段addnode--addedge-在记什么)
+- [5. State schema → Channels 的翻译](#5-state-schema--channels-的翻译)
+- [6. `compile()`：从账本到 Pregel](#6-compile从账本到-pregel)
+- [7. 运行时 API：CompiledStateGraph 暴露什么](#7-运行时-apicompiledstategraph-暴露什么)
+- [8. 子图：StateGraph 节点可以是另一个 CompiledGraph](#8-子图stategraph-节点可以是另一个-compiledgraph)
+- [9. 与 `Graph` / `MessageGraph` 的关系](#9-与-graph--messagegraph-的关系)
+- [10. 常见错误与编译期校验](#10-常见错误与编译期校验)
+- [11. 性能与陷阱](#11-性能与陷阱)
+- [12. 与 Dawning 的对应](#12-与-dawning-的对应)
+- [13. 阅读顺序](#13-阅读顺序)
+- [14. 延伸阅读](#14-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 范围与边界
@@ -495,3 +514,16 @@ MessageGraph = lambda: StateGraph(MessagesState)   # 简化
 - Source：`libs/langgraph/langgraph/graph/state.py`
 - [[01-architecture]] §3 一次运行的生命周期
 - [[../cross-module-comparison/state-model.zh-CN]]（待写）
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

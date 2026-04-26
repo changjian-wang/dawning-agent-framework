@@ -273,3 +273,16 @@ status: active
 - [[comparisons/agent-os-vs-frameworks]] — 为什么不是第 19 个框架
 - [[concepts/dawning-capability-matrix.zh-CN]] — Dawning 16 接口详解
 - [[concepts/protocols-a2a-mcp.zh-CN]] — A2A 和 MCP 协议深度
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/agent-framework-landscape.zh-CN|agent-framework-landscape.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)

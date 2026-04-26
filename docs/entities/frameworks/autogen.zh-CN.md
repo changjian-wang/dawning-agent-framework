@@ -163,3 +163,16 @@ await team.run(task="Write a summary of quantum computing.")
 - v0.2 → v0.4 迁移指南：<https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/migration-guide.html>
 - 论文《AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation》
 - 本库相关：[microsoft-agent-framework.zh-CN.md](microsoft-agent-framework.zh-CN.md)
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

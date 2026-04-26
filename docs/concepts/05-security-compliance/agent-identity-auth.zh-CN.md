@@ -21,6 +21,30 @@ status: active
 >
 > 本文讨论 Agent 身份 / 认证 / 授权的系统化方案。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 问题空间](#1-问题空间)
+- [2. Agent 身份类型](#2-agent-身份类型)
+- [3. OAuth 2.x 关键机制](#3-oauth-2x-关键机制)
+- [4. Scope 设计](#4-scope-设计)
+- [5. MCP Authorization（2025 Spec）](#5-mcp-authorization2025-spec)
+- [6. A2A Authorization（Agent-to-Agent）](#6-a2a-authorizationagent-to-agent)
+- [7. Zero Trust + Agent](#7-zero-trust--agent)
+- [8. User → Agent 授权的 UX](#8-user--agent-授权的-ux)
+- [9. Tool / API 侧防护](#9-tool--api-侧防护)
+- [10. 秘密管理（Agent 内部）](#10-秘密管理agent-内部)
+- [11. Prompt Injection 防御（授权侧）](#11-prompt-injection-防御授权侧)
+- [12. 审计与合规](#12-审计与合规)
+- [13. 典型架构：Agent Auth Gateway](#13-典型架构agent-auth-gateway)
+- [14. 常见漏洞](#14-常见漏洞)
+- [15. 行业方案](#15-行业方案)
+- [16. Dawning 身份与认证策略](#16-dawning-身份与认证策略)
+- [17. 开发者清单](#17-开发者清单)
+- [18. 小结](#18-小结)
+- [19. 延伸阅读](#19-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 问题空间
@@ -605,3 +629,16 @@ public interface IPolicyEngine
 - SPIFFE: <https://spiffe.io/>
 - OPA: <https://www.openpolicyagent.org/>
 - Cedar: <https://www.cedarpolicy.com/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/05-security-compliance/agent-security.zh-CN|agent-security.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/07-interop-ux/protocols-a2a-mcp.zh-CN|protocols-a2a-mcp.zh-CN]] (交叉引用，非原始来源)

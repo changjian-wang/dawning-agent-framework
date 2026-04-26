@@ -19,6 +19,22 @@ status: active
 >
 > 命名空间已从 `Dawning.AgentFramework.*` 变更为 `Dawning.AgentOS.*`。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [目录](#目录)
+- [1. 什么是 AI Agent？](#1-什么是-ai-agent)
+- [2. 为什么需要 Agent Framework？](#2-为什么需要-agent-framework)
+- [3. 框架定位：三大方向](#3-框架定位三大方向)
+- [4. 核心概念清单](#4-核心概念清单)
+- [5. 架构设计原则](#5-架构设计原则)
+- [6. 技术栈选择与理由](#6-技术栈选择与理由)
+- [7. 项目模块划分与理由](#7-项目模块划分与理由)
+- [8. Agent 如何调用工具？——Function Calling 决策记录](#8-agent-如何调用工具function-calling-决策记录)
+- [9. 执行流程详解](#9-执行流程详解)
+- [下一步](#下一步)
+<!-- /TOC-AUTOGEN -->
+
 ## 目录
 
 1. [什么是 AI Agent？](#1-什么是-ai-agent)
@@ -883,3 +899,16 @@ Phase 1: 创建项目骨架
 - 配置 Directory.Build.props
 - 创建 Abstractions 和 Core 项目
 - 定义核心接口：IAgent, ILLMProvider, ITool, IWorkingMemory, ILongTermMemory, IOrchestrator, IAgentChannel
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

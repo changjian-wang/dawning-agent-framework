@@ -14,6 +14,23 @@ status: active
 >
 > 本文做一次彻底的规范级对比，并给出 Dawning `ILLMProvider` 抽象层的统一设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么 Function Calling 重要](#1-为什么-function-calling-重要)
+- [2. OpenAI Function Calling（行业原型）](#2-openai-function-calling行业原型)
+- [3. Anthropic Tool Use](#3-anthropic-tool-use)
+- [4. Google Gemini Function Calling](#4-google-gemini-function-calling)
+- [5. 三家对照速查表](#5-三家对照速查表)
+- [6. 常见跨供应商陷阱](#6-常见跨供应商陷阱)
+- [7. MCP：统一工具发现的尝试](#7-mcp统一工具发现的尝试)
+- [8. 各框架的抽象方式](#8-各框架的抽象方式)
+- [9. Dawning `ILLMProvider` 统一抽象](#9-dawning-illmprovider-统一抽象)
+- [10. 工具调用的工程最佳实践](#10-工具调用的工程最佳实践)
+- [11. 小结](#11-小结)
+- [12. 延伸阅读](#12-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么 Function Calling 重要
@@ -594,3 +611,16 @@ public interface ITool
 - OpenAI Function Calling：<https://platform.openai.com/docs/guides/function-calling>
 - Anthropic Tool Use：<https://docs.anthropic.com/en/docs/build-with-claude/tool-use>
 - Gemini Function Calling：<https://ai.google.dev/gemini-api/docs/function-calling>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)
+- [[concepts/07-interop-ux/protocols-a2a-mcp.zh-CN|protocols-a2a-mcp.zh-CN]] (交叉引用，非原始来源)

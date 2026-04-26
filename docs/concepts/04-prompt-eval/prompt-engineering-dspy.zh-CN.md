@@ -15,6 +15,23 @@ status: active
 >
 > 本文梳理 Prompt Engineering 的完整技法体系、DSPy 自动优化原理，以及 Dawning 如何把两者整合进技能演化循环。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. Prompt Engineering 的演进三阶段](#1-prompt-engineering-的演进三阶段)
+- [2. 核心 Prompt 技法体系](#2-核心-prompt-技法体系)
+- [3. Prompt Engineering 的工程化痛点](#3-prompt-engineering-的工程化痛点)
+- [4. DSPy：Prompt 编译器](#4-dspyprompt-编译器)
+- [5. DSPy vs 手写 vs Layer 5](#5-dspy-vs-手写-vs-layer-5)
+- [6. 跨 LLM 的 Prompt 移植](#6-跨-llm-的-prompt-移植)
+- [7. Prompt 版本管理最佳实践](#7-prompt-版本管理最佳实践)
+- [8. Dawning 整合设计](#8-dawning-整合设计)
+- [9. Prompt Engineering 实用技法手册](#9-prompt-engineering-实用技法手册)
+- [10. 延伸：高级范式](#10-延伸高级范式)
+- [11. 小结](#11-小结)
+- [12. 延伸阅读](#12-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. Prompt Engineering 的演进三阶段
@@ -515,3 +532,16 @@ Step 4: 基于总结提建议
 - Prompting Guide：<https://www.promptingguide.ai/>
 - Anthropic Prompt Library：<https://docs.anthropic.com/en/prompt-library/library>
 - OpenAI Prompting Guide：<https://platform.openai.com/docs/guides/prompt-engineering>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/skill-evolution.zh-CN|skill-evolution.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/04-prompt-eval/agent-evaluation.zh-CN|agent-evaluation.zh-CN]] (交叉引用，非原始来源)

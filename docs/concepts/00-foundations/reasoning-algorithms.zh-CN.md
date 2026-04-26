@@ -15,6 +15,30 @@ status: active
 >
 > 本文梳理六大推理算法的思路、适用场景、复杂度与 Dawning 的算法可插拔设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要不同算法](#1-为什么需要不同算法)
+- [2. 算法谱系图](#2-算法谱系图)
+- [3. ReAct（Reasoning + Acting）](#3-reactreasoning--acting)
+- [4. Plan-and-Execute](#4-plan-and-execute)
+- [5. Reflexion](#5-reflexion)
+- [6. Self-Refine](#6-self-refine)
+- [7. Tree-of-Thought (ToT)](#7-tree-of-thought-tot)
+- [8. Language Agent Tree Search (LATS)](#8-language-agent-tree-search-lats)
+- [9. Reasoning via Planning (RAP)](#9-reasoning-via-planning-rap)
+- [10. 其他推理算法](#10-其他推理算法)
+- [11. 横向对比](#11-横向对比)
+- [12. 选型决策树](#12-选型决策树)
+- [13. 组合策略](#13-组合策略)
+- [14. Dawning 算法可插拔设计](#14-dawning-算法可插拔设计)
+- [15. 工程实践](#15-工程实践)
+- [16. 与 o1/R1 类模型关系](#16-与-o1r1-类模型关系)
+- [17. 常见坑](#17-常见坑)
+- [18. 小结](#18-小结)
+- [19. 延伸阅读](#19-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要不同算法
@@ -578,3 +602,16 @@ Tier B（免费用户）          → ReAct
 - Tree of Thoughts：<https://arxiv.org/abs/2305.10601>
 - LATS：<https://arxiv.org/abs/2310.04406>
 - RAP：<https://arxiv.org/abs/2305.14992>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)
+- [[concepts/04-prompt-eval/prompt-engineering-dspy.zh-CN|prompt-engineering-dspy.zh-CN]] (交叉引用，非原始来源)

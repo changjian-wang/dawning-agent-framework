@@ -16,6 +16,28 @@ status: active
 > 本文梳理 2026 Q1 主流 embedding 模型（OpenAI/Voyage/BGE/Jina/Cohere/国产）、选型维度、微调路径，
 > 以及 Dawning 的 embedding 抽象设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. Embedding 的本质与作用](#1-embedding-的本质与作用)
+- [2. 核心选型维度](#2-核心选型维度)
+- [3. 2026 Q1 主流模型](#3-2026-q1-主流模型)
+- [4. 评测基准](#4-评测基准)
+- [5. Matryoshka Embedding](#5-matryoshka-embedding)
+- [6. 多模态 Embedding](#6-多模态-embedding)
+- [7. 微调 Embedding](#7-微调-embedding)
+- [8. 重排（Rerank）](#8-重排rerank)
+- [9. 成本对比（2026 Q1 参考）](#9-成本对比2026-q1-参考)
+- [10. 延迟与吞吐](#10-延迟与吞吐)
+- [11. 实践陷阱](#11-实践陷阱)
+- [12. Instruction-Tuned Embedding](#12-instruction-tuned-embedding)
+- [13. Dawning 的 IEmbeddingProvider](#13-dawning-的-iembeddingprovider)
+- [14. 选型决策树](#14-选型决策树)
+- [15. 测试清单（必做）](#15-测试清单必做)
+- [16. 小结](#16-小结)
+- [17. 延伸阅读](#17-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. Embedding 的本质与作用
@@ -501,3 +523,16 @@ Dawning 会校验维度一致性。
 - FlagEmbedding（BGE）：<https://github.com/FlagOpen/FlagEmbedding>
 - Voyage AI：<https://www.voyageai.com/>
 - Jina：<https://jina.ai/embeddings/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/vector-database-comparison.zh-CN|vector-database-comparison.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/rag-pipeline-comparison.zh-CN|rag-pipeline-comparison.zh-CN]] (交叉引用，非原始来源)

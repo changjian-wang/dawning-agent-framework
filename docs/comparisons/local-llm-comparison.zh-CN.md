@@ -15,6 +15,30 @@ status: active
 >
 > 本文按"开发者工具 / 边缘 / 生产服务"三类梳理 8 个主流方案，并给出选型决策。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么本地 LLM](#1-为什么本地-llm)
+- [2. 选型分类](#2-选型分类)
+- [3. Ollama](#3-ollama)
+- [4. LM Studio](#4-lm-studio)
+- [5. llama.cpp](#5-llamacpp)
+- [6. MLX (Apple Silicon)](#6-mlx-apple-silicon)
+- [7. vLLM](#7-vllm)
+- [8. TensorRT-LLM](#8-tensorrt-llm)
+- [9. Text Generation Inference (TGI)](#9-text-generation-inference-tgi)
+- [10. SGLang](#10-sglang)
+- [11. 横向性能对比](#11-横向性能对比)
+- [12. 其他值得关注](#12-其他值得关注)
+- [13. 模型选择](#13-模型选择)
+- [14. 硬件规划](#14-硬件规划)
+- [15. Dawning 本地 LLM 集成](#15-dawning-本地-llm-集成)
+- [16. 本地 LLM 的生产陷阱](#16-本地-llm-的生产陷阱)
+- [17. 决策树](#17-决策树)
+- [18. 小结](#18-小结)
+- [19. 延伸阅读](#19-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么本地 LLM
@@ -506,3 +530,16 @@ on_offline: local-light
 - SGLang：<https://github.com/sgl-project/sglang>
 - llama.cpp：<https://github.com/ggerganov/llama.cpp>
 - MLX：<https://github.com/ml-explore/mlx>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/cost-optimization.zh-CN|cost-optimization.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/06-operations/deployment-architectures.zh-CN|deployment-architectures.zh-CN]] (交叉引用，非原始来源)

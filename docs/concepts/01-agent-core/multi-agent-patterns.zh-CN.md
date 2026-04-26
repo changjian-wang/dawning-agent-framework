@@ -15,6 +15,25 @@ status: active
 >
 > 本文梳理四种模式的结构、适用场景、实现差异，以及 Dawning Layer 3 的原语设计。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么要多 Agent](#1-为什么要多-agent)
+- [2. 四种协作模式概览](#2-四种协作模式概览)
+- [3. Pattern 1：Network（对等网状）](#3-pattern-1network对等网状)
+- [4. Pattern 2：Supervisor（中心化）](#4-pattern-2supervisor中心化)
+- [5. Pattern 3：Hierarchical（树状层级）](#5-pattern-3hierarchical树状层级)
+- [6. Pattern 4：Swarm（去中心化 handoff）](#6-pattern-4swarm去中心化-handoff)
+- [7. 横向对比](#7-横向对比)
+- [8. 选型决策](#8-选型决策)
+- [9. 跨协议互操作（A2A 的角色）](#9-跨协议互操作a2a-的角色)
+- [10. 共同挑战与解决方案](#10-共同挑战与解决方案)
+- [11. Dawning Layer 3 的原语设计](#11-dawning-layer-3-的原语设计)
+- [12. 常见坑与最佳实践](#12-常见坑与最佳实践)
+- [13. 小结](#13-小结)
+- [14. 延伸阅读](#14-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么要多 Agent
@@ -568,3 +587,17 @@ var mainWorkflow = new WorkflowEngine()
 - OpenAI Swarm：<https://github.com/openai/swarm>
 - AutoGen GroupChat：<https://microsoft.github.io/autogen/>
 - MetaGPT：<https://github.com/geekan/MetaGPT>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/agent-loop|agent-loop]] (交叉引用，非原始来源)
+- [[comparisons/maf-vs-langgraph.zh-CN|maf-vs-langgraph.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/07-interop-ux/protocols-a2a-mcp.zh-CN|protocols-a2a-mcp.zh-CN]] (交叉引用，非原始来源)

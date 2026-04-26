@@ -12,6 +12,22 @@ status: active
 
 > RAG（Retrieval-Augmented Generation）是连接 LLM 与外部知识的关键管道。不同框架对 RAG 的**模块切分**和**默认组合**差异很大，本文横向对照它们的做法，并给出 Dawning 的 Layer 2 实现方向。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. RAG 管道的七个标准阶段](#1-rag-管道的七个标准阶段)
+- [2. LangChain / LangGraph](#2-langchain--langgraph)
+- [3. Spring AI](#3-spring-ai)
+- [4. Microsoft Agent Framework / Semantic Kernel](#4-microsoft-agent-framework--semantic-kernel)
+- [5. LlamaIndex](#5-llamaindex)
+- [6. CrewAI / OpenAI Agents SDK](#6-crewai--openai-agents-sdk)
+- [7. 横向对比矩阵](#7-横向对比矩阵)
+- [8. Advanced RAG 模式速查](#8-advanced-rag-模式速查)
+- [9. Dawning 的 RAG 设计方向](#9-dawning-的-rag-设计方向)
+- [10. 小结](#10-小结)
+- [11. 延伸阅读](#11-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. RAG 管道的七个标准阶段
@@ -283,3 +299,16 @@ agent.Context.AddProvider<RagContextProvider>();
 - LangChain RAG 文档：<https://python.langchain.com/docs/concepts/rag>
 - LlamaIndex RAG 文档：<https://docs.llamaindex.ai/en/stable/understanding/rag/>
 - Spring AI Advisors：<https://docs.spring.io/spring-ai/reference/api/chatclient.html#_advisors>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)
+- [[comparisons/framework-modules-mapping.zh-CN|framework-modules-mapping.zh-CN]] (交叉引用，非原始来源)

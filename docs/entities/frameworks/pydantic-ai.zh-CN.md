@@ -177,3 +177,16 @@ agent = Agent(TestModel(), output_type=Invoice)
 - 官方文档：<https://ai.pydantic.dev/>
 - GitHub：<https://github.com/pydantic/pydantic-ai>
 - Samuel Colvin 访谈（Latent Space）：<https://www.latent.space/p/pydantic>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

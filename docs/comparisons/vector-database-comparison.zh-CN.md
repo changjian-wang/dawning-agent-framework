@@ -15,6 +15,32 @@ status: active
 >
 > 本文对比 7 款主流方案，覆盖 SaaS / 开源 / 嵌入式，并给出 Dawning 的抽象与选型建议。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 核心能力维度](#1-核心能力维度)
+- [2. 方案总览](#2-方案总览)
+- [3. Pinecone](#3-pinecone)
+- [4. Weaviate](#4-weaviate)
+- [5. Qdrant](#5-qdrant)
+- [6. Milvus / Zilliz](#6-milvus--zilliz)
+- [7. pgvector](#7-pgvector)
+- [8. Chroma](#8-chroma)
+- [9. LanceDB](#9-lancedb)
+- [10. Vespa](#10-vespa)
+- [11. Elasticsearch / OpenSearch](#11-elasticsearch--opensearch)
+- [12. Redis](#12-redis)
+- [13. 新秀：Turbopuffer](#13-新秀turbopuffer)
+- [14. 横向对比矩阵](#14-横向对比矩阵)
+- [15. 性能 benchmark（参考量级）](#15-性能-benchmark参考量级)
+- [16. 选型决策树](#16-选型决策树)
+- [17. Dawning 的抽象](#17-dawning-的抽象)
+- [18. 工程实践](#18-工程实践)
+- [19. 常见坑](#19-常见坑)
+- [20. 小结](#20-小结)
+- [21. 延伸阅读](#21-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 核心能力维度
@@ -597,3 +623,16 @@ filter.Scope = new ScopeContext(UserId: "alice", TeamId: "team-a");
 - Milvus：<https://milvus.io/>
 - pgvector：<https://github.com/pgvector/pgvector>
 - LanceDB：<https://lancedb.com/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[comparisons/rag-pipeline-comparison.zh-CN|rag-pipeline-comparison.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/02-context-memory/memory-architecture.zh-CN|memory-architecture.zh-CN]] (交叉引用，非原始来源)

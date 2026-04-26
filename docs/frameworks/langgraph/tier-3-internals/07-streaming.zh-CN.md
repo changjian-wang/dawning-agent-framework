@@ -18,6 +18,26 @@ sources: []
 > 本文回答：`stream_mode="updates"` 和 `"messages"` 内部到底有什么区别？
 > 怎么同时输出多种 mode？为什么 `astream_events` 会被推荐用作前端协议？
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 范围](#1-范围)
+- [2. 一句话回答](#2-一句话回答)
+- [3. 5 种 stream_mode 一览](#3-5-种-streammode-一览)
+- [4. 多 mode 同时输出](#4-多-mode-同时输出)
+- [5. 事件 schema 详解](#5-事件-schema-详解)
+- [6. `astream_events` —— 推荐的前端协议](#6-astreamevents--推荐的前端协议)
+- [7. 事件流的内部机制](#7-事件流的内部机制)
+- [8. 子图 stream](#8-子图-stream)
+- [9. 取消与背压](#9-取消与背压)
+- [10. messages mode 与 LangSmith metadata](#10-messages-mode-与-langsmith-metadata)
+- [11. 性能与陷阱](#11-性能与陷阱)
+- [12. 错误清单](#12-错误清单)
+- [13. 与 Dawning 的对应](#13-与-dawning-的对应)
+- [14. 阅读顺序](#14-阅读顺序)
+- [15. 延伸阅读](#15-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 > 重点路径：`pregel/__init__.py` 的 `stream` / `astream`、`pregel/messages.py`、`pregel/debug.py`、`pregel/io.py`。
 
 ---
@@ -317,3 +337,16 @@ for chunk in graph.stream(input, config, subgraphs=True):
 - 官方 Streaming：<https://langchain-ai.github.io/langgraph/concepts/streaming/>
 - `astream_events v2` 设计：<https://blog.langchain.com/astream-events-v2/>
 - 源码：`libs/langgraph/langgraph/pregel/{messages,debug,io}.py`
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+<!-- TODO 补充原始来源（raw/ 路径或外链） -->
+- _TODO_

@@ -15,6 +15,27 @@ status: active
 >
 > 本文梳理 LLM 网关核心能力、主流方案（LiteLLM、Portkey、Kong AI、Azure APIM AI Gateway），以及 Dawning 与网关的协作模式。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么需要 LLM 网关](#1-为什么需要-llm-网关)
+- [2. 核心能力清单](#2-核心能力清单)
+- [3. 主流方案对比](#3-主流方案对比)
+- [4. LiteLLM 详解](#4-litellm-详解)
+- [5. Portkey 详解](#5-portkey-详解)
+- [6. Kong AI Gateway](#6-kong-ai-gateway)
+- [7. Azure APIM AI Gateway](#7-azure-apim-ai-gateway)
+- [8. 自建 vs 托管权衡](#8-自建-vs-托管权衡)
+- [9. 网关功能与 Dawning 职责划分](#9-网关功能与-dawning-职责划分)
+- [10. 限流设计（深）](#10-限流设计深)
+- [11. 计费 / 成本归属](#11-计费--成本归属)
+- [12. 审计日志](#12-审计日志)
+- [13. Dawning 网关交付物](#13-dawning-网关交付物)
+- [14. 反模式](#14-反模式)
+- [15. 小结](#15-小结)
+- [16. 延伸阅读](#16-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么需要 LLM 网关
@@ -553,3 +574,16 @@ services.AddAgentOSKernel()
 - Portkey：<https://portkey.ai/docs>
 - Kong AI Gateway：<https://docs.konghq.com/hub/kong-inc/ai-proxy/>
 - Azure APIM AI Gateway：<https://learn.microsoft.com/azure/api-management/genai-gateway-capabilities>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/06-operations/cost-optimization.zh-CN|cost-optimization.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/05-security-compliance/agent-security.zh-CN|agent-security.zh-CN]] (交叉引用，非原始来源)

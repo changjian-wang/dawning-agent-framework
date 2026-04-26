@@ -27,6 +27,29 @@ status: active
 >
 > 本文梳理 Agent 经济形态、平台对比、定价模型、Dawning 策略。
 
+
+## 目录 <!-- TOC-AUTOGEN -->
+
+- [1. 为什么 Agent 需要市场](#1-为什么-agent-需要市场)
+- [2. 主要平台对比](#2-主要平台对比)
+- [3. GPTs Store 深度剖析](#3-gpts-store-深度剖析)
+- [4. Agent-to-Agent 交易](#4-agent-to-agent-交易)
+- [5. 定价模型](#5-定价模型)
+- [6. Skill 交易（新兴）](#6-skill-交易新兴)
+- [7. 企业内部 Agent Marketplace](#7-企业内部-agent-marketplace)
+- [8. 信任与质量](#8-信任与质量)
+- [9. 发现机制](#9-发现机制)
+- [10. 实体用例](#10-实体用例)
+- [11. 经济学分析](#11-经济学分析)
+- [12. 监管与合规](#12-监管与合规)
+- [13. 挑战](#13-挑战)
+- [14. 可能的商业模式创新](#14-可能的商业模式创新)
+- [15. Dawning 对 Marketplace 的适配](#15-dawning-对-marketplace-的适配)
+- [16. 趋势预测（2026-2028）](#16-趋势预测2026-2028)
+- [17. 小结](#17-小结)
+- [18. 延伸阅读](#18-延伸阅读)
+<!-- /TOC-AUTOGEN -->
+
 ---
 
 ## 1. 为什么 Agent 需要市场
@@ -515,3 +538,16 @@ public interface ISkillRegistry
 - Stripe Agent Toolkit: <https://stripe.com/newsroom/news/ai-agents>
 - PayPal Agent Toolkit: <https://developer.paypal.com/community/blog/agent-toolkit/>
 - A2A Protocol: <https://a2a-protocol.org/>
+
+---
+
+## 交叉引用 <!-- XREF-STUB -->
+
+<!-- TODO 列出 2-5 个最相关的 wiki 页，每个一句话说明为何相关 -->
+
+- [[TODO-相关页面]] — _TODO 为什么相关_
+
+## 来源 <!-- SRC-STUB -->
+
+- [[concepts/01-agent-core/skill-evolution.zh-CN|skill-evolution.zh-CN]] (交叉引用，非原始来源)
+- [[concepts/01-agent-core/dawning-capability-matrix.zh-CN|dawning-capability-matrix.zh-CN]] (交叉引用，非原始来源)
