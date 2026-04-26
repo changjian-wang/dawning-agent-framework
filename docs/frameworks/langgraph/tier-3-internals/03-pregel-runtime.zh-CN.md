@@ -495,7 +495,8 @@ update_state(config, values, as_node="x")
 ## 15. 延伸阅读
 
 - 源码：`libs/langgraph/langgraph/pregel/{__init__,loop,algo,runner,_executor}.py`
-- Pregel 论文：<https://research.google/pubs/pregel-a-system-for-large-scale-graph-processing/>
+- Pregel 论文中文精读：[[../../../readings/papers/pregel-malewicz-sigmod2010.zh-CN]] — 含核心章节翻译 + 与 LangGraph 的对照表
+- Pregel 论文原文：<https://research.google/pubs/pregel-a-system-for-large-scale-graph-processing/>
 - 官方 Conceptual Guide - Low Level：<https://langchain-ai.github.io/langgraph/concepts/low_level/>
 - BSP 模型综述：<https://en.wikipedia.org/wiki/Bulk_synchronous_parallel>
 - [[01-architecture]] §3 一次运行的生命周期（高层视角）

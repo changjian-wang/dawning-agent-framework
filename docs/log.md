@@ -5,6 +5,19 @@
 
 ---
 
+## [2026-04-26] ingest | Pregel 论文 + 中文精读页
+
+- raw 资料：`raw/papers/pregel/pregel-malewicz-sigmod2010.pdf`（474 KB）+ `.flat.txt`（OCR 文本）
+- 来源：Malewicz et al., *Pregel: A System for Large-Scale Graph Processing*, SIGMOD 2010 (Google)
+- 镜像：<https://kowshik.github.io/JPregel/pregel_paper.pdf>
+- 新建 wiki 页：[readings/papers/pregel-malewicz-sigmod2010.zh-CN.md](readings/papers/pregel-malewicz-sigmod2010.zh-CN.md)
+  - 含：术语表 / 摘要逐句对译 / §1-§7 精炼 + 关键段落翻译 / 与 LangGraph 对照表 / "必懂三句话"
+  - 服务对象：LangGraph 读者(理解 BSP + 消息传递的思想源头)
+- index.md 6.2 / 8 节追加新条目
+- 交叉引用：tier-3/03-pregel-runtime 的延伸阅读追加指向新页
+
+---
+
 ## [2026-04-26] lint | langgraph 阅读前深度优化
 
 - 范围：`docs/frameworks/langgraph/`（即将精读，质量优先）

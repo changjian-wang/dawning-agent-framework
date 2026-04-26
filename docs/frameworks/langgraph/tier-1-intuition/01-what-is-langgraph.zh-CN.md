@@ -194,6 +194,16 @@ print(app.invoke({"question": "你好"}))
 
 7 行逻辑代码画出了一张图：`START → think → END`。
 
+对应的图长这样：
+
+```mermaid
+flowchart LR
+    START([START]) --> think[think]
+    think --> END([END])
+```
+
+> 真实运行时,LangGraph 在内部把这张图编译成 Pregel BSP 调度结构,每条边代表一次"channel 写入 → 触发下游节点"。后续 [[03-mental-model]] 会展开这层。
+
 ---
 
 ## 7. 本篇结论（记住这几条）

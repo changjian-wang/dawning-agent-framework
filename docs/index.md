@@ -199,6 +199,12 @@
 | [[readings/frameworks/maf/02-agent-lifecycle.zh-CN]] | Agent 生命周期 |
 | *03-llm-provider 等* | 待写 |
 
+### 6.2 论文精读 (`readings/papers/`)
+
+| 页面 | 原论文 | 说明 |
+|------|--------|------|
+| [[readings/papers/pregel-malewicz-sigmod2010.zh-CN]] | Pregel (SIGMOD'10) | LangGraph 运行时的思想源头：BSP + 消息传递 |
+
 ## 7. 综合分析 (`synthesis/`)
 
 | 页面 | 说明 |
@@ -210,6 +216,7 @@
 | 资料 | 类型 | 摘入日期 |
 |------|------|---------|
 | [[raw/papers/memento-skills-2603.18743\|Memento-Skills]] | 论文 | 2026-04-07 |
+| [[raw/papers/pregel/pregel-malewicz-sigmod2010\|Pregel (Malewicz et al., SIGMOD'10)]] | 论文 | 2026-04-26 |
 | [[raw/articles/karpathy-llm-wiki\|Karpathy LLM Wiki]] | 博文 | 2026-04-07 |
 
 ---
