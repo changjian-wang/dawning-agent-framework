@@ -19,12 +19,15 @@
 ## 硬红线（与 `docs/SCHEMA.md §10` 一致；详细规则在 SCHEMA）
 
 - 永远不修改 `docs/raw/` 下的任何文件。
+- 永远不写无法追溯到 `sources` 的事实性判断。
 - 永远不创建无完整 frontmatter 的 wiki 页。
 - 永远不发明新的 `type` / `subtype` / `tag`，须先改 `docs/SCHEMA.md`。
 - 永远不删除 wiki 页；用 `status: archived` + `archived_reason` 替代。
-- 永远不新增顶层目录，须先改 `docs/SCHEMA.md`。
-- 不收录 `docs/PURPOSE.md` 范围之外的资料。
+- 永远不新增 `docs/` 顶层目录或 `docs/pages/` 下的 type 目录，须先改 `docs/SCHEMA.md`。
+- 不收录 wiki 收录范围之外的资料。
 - 不手动维护 `docs/overview.md` / `docs/log.md`，它们是脚本派生物。
+- 同一主题不得出现两页 `canonical: true`。
+- 不删除页面模板规定的必备 H2 章节。
 
 ## 不在范围内的事
 
