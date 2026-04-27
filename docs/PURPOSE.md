@@ -201,7 +201,7 @@ key_constraint:
 决定页面写作视角：
 
 - **Builder（主要读者，就是我）**：在写 dawning-agent-os 代码或做架构决策。需要 entity / comparison / adr 提供决策支持，能在 5 分钟内回答"我们当时为什么选 X 不选 Y"。
-- **Future Coding Agent**：未来接管开发的 LLM agent。需要 wiki 作为长期记忆，比读源码更快理解模块意图。要求 frontmatter 完整、链接可达、断言可追溯。
+- **Future Coding Agent**：未来接管开发的 LLM agent。需要 wiki 作为长期记忆，比读源码更快理解模块意图。要求 front matter 完整、链接可达、断言可追溯。
 - **Maintainer**：维护本 wiki 自身（也是我）。需要 SCHEMA / PURPOSE / rule 保持一致，需要 lint 工作流防止知识库腐烂。
 
 非目标读者：
