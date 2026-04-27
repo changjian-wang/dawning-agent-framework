@@ -580,6 +580,7 @@ Hub 拓扑：
 - wiki 页面默认中文优先，不再默认维护 `.md` / `.zh-CN.md` 双语 twin。
 - 只有当英文版本本身是交付物或对外发布物时，才允许新增英文 twin；新增前须在对应页面说明维护责任。
 - `raw/` 文件内容保留原始语言；agent 不为了统一语言而改写、翻译或覆盖 `raw/` 文件。
+- 当 `sources` 指向非中文原始资料时，entity / concept / comparison 页的 `summary`、H2 标题与正文仍须使用中文；引用原文原句可保留原语言。
 
 ## 10. 红线
 
@@ -657,7 +658,8 @@ Hub 拓扑：
 | 3.29 | 2026-04-27 | 第二轮审计微修：§8.4 supersede 流程扩展到全 6 类 type（不再只提 ADR/rule）；§4.6.1 stale 行措辞与 §4.6.2 对齐（明确「canonical 降为 false 或 archived」）；§4.6.2 自包含化，重申 active 时唯一 canonical；§10.4 #16 半角分号修为中文分号 |
 | 3.30 | 2026-04-27 | 第三轮审计修复：§4.5 `part_of` 显化隐含约束（元素 type ∈ {hub, concept, rule}；`[]` 仅允许 root hub 或取代页）；新增 §4.6.4 「主入口」术语定义；§4.6.1 / §4.6.2 stale 措辞精确化（`canonical` 与 `status` 二选一表述明确）；§8.3.1 增两条 `part_of` 相关 lint；§8.4 #3 明确 ADR 亦可走 archived 但优先 supersede |
 | 3.31 | 2026-04-27 | §6.0 补正文 markdown 链接路径约定（相对当前文件）与 front matter 链接一致性要求；§8.3.2 增对应提示项；创建 root hub `pages/hubs/agent-os.md` 作为首页实战验证 |
+| 3.32 | 2026-04-27 | §9.4 接收从 PURPOSE 下沉的语言规则：当 `sources` 指向非中文原始资料时，entity / concept / comparison 页的 summary / H2 / 正文仍须中文，引用原文句可保留原语言 |
 
 ---
 
-*Schema 版本：3.31 | 最后更新：2026-04-27 | 协作演化：人类 + LLM*
+*Schema 版本：3.32 | 最后更新：2026-04-27 | 协作演化：人类 + LLM*
