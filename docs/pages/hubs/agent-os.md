@@ -51,6 +51,7 @@ part_of: []
 - [ADR-010 客观代笔语气](../adrs/objective-drafting-style.md)
 - [ADR-011 Memory MVP 采用显式记忆账本](../adrs/explicit-memory-ledger-mvp.md)
 - [ADR-012 MVP 输入边界：不默认读取用户文件夹](../adrs/mvp-input-boundary-no-default-folder-reading.md)
+- [ADR-013 兴趣画像采用权重与时间衰减](../adrs/interest-profile-weighting-and-decay.md)
 
 预期的子 hub（待建）：
 

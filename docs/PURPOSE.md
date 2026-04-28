@@ -68,6 +68,7 @@ key_constraint:
   memory_purpose: 记忆服务于侍奉（理解主人），不用于行为操控（推送 / 引导消费 / 塑造注意力）
   memory_source_boundary: user 与 agent 沟通的所有话题都可作为记忆来源；agent 不主动翻 user 的电脑，除非 user 明确要求扫描指定范围或全盘文件
   memory_mvp_strategy: MVP 先做显式 Memory Ledger，所有关键记忆可解释、可查看、可编辑、可删除；向量 / embedding 检索后置
+  interest_profile_strategy: 兴趣 / 标签不是永久静态偏好；MVP 以显式 tags 冷启动，并在 Memory Ledger 中用权重、置信度与时间衰减维护关注信号
   proactivity_default: 默认不实时打断；普通主动性汇总成候选摘要，只有安全 / 截止时间 / 数据丢失 / 不可逆风险才允许立即打断
   draft_style: 代笔默认冷静、客观、可靠，不做不必要的情绪表达，不深度拟人模仿 user
 ```
@@ -112,7 +113,7 @@ key_constraint:
   | 判断层（嘴） | 替主人**起草**判断、提供选项、说明 tradeoff | 替主人**做出**判断 |
   | 意志层（心） | 学习偏好、识别状态 | 替主人**形成**偏好、定义"我是谁" |
 
-- **最小可用形态（MVP）**：**主场景 = 信息整理**，但第一版不默认读取用户文件夹。原因是大部分用户没有稳定整理文件夹的习惯，默认扫文件夹会把产品建立在错误前提上，还会放大隐私和信任风险。第一版从 user 显式提供 / 选择的材料、agent 管理的 inbox、或会话中沉淀的待整理内容开始，走完整闭环。选型理由：最能验证「长期记忆 + 选择题优先」差异化（零记忆不可用）、失败可逆、闭环最短、累积记忆数据快；主场景详见 [ADR-005](pages/adrs/mvp-main-scenario-information-curation.md)，输入边界详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)。
+- **最小可用形态（MVP）**：**主场景 = 信息整理**，但第一版不默认读取用户文件夹。原因是大部分用户没有稳定整理文件夹的习惯，默认扫文件夹会把产品建立在错误前提上，还会放大隐私和信任风险。第一版从 user 显式提供 / 选择的材料、agent 管理的 inbox、或会话中沉淀的待整理内容开始，走完整闭环。若使用兴趣 tags 做冷启动，tags 只作为初始种子；关注信号进入 Memory Ledger，并按权重、置信度与时间衰减维护，长期不关注默认降权。选型理由：最能验证「长期记忆 + 选择题优先」差异化（零记忆不可用）、失败可逆、闭环最短、累积记忆数据快；主场景详见 [ADR-005](pages/adrs/mvp-main-scenario-information-curation.md)，输入边界详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)，兴趣画像详见 [ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)。
 - **副场景（侦察兵）**：
   - 日程：只做「读 + 候选生成」（识别冲突、给出推谁 / 合并 / 延期的 2–3 个候选），不调用日历写 API。
   - 生活决策：只列 tradeoff / 给 2–4 个候选，不下结论。
@@ -180,6 +181,7 @@ key_constraint:
 - **选择题优先于问答题**。当用户表达模糊时，默认动作是先关联当前对话、任务、已授权材料与长期记忆来推断；能推断时给 2–4 个候选让用户挑，而不是反问"你具体想要什么"。推断不出来或风险超过动作级别边界时才询问，且询问也优先给选择题。挑选 / 否决 / 微调比从零写需求轻松 10 倍——这是产品的核心交互哲学，违反则丢失差异化。详见 [ADR-002](pages/adrs/options-over-elaboration.md)。
 - **长期记忆是核心而非可选模块**。管家的价值主要来自"他了解你"，没有持续记忆的管家叫前台。自研重点是记忆模型、用户画像语义、可解释 / 可控策略；底层存储、检索、embedding 基础设施可以复用成熟组件。MVP 先采用显式 Memory Ledger，确保关键记忆可解释、可查看、可编辑、可删除；向量 / embedding 检索后置。详见 [ADR-003](pages/adrs/long-term-memory-as-core-capability.md) 与 [ADR-011](pages/adrs/explicit-memory-ledger-mvp.md)。
 - **记忆服务于侍奉，不用于行为操控**。user 与 agent 沟通的所有话题都可作为记忆来源；关键记忆必须可查看、可编辑、可删除；推断性记忆必须标注为推断。agent 不主动翻 user 的电脑，不主动扫描本地文件；只有 user 明确要求扫描指定范围或全盘文件时才可读取对应文件系统内容。记住主人讨厌什么是为了帮他过滤，不是为了基于他的情绪推送内容、引导消费、或塑造他的注意力。详见 [ADR-007](pages/adrs/memory-privacy-and-user-control.md)。
+- **兴趣画像必须有权重与衰减**。user 选择的 tags 只是冷启动种子，不是永久偏好或身份标签。agent 应在 Memory Ledger 中把关注主题表达为带权重、置信度、最近触达时间和衰减策略的信号；长期不关注默认降权，反复主动投喂 / 确认可升权，user 可 pin、降权、归档或删除。详见 [ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)。
 - **MVP 输入不假设用户已有整洁文件夹**。信息整理要解决的正是“东西散、上下文乱、用户懒得整理”的问题，因此第一版不默认读取用户文件夹，不把“用户已经有清晰目录结构”作为前提。默认入口应是 user 显式提供 / 选择的材料、agent 管理的 inbox，或会话中自然沉淀的待整理内容；读取文件夹只作为显式授权能力。详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)。
 - **主动性默认克制**。agent 默认不实时打断 user；普通主动性汇总成候选摘要。只有安全、截止时间、数据丢失、误删 / 误改风险等高优先级事件才允许立即打断。详见 [ADR-008](pages/adrs/proactivity-and-interruption-boundary.md)。
 - **抽象指令默认上下文优先**。当 user 说"处理一下"、"整理一下"、"优化一下"等模糊指令时，agent 先关联上下文和长期记忆推断；能推断则给 2–4 个候选方案或按动作级别处理，推断不出来才询问。L0 可直接做，L1 先预览或小范围执行，L2/L3 不执行。详见 [ADR-009](pages/adrs/abstract-instruction-fallback.md)。
@@ -226,6 +228,7 @@ key_constraint:
   10. **客观代笔语气**（[ADR-010](pages/adrs/objective-drafting-style.md)）——对应 §4.1「代笔默认客观可靠」；定义冷静客观、不深度拟人模仿、发送前确认。
   11. **Memory MVP 采用显式记忆账本**（[ADR-011](pages/adrs/explicit-memory-ledger-mvp.md)）——对应 §4.1「长期记忆是核心而非可选模块」与 §4.1「记忆服务于侍奉」；定义第一版 Memory 先做可解释账本，向量 / embedding 检索后置。
   12. **MVP 输入边界：不默认读取用户文件夹**（[ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)）——对应 §2「最小可用形态」与 §4.1「MVP 输入不假设用户已有整洁文件夹」；定义第一版从 user 显式提供 / 选择的材料或 agent 管理的 inbox 开始，文件夹读取仅作为显式授权能力。
+  13. **兴趣画像采用权重与时间衰减**（[ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)）——对应 §2「最小可用形态」与 §4.1「兴趣画像必须有权重与衰减」；定义 tags 只是冷启动种子，关注信号进入 Memory Ledger，并随行为、确认、纠错和时间变化。
 
 ## 5. 读者画像
 
@@ -250,4 +253,4 @@ key_constraint:
 
 ---
 
-*Purpose 版本：1.12 | 最后更新：2026-04-28 | 与 SCHEMA.md 协同演化*
+*Purpose 版本：1.13 | 最后更新：2026-04-28 | 与 SCHEMA.md 协同演化*

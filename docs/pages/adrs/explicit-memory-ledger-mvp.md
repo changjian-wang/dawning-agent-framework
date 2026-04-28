@@ -13,7 +13,7 @@ freshness: volatile
 status: active
 archived_reason: ""
 supersedes: []
-related: [pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/memory-privacy-and-user-control.md]
+related: [pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/memory-privacy-and-user-control.md, pages/adrs/interest-profile-weighting-and-decay.md]
 part_of: [pages/hubs/agent-os.md]
 adr_status: accepted
 adr_date: 2026-04-28
@@ -60,6 +60,7 @@ Ledger 中每条关键记忆至少应表达：
 - `content`：可读的人类语言记忆内容。
 - `explicit_or_inferred`：明确记忆还是推断记忆。
 - `confidence`：置信度或稳定度。
+- 兴趣画像类记忆可额外包含 `weight`、`last_touched_at` 与 `decay_policy`，详见 [ADR-013](interest-profile-weighting-and-decay.md)。
 - `sensitivity`：普通 / 敏感 / 高敏感。
 - `created_at` 与必要的更新时间。
 - `status`：active / corrected / deleted / archived 等生命周期状态。
@@ -95,4 +96,5 @@ Ledger 中每条关键记忆至少应表达：
 - [SCHEMA.md](../../SCHEMA.md)：本 ADR 的结构契约。
 - [ADR-003 长期记忆是核心能力](long-term-memory-as-core-capability.md)：定义长期记忆的产品地位。
 - [ADR-007 记忆隐私与用户控制](memory-privacy-and-user-control.md)：定义记忆来源、隐私与用户控制边界。
+- [ADR-013 兴趣画像采用权重与时间衰减](interest-profile-weighting-and-decay.md)：定义兴趣画像类 ledger 记录的权重与衰减策略。
 - [pages/hubs/agent-os.md](../hubs/agent-os.md)：root hub。
