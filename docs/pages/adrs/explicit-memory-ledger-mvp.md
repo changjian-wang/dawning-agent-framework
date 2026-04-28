@@ -13,7 +13,7 @@ freshness: volatile
 status: active
 archived_reason: ""
 supersedes: []
-related: [pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/memory-privacy-and-user-control.md, pages/adrs/interest-profile-weighting-and-decay.md]
+related: [pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/memory-privacy-and-user-control.md, pages/adrs/interest-profile-weighting-and-decay.md, pages/adrs/mvp-first-slice-chat-inbox-read-side.md]
 part_of: [pages/hubs/agent-os.md]
 adr_status: accepted
 adr_date: 2026-04-28
@@ -70,6 +70,7 @@ Ledger 中每条关键记忆至少应表达：
 - user 明确表达的偏好可进入 ledger。
 - agent 从行为中推断的记忆必须标注为推断，不得伪装成 user 明确说过。
 - 高敏感推断不得自动升级为稳定 user profile。
+- 第一版必须提供可查看 / 可编辑 / 可删除的记忆列表；普通记忆不逐条弹窗确认，敏感或低置信推断另行加严。
 - 向量 / embedding 检索可以作为后续索引层，但不能取代 ledger 作为用户可控的真相源。
 
 ## 影响
@@ -97,4 +98,5 @@ Ledger 中每条关键记忆至少应表达：
 - [ADR-003 长期记忆是核心能力](long-term-memory-as-core-capability.md)：定义长期记忆的产品地位。
 - [ADR-007 记忆隐私与用户控制](memory-privacy-and-user-control.md)：定义记忆来源、隐私与用户控制边界。
 - [ADR-013 兴趣画像采用权重与时间衰减](interest-profile-weighting-and-decay.md)：定义兴趣画像类 ledger 记录的权重与衰减策略。
+- [ADR-014 MVP 第一版切片：聊天 + inbox + 读侧整理](mvp-first-slice-chat-inbox-read-side.md)：定义第一版 Memory 可见性。
 - [pages/hubs/agent-os.md](../hubs/agent-os.md)：root hub。

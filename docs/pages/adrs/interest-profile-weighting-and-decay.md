@@ -13,7 +13,7 @@ freshness: volatile
 status: active
 archived_reason: ""
 supersedes: []
-related: [pages/adrs/mvp-main-scenario-information-curation.md, pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/explicit-memory-ledger-mvp.md, pages/adrs/mvp-input-boundary-no-default-folder-reading.md]
+related: [pages/adrs/mvp-main-scenario-information-curation.md, pages/adrs/long-term-memory-as-core-capability.md, pages/adrs/explicit-memory-ledger-mvp.md, pages/adrs/mvp-input-boundary-no-default-folder-reading.md, pages/adrs/mvp-first-slice-chat-inbox-read-side.md]
 part_of: [pages/hubs/agent-os.md]
 adr_status: accepted
 adr_date: 2026-04-28
@@ -71,6 +71,7 @@ ADR-012 已决定信息整理 MVP 不默认读取用户文件夹，而是从 use
 - 长时间没有被使用、没有被确认、没有新材料进入的主题，默认降低权重。
 - user 明确说“这是长期关注”时，可使用更慢的衰减或 pin；user 明确否定时，应降权、归档或删除。
 - 推断出的兴趣必须标注为推断，不得伪装成 user 明确选择。
+- 第一版使用简单可解释规则，不引入黑盒推荐模型；具体权重参数以 dogfood 可调为准。
 
 外部平台习惯数据不作为 MVP 默认入口。未来如需接入，只能通过 user 主动导出、平台开放 API、浏览器扩展授权或其它可解释授权方式进入，并且仍要落到可查看、可删除的 ledger 记录中。
 
@@ -103,4 +104,5 @@ ADR-012 已决定信息整理 MVP 不默认读取用户文件夹，而是从 use
 - [ADR-005 MVP 主场景选型 = 信息整理](mvp-main-scenario-information-curation.md)：定义信息整理 MVP。
 - [ADR-011 Memory MVP 采用显式记忆账本](explicit-memory-ledger-mvp.md)：定义第一版 Memory Ledger。
 - [ADR-012 MVP 输入边界：不默认读取用户文件夹](mvp-input-boundary-no-default-folder-reading.md)：定义 MVP 默认输入边界。
+- [ADR-014 MVP 第一版切片：聊天 + inbox + 读侧整理](mvp-first-slice-chat-inbox-read-side.md)：定义第一版兴趣权重采用简单规则。
 - [pages/hubs/agent-os.md](../hubs/agent-os.md)：root hub。

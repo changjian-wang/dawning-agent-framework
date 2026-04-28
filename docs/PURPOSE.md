@@ -69,6 +69,7 @@ key_constraint:
   memory_source_boundary: user 与 agent 沟通的所有话题都可作为记忆来源；agent 不主动翻 user 的电脑，除非 user 明确要求扫描指定范围或全盘文件
   memory_mvp_strategy: MVP 先做显式 Memory Ledger，所有关键记忆可解释、可查看、可编辑、可删除；向量 / embedding 检索后置
   interest_profile_strategy: 兴趣 / 标签不是永久静态偏好；MVP 以显式 tags 冷启动，并在 Memory Ledger 中用权重、置信度与时间衰减维护关注信号
+  mvp_first_slice: 第一版采用聊天窗口 + agent inbox；输入限于显式材料与会话沉淀；动作先做总结 / 分类 / 打标签 / 候选整理方案；Memory Ledger 可查看 / 编辑 / 删除；兴趣权重先用简单可解释规则
   proactivity_default: 默认不实时打断；普通主动性汇总成候选摘要，只有安全 / 截止时间 / 数据丢失 / 不可逆风险才允许立即打断
   draft_style: 代笔默认冷静、客观、可靠，不做不必要的情绪表达，不深度拟人模仿 user
 ```
@@ -113,7 +114,7 @@ key_constraint:
   | 判断层（嘴） | 替主人**起草**判断、提供选项、说明 tradeoff | 替主人**做出**判断 |
   | 意志层（心） | 学习偏好、识别状态 | 替主人**形成**偏好、定义"我是谁" |
 
-- **最小可用形态（MVP）**：**主场景 = 信息整理**，但第一版不默认读取用户文件夹。原因是大部分用户没有稳定整理文件夹的习惯，默认扫文件夹会把产品建立在错误前提上，还会放大隐私和信任风险。第一版从 user 显式提供 / 选择的材料、agent 管理的 inbox、或会话中沉淀的待整理内容开始，走完整闭环。若使用兴趣 tags 做冷启动，tags 只作为初始种子；关注信号进入 Memory Ledger，并按权重、置信度与时间衰减维护，长期不关注默认降权。选型理由：最能验证「长期记忆 + 选择题优先」差异化（零记忆不可用）、失败可逆、闭环最短、累积记忆数据快；主场景详见 [ADR-005](pages/adrs/mvp-main-scenario-information-curation.md)，输入边界详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)，兴趣画像详见 [ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)。
+- **最小可用形态（MVP）**：**主场景 = 信息整理**，但第一版不默认读取用户文件夹。原因是大部分用户没有稳定整理文件夹的习惯，默认扫文件夹会把产品建立在错误前提上，还会放大隐私和信任风险。第一版形态采用聊天窗口 + agent inbox：聊天用于表达意图、澄清和反馈，inbox 用作 user 主动投喂的待整理材料容器。输入先限于显式材料与会话沉淀；动作先做总结、分类、打标签和候选整理方案，不默认写入外部系统、不默认修改 / 移动 / 删除文件。若使用兴趣 tags 做冷启动，tags 只作为初始种子；关注信号进入 Memory Ledger，并按权重、置信度与时间衰减维护，长期不关注默认降权。选型理由：最能验证「长期记忆 + 选择题优先」差异化（零记忆不可用）、失败可逆、闭环最短、累积记忆数据快；主场景详见 [ADR-005](pages/adrs/mvp-main-scenario-information-curation.md)，第一版切片详见 [ADR-014](pages/adrs/mvp-first-slice-chat-inbox-read-side.md)，输入边界详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)，兴趣画像详见 [ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)。
 - **副场景（侦察兵）**：
   - 日程：只做「读 + 候选生成」（识别冲突、给出推谁 / 合并 / 延期的 2–3 个候选），不调用日历写 API。
   - 生活决策：只列 tradeoff / 给 2–4 个候选，不下结论。
@@ -183,6 +184,7 @@ key_constraint:
 - **记忆服务于侍奉，不用于行为操控**。user 与 agent 沟通的所有话题都可作为记忆来源；关键记忆必须可查看、可编辑、可删除；推断性记忆必须标注为推断。agent 不主动翻 user 的电脑，不主动扫描本地文件；只有 user 明确要求扫描指定范围或全盘文件时才可读取对应文件系统内容。记住主人讨厌什么是为了帮他过滤，不是为了基于他的情绪推送内容、引导消费、或塑造他的注意力。详见 [ADR-007](pages/adrs/memory-privacy-and-user-control.md)。
 - **兴趣画像必须有权重与衰减**。user 选择的 tags 只是冷启动种子，不是永久偏好或身份标签。agent 应在 Memory Ledger 中把关注主题表达为带权重、置信度、最近触达时间和衰减策略的信号；长期不关注默认降权，反复主动投喂 / 确认可升权，user 可 pin、降权、归档或删除。详见 [ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)。
 - **MVP 输入不假设用户已有整洁文件夹**。信息整理要解决的正是“东西散、上下文乱、用户懒得整理”的问题，因此第一版不默认读取用户文件夹，不把“用户已经有清晰目录结构”作为前提。默认入口应是 user 显式提供 / 选择的材料、agent 管理的 inbox，或会话中自然沉淀的待整理内容；读取文件夹只作为显式授权能力。详见 [ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)。
+- **MVP 第一版切片保持窄而可逆**。第一版采用聊天窗口 + agent inbox，只接显式材料与会话沉淀，先做总结 / 分类 / 打标签 / 候选整理方案；Memory Ledger 可查看、可编辑、可删除；兴趣权重先用简单可解释规则。小批量文件、外部数据源、写索引、移动 / 重命名 / 删除等能力后置。详见 [ADR-014](pages/adrs/mvp-first-slice-chat-inbox-read-side.md)。
 - **主动性默认克制**。agent 默认不实时打断 user；普通主动性汇总成候选摘要。只有安全、截止时间、数据丢失、误删 / 误改风险等高优先级事件才允许立即打断。详见 [ADR-008](pages/adrs/proactivity-and-interruption-boundary.md)。
 - **抽象指令默认上下文优先**。当 user 说"处理一下"、"整理一下"、"优化一下"等模糊指令时，agent 先关联上下文和长期记忆推断；能推断则给 2–4 个候选方案或按动作级别处理，推断不出来才询问。L0 可直接做，L1 先预览或小范围执行，L2/L3 不执行。详见 [ADR-009](pages/adrs/abstract-instruction-fallback.md)。
 - **代笔默认客观可靠**。agent 代笔时默认冷静、客观、可靠，不加入不必要的情绪，不深度拟人模仿 user；对外内容始终只是草稿，发送必须确认。详见 [ADR-010](pages/adrs/objective-drafting-style.md)。
@@ -229,6 +231,7 @@ key_constraint:
   11. **Memory MVP 采用显式记忆账本**（[ADR-011](pages/adrs/explicit-memory-ledger-mvp.md)）——对应 §4.1「长期记忆是核心而非可选模块」与 §4.1「记忆服务于侍奉」；定义第一版 Memory 先做可解释账本，向量 / embedding 检索后置。
   12. **MVP 输入边界：不默认读取用户文件夹**（[ADR-012](pages/adrs/mvp-input-boundary-no-default-folder-reading.md)）——对应 §2「最小可用形态」与 §4.1「MVP 输入不假设用户已有整洁文件夹」；定义第一版从 user 显式提供 / 选择的材料或 agent 管理的 inbox 开始，文件夹读取仅作为显式授权能力。
   13. **兴趣画像采用权重与时间衰减**（[ADR-013](pages/adrs/interest-profile-weighting-and-decay.md)）——对应 §2「最小可用形态」与 §4.1「兴趣画像必须有权重与衰减」；定义 tags 只是冷启动种子，关注信号进入 Memory Ledger，并随行为、确认、纠错和时间变化。
+  14. **MVP 第一版切片：聊天 + inbox + 读侧整理**（[ADR-014](pages/adrs/mvp-first-slice-chat-inbox-read-side.md)）——对应 §2「最小可用形态」与 §4.1「MVP 第一版切片保持窄而可逆」；定义第一版界面、输入、动作范围、Memory 可见性和兴趣权重规则。
 
 ## 5. 读者画像
 
@@ -253,4 +256,4 @@ key_constraint:
 
 ---
 
-*Purpose 版本：1.13 | 最后更新：2026-04-28 | 与 SCHEMA.md 协同演化*
+*Purpose 版本：1.14 | 最后更新：2026-04-28 | 与 SCHEMA.md 协同演化*
