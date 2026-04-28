@@ -60,6 +60,10 @@ part_of: []
 
 - [Rule 实现前必须方案先行](../rules/plan-first-implementation.md)
 
+拟议方案（未确认，不授权 scaffold）：
+
+- [ADR-017 工程骨架 V0：桌面壳 + DDD 本地后端通电](../adrs/engineering-skeleton-v0.md)
+
 预期的子 hub（待建）：
 
 - 产品哲学 hub：管家定位、选择题优先、长期记忆等产品红线（来自 PURPOSE §4.1）。
