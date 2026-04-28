@@ -39,6 +39,9 @@ part_of: []
 
 已落地 ADR：
 
+- [ADR-001 管家定位与主客体边界](../adrs/butler-positioning-and-subject-object-boundary.md)
+- [ADR-002 选择题优先于问答题](../adrs/options-over-elaboration.md)
+- [ADR-003 长期记忆是核心能力](../adrs/long-term-memory-as-core-capability.md)
 - [ADR-004 重要性级别与确认机制](../adrs/important-action-levels-and-confirmation.md)
 - [ADR-005 MVP 主场景选型 = 信息整理](../adrs/mvp-main-scenario-information-curation.md)
 - [ADR-006 产品策略收录边界与个人 OS 北极星澄清](../adrs/purpose-scope-and-personal-os-north-star.md)
@@ -46,6 +49,8 @@ part_of: []
 - [ADR-008 主动性与打断边界](../adrs/proactivity-and-interruption-boundary.md)
 - [ADR-009 抽象指令兜底机制](../adrs/abstract-instruction-fallback.md)
 - [ADR-010 客观代笔语气](../adrs/objective-drafting-style.md)
+- [ADR-011 Memory MVP 采用显式记忆账本](../adrs/explicit-memory-ledger-mvp.md)
+- [ADR-012 MVP 输入边界：不默认读取用户文件夹](../adrs/mvp-input-boundary-no-default-folder-reading.md)
 
 预期的子 hub（待建）：
 
