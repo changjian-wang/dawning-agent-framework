@@ -42,6 +42,10 @@ part_of: []
 - [ADR-004 重要性级别与确认机制](../adrs/important-action-levels-and-confirmation.md)
 - [ADR-005 MVP 主场景选型 = 信息整理](../adrs/mvp-main-scenario-information-curation.md)
 - [ADR-006 产品策略收录边界与个人 OS 北极星澄清](../adrs/purpose-scope-and-personal-os-north-star.md)
+- [ADR-007 记忆隐私与用户控制](../adrs/memory-privacy-and-user-control.md)
+- [ADR-008 主动性与打断边界](../adrs/proactivity-and-interruption-boundary.md)
+- [ADR-009 抽象指令兜底机制](../adrs/abstract-instruction-fallback.md)
+- [ADR-010 客观代笔语气](../adrs/objective-drafting-style.md)
 
 预期的子 hub（待建）：
 
