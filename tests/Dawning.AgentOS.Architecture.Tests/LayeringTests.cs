@@ -61,12 +61,19 @@ public sealed class LayeringTests
 {
     private const string DomainName = "Dawning.AgentOS.Domain";
     private const string DomainServicesName = "Dawning.AgentOS.Domain.Services";
+    private const string ApplicationName = "Dawning.AgentOS.Application";
 
-    private static readonly Assembly DomainCore = typeof(global::Dawning.AgentOS.Domain.Core.Result).Assembly;
+    private static readonly Assembly DomainCore =
+        typeof(global::Dawning.AgentOS.Domain.Core.Result).Assembly;
 
-    private static readonly Assembly Domain = typeof(global::Dawning.AgentOS.Domain.Permissions.ActionLevel).Assembly;
+    private static readonly Assembly Domain =
+        typeof(global::Dawning.AgentOS.Domain.Permissions.ActionLevel).Assembly;
 
-    private static readonly Assembly DomainServices = typeof(global::Dawning.AgentOS.Domain.Services.Permissions.IActionClassifier).Assembly;
+    private static readonly Assembly DomainServices =
+        typeof(global::Dawning.AgentOS.Domain.Services.Permissions.IActionClassifier).Assembly;
+
+    private static readonly Assembly Application =
+        typeof(global::Dawning.AgentOS.Application.Messaging.ICommand).Assembly;
 
     [Test]
     public void DomainCore_DoesNotReferenceMainMediatRPackage()
@@ -148,7 +155,11 @@ public sealed class LayeringTests
 
         foreach (var name in forbiddenProjectRefs)
         {
-            Assert.That(refs, Does.Not.Contain(name), $"Domain.Services must not reference '{name}'.");
+            Assert.That(
+                refs,
+                Does.Not.Contain(name),
+                $"Domain.Services must not reference '{name}'."
+            );
         }
     }
 
@@ -174,7 +185,11 @@ public sealed class LayeringTests
 
         foreach (var name in forbidden)
         {
-            Assert.That(refs, Does.Not.Contain(name), $"Domain.Services must not reference '{name}'.");
+            Assert.That(
+                refs,
+                Does.Not.Contain(name),
+                $"Domain.Services must not reference '{name}'."
+            );
         }
     }
 
@@ -183,12 +198,14 @@ public sealed class LayeringTests
     {
         // Belt-and-braces: even if a transitive package showed up, no
         // Domain type may use the main MediatR pipeline interfaces.
-        var result = Types.InAssembly(Domain)
+        var result = Types
+            .InAssembly(Domain)
             .ShouldNot()
             .HaveDependencyOnAny(
                 "MediatR.IMediator",
                 "MediatR.IRequestHandler",
-                "MediatR.IPipelineBehavior")
+                "MediatR.IPipelineBehavior"
+            )
             .GetResult();
 
         Assert.That(result.IsSuccessful, Is.True, FormatFailures(result));
@@ -197,19 +214,93 @@ public sealed class LayeringTests
     [Test]
     public void DomainServices_DoesNotUseMediatRMainPackageTypes()
     {
-        var result = Types.InAssembly(DomainServices)
+        var result = Types
+            .InAssembly(DomainServices)
             .ShouldNot()
             .HaveDependencyOnAny(
                 "MediatR.IMediator",
                 "MediatR.IRequestHandler",
-                "MediatR.IPipelineBehavior")
+                "MediatR.IPipelineBehavior"
+            )
             .GetResult();
 
         Assert.That(result.IsSuccessful, Is.True, FormatFailures(result));
     }
 
-    private static HashSet<string> ReferencedAssemblyNames(Assembly assembly)
-        => assembly.GetReferencedAssemblies()
+    [Test]
+    public void Application_DoesNotReferenceInfraOrApiLayers()
+    {
+        // ADR-021 places Application above Infra and Services.Api in the
+        // dependency graph: ports declared here, implemented downstream.
+        var refs = ReferencedAssemblyNames(Application);
+
+        var forbidden = new[]
+        {
+            "Dawning.AgentOS.Infra.Data",
+            "Dawning.AgentOS.Infra.CrossCutting.Bus",
+            "Dawning.AgentOS.Infra.CrossCutting.Security",
+            "Dawning.AgentOS.Infra.CrossCutting.IoC",
+            "Dawning.AgentOS.Services.Api",
+        };
+
+        foreach (var name in forbidden)
+        {
+            Assert.That(refs, Does.Not.Contain(name), $"Application must not reference '{name}'.");
+        }
+    }
+
+    [Test]
+    public void Application_DoesNotReferenceFrameworkAdapterPackages()
+    {
+        // Application may reference MediatR (CQRS dispatch is part of the
+        // application orchestration contract per ADR-018), but must not
+        // reference any concrete framework adapter: web stack, DI container,
+        // logging implementation, persistence driver, etc. Those belong in
+        // Infra.* projects.
+        var refs = ReferencedAssemblyNames(Application);
+
+        var forbidden = new[]
+        {
+            "Microsoft.AspNetCore",
+            "Microsoft.AspNetCore.App",
+            "Microsoft.Extensions.DependencyInjection",
+            "Microsoft.Extensions.DependencyInjection.Abstractions",
+            "Microsoft.Extensions.Logging",
+            "Microsoft.Extensions.Logging.Abstractions",
+            "Microsoft.Extensions.Configuration",
+            "Microsoft.Extensions.Configuration.Abstractions",
+            "Microsoft.Data.Sqlite",
+            "Dapper",
+        };
+
+        foreach (var name in forbidden)
+        {
+            Assert.That(refs, Does.Not.Contain(name), $"Application must not reference '{name}'.");
+        }
+    }
+
+    [Test]
+    public void Application_AbstractionsFolder_OnlyContainsInterfaces()
+    {
+        // ADR-021 fixes Application/Abstractions/ as the home for ports:
+        // every type declared there must be an interface, with concrete
+        // implementations living in Infra.* projects. A concrete class
+        // appearing here is the early signal that the layout discipline
+        // is slipping, and must fail the build.
+        var result = Types
+            .InAssembly(Application)
+            .That()
+            .ResideInNamespace("Dawning.AgentOS.Application.Abstractions")
+            .Should()
+            .BeInterfaces()
+            .GetResult();
+
+        Assert.That(result.IsSuccessful, Is.True, FormatFailures(result));
+    }
+
+    private static HashSet<string> ReferencedAssemblyNames(Assembly assembly) =>
+        assembly
+            .GetReferencedAssemblies()
             .Select(n => n.Name ?? string.Empty)
             .ToHashSet(StringComparer.Ordinal);
 
