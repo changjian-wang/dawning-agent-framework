@@ -5,11 +5,57 @@ using NUnit.Framework;
 namespace Dawning.AgentOS.Architecture.Tests;
 
 /// <summary>
-/// Pins the dependency direction of the layered architecture defined by
-/// ADR-017 / ADR-018. Layering rules use assembly references (the actual
-/// project boundary), while type-level rules use NetArchTest. New src
-/// projects must register here before they are merged.
+/// Pins the dependency direction of the layered architecture. New src
+/// projects must register their layering rule here before they are merged.
 /// </summary>
+/// <remarks>
+/// <para>
+/// Two assertion styles are intentionally mixed:
+/// </para>
+/// <list type="bullet">
+///   <item>
+///     <description>
+///       <b>Layer direction</b> uses <see cref="Assembly.GetReferencedAssemblies"/>
+///       with exact <c>Name</c> comparison. Project assembly names are unique
+///       identifiers, so contains / not-contains over a hash set is unambiguous.
+///     </description>
+///   </item>
+///   <item>
+///     <description>
+///       <b>Type-level bans</b> (e.g. forbidding pipeline interfaces from a
+///       given layer) use NetArchTest with concrete type full names such as
+///       <c>"MediatR.IMediator"</c>, never bare namespace prefixes.
+///     </description>
+///   </item>
+/// </list>
+/// <para>
+/// Two pitfalls justify the split:
+/// </para>
+/// <list type="number">
+///   <item>
+///     <description>
+///       NetArchTest matches dependencies with <c>StartsWith</c> against the
+///       full type name. <c>HaveDependencyOn("Dawning.AgentOS.Domain")</c>
+///       would falsely fire on <c>Dawning.AgentOS.Domain.Core.*</c>, and
+///       <c>HaveDependencyOn("MediatR")</c> would falsely fire on the legal
+///       <c>MediatR.Contracts.INotification</c> dependency. Hence layer rules
+///       avoid NetArchTest entirely, and type-level bans always name the
+///       concrete forbidden type.
+///     </description>
+///   </item>
+///   <item>
+///     <description>
+///       The C# compiler removes ProjectReferences from emitted assembly
+///       metadata when no source type actually binds to a type from that
+///       reference. Until a layer has at least one concrete type derived from
+///       an upstream base class (or returning an upstream value), positive
+///       "must reference X" assertions are flaky. Only forbidden-direction
+///       assertions are written here; positive assertions are added once a
+///       layer has real type bindings.
+///     </description>
+///   </item>
+/// </list>
+/// </remarks>
 [TestFixture]
 public sealed class LayeringTests
 {
