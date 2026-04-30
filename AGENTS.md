@@ -47,4 +47,4 @@
 
 ---
 
-*更新：2026-04-28 | 仓库形态见 `docs/pages/adrs/repository-shape-product-monorepo-with-wiki.md`。关于 wiki 结构：见 `docs/SCHEMA.md`。关于产品方向：见 `docs/PURPOSE.md`。*
+*更新：2026-04-30 | 仓库形态见 `docs/pages/adrs/repository-shape-product-monorepo-with-wiki.md`。关于 wiki 结构：见 `docs/SCHEMA.md`。关于产品方向：见 `docs/PURPOSE.md`。*
