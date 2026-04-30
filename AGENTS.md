@@ -33,6 +33,7 @@
 - 不写无法追溯到 `sources` 的事实性判断；查不到当前结论时返回「未收录」，不要硬编。
 - 不创建违反 SCHEMA 契约的页面；类型、枚举、目录、模板、生命周期、拓扑必须按 SCHEMA。
 - 不物理删除 wiki 页；退役走 `status: archived` + `archived_reason`，取代关系走 `supersedes`。
+- 提交前遵守 [`Rule Git Commit 规范`](./docs/pages/rules/git-commit-conventions.md)：type/scope 白名单、主题行 ≤72、一个 ADR = 一个 commit。
 - 不确定时停下来问人类。
 
 ## 不在范围内的事

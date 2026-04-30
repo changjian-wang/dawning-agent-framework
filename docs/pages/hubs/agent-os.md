@@ -61,6 +61,7 @@ part_of: []
 已落地规则：
 
 - [Rule 实现前必须方案先行](../rules/plan-first-implementation.md)
+- [Rule Git Commit 规范](../rules/git-commit-conventions.md)
 
 预期的子 hub（待建）：
 
