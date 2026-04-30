@@ -58,6 +58,7 @@ part_of: []
 - [ADR-017 工程骨架 V0：桌面壳 + DDD 本地后端通电](../adrs/engineering-skeleton-v0.md)
 - [ADR-018 后端架构参考 Equinox：DDD + MediatR + Result 模式](../adrs/backend-architecture-equinox-reference.md)
 - [ADR-019 测试栈：NUnit + Moq + NetArchTest](../adrs/testing-stack-nunit-v0.md)
+- [ADR-020 架构测试断言策略：层级用 assembly 引用 + 类型级用 NetArchTest 到具体类型名](../adrs/architecture-test-assertion-strategy.md)
 
 已落地规则：
 
