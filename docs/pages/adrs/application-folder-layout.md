@@ -2,27 +2,29 @@
 title: ADR-021 Application 项目目录约定：Abstractions / Messaging / 垂直切片
 type: adr
 subtype: architecture
-canonical: true
+canonical: false
 summary: Dawning.AgentOS.Application 内部不使用 Common/ 总目录，改为按职责扁平：Abstractions/ 放端口、Messaging/ 放 CQRS marker、<Feature>/ 放垂直切片，跨切片 DTO 在第二次出现时按主题单独建文件夹。
 tags: [agent]
 sources: []
 created: 2026-04-30
-updated: 2026-04-30
+updated: 2026-05-01
 verified_at: 2026-04-30
 freshness: volatile
 status: active
 archived_reason: ""
 supersedes: []
-related: [pages/adrs/engineering-skeleton-v0.md, pages/adrs/backend-architecture-equinox-reference.md, pages/adrs/architecture-test-assertion-strategy.md, pages/rules/plan-first-implementation.md]
+related: [pages/adrs/engineering-skeleton-v0.md, pages/adrs/backend-architecture-equinox-reference.md, pages/adrs/architecture-test-assertion-strategy.md, pages/adrs/no-mediator-self-domain-event-dispatcher.md, pages/rules/plan-first-implementation.md]
 part_of: [pages/hubs/agent-os.md]
-adr_status: accepted
+adr_status: superseded
 adr_date: 2026-04-30
-adr_revisit_when: "Application 项目根的横切文件夹数量 ≥ 5；或出现一类既非端口、亦非 CQRS marker、亦非垂直切片、亦非跨切片 DTO 的新类型；或编排扁平布局所需的架构测试断言成本超过维护一个 Common/ 总目录的成本时；或上游 ADR-017 / ADR-018 因其它原因被整体 supersede 时。"
+adr_revisit_when: ""
 ---
 
 # ADR-021 Application 项目目录约定：Abstractions / Messaging / 垂直切片
 
 > Dawning.AgentOS.Application 内部不使用 Common/ 总目录，改为按职责扁平：Abstractions/ 放端口、Messaging/ 放 CQRS marker、<Feature>/ 放垂直切片，跨切片 DTO 在第二次出现时按主题单独建文件夹。
+
+> **superseded by [ADR-022 去 MediatR：自研领域事件分发器与 AppService 立面](no-mediator-self-domain-event-dispatcher.md)（2026-05-01）。** 本 ADR 的「Common/ 是反模式」洞察、「机器可校的目录边界」原则、「第二次原则」均被 ADR-022 继承；但 ADR-021 提出的 `Messaging/` + `<Feature>/` 垂直切片 marker 心智已被 ADR-022 改为 `Interfaces/` + `Services/` 的 AppService 立面心智，配套的 marker 接口与 MediatR 已整体移除。
 
 ## 背景
 
