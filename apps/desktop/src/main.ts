@@ -66,10 +66,13 @@ async function startBackend(): Promise<RuntimeContext> {
 function createWindow(context: RuntimeContext): BrowserWindow {
   const window = new BrowserWindow({
     width: 720,
-    height: 480,
+    height: 600,
     title: "Dawning Agent OS — V0",
     webPreferences: {
-      preload: path.join(__dirname, "preload.cjs.js"),
+      // Per ADR-027 §2 preload is precompiled via tsconfig.preload.json
+      // to dist/preload.cjs.js. __dirname is `src/` under tsx, so we go
+      // up one level into the package root to reach dist/.
+      preload: path.join(__dirname, "..", "dist", "preload.cjs.js"),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,
@@ -100,6 +103,75 @@ ipcMain.handle("agentos:runtime:get-status", async () => {
 ipcMain.handle("agentos:runtime:get-base-url", () => {
   return runtime?.baseUrl ?? "";
 });
+
+// Per ADR-027 §4 / §5 the renderer calls these IPC channels via the
+// preload bridge `window.agentos.inbox.{capture,list}`. The token
+// stays in main; renderer never sees it.
+
+interface InboxIpcOk<T> {
+  ok: true;
+  value: T;
+}
+
+interface InboxIpcErr {
+  ok: false;
+  status: number;
+  problem: unknown;
+}
+
+type InboxIpcResult<T> = InboxIpcOk<T> | InboxIpcErr;
+
+async function readBodyAsResult<T>(response: Response): Promise<InboxIpcResult<T>> {
+  if (response.ok) {
+    const value = (await response.json()) as T;
+    return { ok: true, value };
+  }
+  let problem: unknown = null;
+  try {
+    problem = await response.json();
+  } catch {
+    problem = { title: response.statusText };
+  }
+  return { ok: false, status: response.status, problem };
+}
+
+ipcMain.handle(
+  "agentos:inbox:capture",
+  async (_event, req: { content?: unknown; source?: unknown }) => {
+    if (!runtime) {
+      throw new Error("runtime not initialized");
+    }
+    const body = JSON.stringify({
+      content: typeof req?.content === "string" ? req.content : "",
+      source: typeof req?.source === "string" ? req.source : null,
+    });
+    const response = await fetch(`${runtime.baseUrl}/api/inbox`, {
+      method: "POST",
+      headers: {
+        [HEADER_NAME]: runtime.token,
+        "Content-Type": "application/json",
+      },
+      body,
+    });
+    return readBodyAsResult(response);
+  },
+);
+
+ipcMain.handle(
+  "agentos:inbox:list",
+  async (_event, query: { limit?: unknown; offset?: unknown }) => {
+    if (!runtime) {
+      throw new Error("runtime not initialized");
+    }
+    const limit = typeof query?.limit === "number" && Number.isFinite(query.limit) ? query.limit : 50;
+    const offset = typeof query?.offset === "number" && Number.isFinite(query.offset) ? query.offset : 0;
+    const url = `${runtime.baseUrl}/api/inbox?limit=${limit}&offset=${offset}`;
+    const response = await fetch(url, {
+      headers: { [HEADER_NAME]: runtime.token },
+    });
+    return readBodyAsResult(response);
+  },
+);
 
 app.whenReady().then(async () => {
   try {

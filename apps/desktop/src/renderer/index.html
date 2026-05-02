@@ -7,59 +7,319 @@
     <style>
       :root {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color-scheme: light dark;
+        color-scheme: dark;
       }
+      * { box-sizing: border-box; }
       body {
         margin: 0;
-        padding: 24px;
+        padding: 20px;
         background: #1a1a1a;
         color: #f5f5f5;
+        font-size: 14px;
+        line-height: 1.5;
       }
-      h1 {
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 16px;
+      }
+      header h1 {
         font-size: 16px;
         font-weight: 500;
-        margin: 0 0 12px;
-        opacity: 0.7;
+        margin: 0;
+        opacity: 0.85;
       }
-      pre {
+      header .status {
+        font-size: 12px;
+        opacity: 0.6;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      header .status.ok { color: #4ade80; opacity: 0.85; }
+      header .status.err { color: #f87171; opacity: 0.95; }
+      section { margin-bottom: 20px; }
+      label {
+        display: block;
+        font-size: 12px;
+        opacity: 0.7;
+        margin-bottom: 4px;
+      }
+      textarea, input[type="text"] {
+        width: 100%;
         background: #0d0d0d;
         border: 1px solid #2a2a2a;
-        border-radius: 6px;
-        padding: 16px;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        border-radius: 4px;
+        color: #f5f5f5;
+        font-family: inherit;
         font-size: 13px;
-        line-height: 1.5;
-        overflow-x: auto;
+        padding: 8px 10px;
+        outline: none;
+      }
+      textarea {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        resize: vertical;
+        min-height: 90px;
+      }
+      textarea:focus, input[type="text"]:focus {
+        border-color: #4ade80;
+      }
+      .row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+      .row input[type="text"] { flex: 1; }
+      button {
+        background: #2a2a2a;
+        color: #f5f5f5;
+        border: 1px solid #3a3a3a;
+        border-radius: 4px;
+        padding: 6px 14px;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      button:hover { background: #333; }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+      button.primary { background: #166534; border-color: #166534; }
+      button.primary:hover:not(:disabled) { background: #15803d; }
+      .error {
+        margin-top: 8px;
+        padding: 8px 10px;
+        background: #2a0d0d;
+        border: 1px solid #5a1d1d;
+        border-radius: 4px;
+        color: #f87171;
+        font-size: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        white-space: pre-wrap;
+      }
+      .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 8px;
+      }
+      .list-header h2 {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+        opacity: 0.85;
+      }
+      .list-header .count {
+        font-size: 12px;
+        opacity: 0.6;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
         margin: 0;
       }
-      .ok { color: #4ade80; }
-      .err { color: #f87171; }
+      li {
+        background: #0d0d0d;
+        border: 1px solid #2a2a2a;
+        border-radius: 4px;
+        padding: 10px 12px;
+        margin-bottom: 6px;
+      }
+      li .content {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin-bottom: 6px;
+      }
+      li .meta {
+        font-size: 11px;
+        opacity: 0.55;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      .empty {
+        opacity: 0.5;
+        font-style: italic;
+        font-size: 13px;
+        padding: 12px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <h1>dawning-agent-os · runtime status</h1>
-    <pre id="status">loading…</pre>
+    <header>
+      <h1>dawning-agent-os · inbox V0</h1>
+      <span id="status" class="status">connecting…</span>
+    </header>
+
+    <section>
+      <label for="content">Capture a thought (≤ 4096 chars)</label>
+      <textarea id="content" rows="4" placeholder="What's on your mind?"></textarea>
+      <div class="row">
+        <input id="source" type="text" placeholder="source (optional, ≤ 64 chars)" />
+        <button id="capture-btn" class="primary" type="button">Capture</button>
+      </div>
+      <div id="capture-error" class="error" hidden></div>
+    </section>
+
+    <section>
+      <div class="list-header">
+        <h2>Recent items</h2>
+        <span class="count" id="list-count">—</span>
+      </div>
+      <div class="row" style="margin-top: 0; margin-bottom: 8px;">
+        <button id="refresh-btn" type="button">Refresh</button>
+      </div>
+      <ul id="list"></ul>
+      <div id="list-empty" class="empty" hidden>no items yet · capture one above</div>
+      <div id="list-error" class="error" hidden></div>
+    </section>
+
     <script>
-      // Per ADR-025 §5 this UI is a scaffold: it only proves to the human
-      // eye that database.ready=true && schemaVersion>=1. Real UI lives
-      // in the next ADR.
-      const el = document.getElementById('status');
-      const refresh = async () => {
-        try {
-          if (!window.agentos || !window.agentos.runtime) {
-            throw new Error('preload bridge missing — run via `pnpm run dev`');
+      // Per ADR-027 §1 / §6 / §7 this script is intentionally inline.
+      // No bundler, no framework. All HTTP goes through window.agentos.*
+      // which is provided by the preload bridge (dist/preload.cjs.js).
+      const LIST_LIMIT = 50;
+
+      const $ = (id) => document.getElementById(id);
+      const els = {
+        status: $('status'),
+        content: $('content'),
+        source: $('source'),
+        capture: $('capture-btn'),
+        captureErr: $('capture-error'),
+        list: $('list'),
+        listCount: $('list-count'),
+        listEmpty: $('list-empty'),
+        listErr: $('list-error'),
+        refresh: $('refresh-btn'),
+      };
+
+      const bridgeMissing = !(window.agentos && window.agentos.runtime && window.agentos.inbox);
+
+      const setStatus = (text, kind) => {
+        els.status.textContent = text;
+        els.status.className = 'status ' + (kind || '');
+      };
+
+      const showError = (el, text) => {
+        el.textContent = text;
+        el.removeAttribute('hidden');
+      };
+      const hideError = (el) => { el.setAttribute('hidden', ''); el.textContent = ''; };
+
+      const formatProblem = (problem, status) => {
+        if (!problem) return 'http ' + status;
+        const parts = [];
+        if (problem.title) parts.push(problem.title);
+        if (problem.detail) parts.push(problem.detail);
+        if (problem.errors && typeof problem.errors === 'object') {
+          for (const [field, msgs] of Object.entries(problem.errors)) {
+            if (Array.isArray(msgs)) {
+              for (const msg of msgs) parts.push(field + ': ' + msg);
+            }
           }
+        }
+        if (parts.length === 0) parts.push('http ' + status);
+        return parts.join('\n');
+      };
+
+      const formatTimestamp = (iso) => {
+        try {
+          const d = new Date(iso);
+          return d.toISOString().replace('T', ' ').replace(/\.\d+Z$/, 'Z');
+        } catch (_) { return iso; }
+      };
+
+      const renderList = (page) => {
+        els.list.innerHTML = '';
+        if (!page.items || page.items.length === 0) {
+          els.listEmpty.removeAttribute('hidden');
+          els.listCount.textContent = '0 items';
+          return;
+        }
+        els.listEmpty.setAttribute('hidden', '');
+        for (const item of page.items) {
+          const li = document.createElement('li');
+          const content = document.createElement('div');
+          content.className = 'content';
+          content.textContent = item.content;
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+          const source = item.source ? item.source : '—';
+          const idShort = (item.id || '').substring(0, 8);
+          meta.textContent = source + ' · ' + formatTimestamp(item.capturedAtUtc) + ' · ' + idShort;
+          li.appendChild(content);
+          li.appendChild(meta);
+          els.list.appendChild(li);
+        }
+        const showing = page.items.length;
+        const total = typeof page.total === 'number' ? page.total : showing;
+        els.listCount.textContent = 'showing ' + showing + ' of ' + total;
+      };
+
+      const refreshStatus = async () => {
+        try {
           const status = await window.agentos.runtime.getStatus();
           const ready = status && status.database && status.database.ready === true;
-          el.className = ready ? 'ok' : 'err';
-          el.textContent = JSON.stringify(status, null, 2);
+          const ver = status && status.database ? status.database.schemaVersion : '?';
+          setStatus('schema=' + ver + ' · api=' + (ready ? 'ok' : 'down'), ready ? 'ok' : 'err');
         } catch (err) {
-          el.className = 'err';
-          el.textContent = `error: ${err && err.message ? err.message : err}`;
+          setStatus('api=disconnected', 'err');
         }
       };
-      refresh();
-      setInterval(refresh, 5000);
+
+      const refreshList = async () => {
+        hideError(els.listErr);
+        try {
+          const result = await window.agentos.inbox.list({ limit: LIST_LIMIT, offset: 0 });
+          if (result.ok) {
+            renderList(result.value);
+          } else {
+            showError(els.listErr, formatProblem(result.problem, result.status));
+          }
+        } catch (err) {
+          showError(els.listErr, (err && err.message) ? err.message : String(err));
+        }
+      };
+
+      const capture = async () => {
+        hideError(els.captureErr);
+        const content = els.content.value;
+        const source = els.source.value.trim();
+        if (!content.trim()) {
+          showError(els.captureErr, 'content: required');
+          return;
+        }
+        els.capture.disabled = true;
+        try {
+          const req = source ? { content, source } : { content };
+          const result = await window.agentos.inbox.capture(req);
+          if (result.ok) {
+            els.content.value = '';
+            // keep source field as-is, users often capture in batches
+            await refreshList();
+          } else {
+            showError(els.captureErr, formatProblem(result.problem, result.status));
+          }
+        } catch (err) {
+          showError(els.captureErr, (err && err.message) ? err.message : String(err));
+        } finally {
+          els.capture.disabled = false;
+        }
+      };
+
+      els.capture.addEventListener('click', capture);
+      els.refresh.addEventListener('click', refreshList);
+      els.content.addEventListener('keydown', (ev) => {
+        // cmd/ctrl+enter submits
+        if ((ev.metaKey || ev.ctrlKey) && ev.key === 'Enter') {
+          ev.preventDefault();
+          capture();
+        }
+      });
+
+      if (bridgeMissing) {
+        setStatus('preload bridge missing', 'err');
+        showError(els.listErr, 'preload bridge missing — run `pnpm run dev` (which builds preload first)');
+      } else {
+        refreshStatus();
+        refreshList();
+      }
     </script>
   </body>
 </html>
+

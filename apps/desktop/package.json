@@ -6,8 +6,9 @@
   "type": "module",
   "main": "src/main.ts",
   "scripts": {
-    "dev": "tsx src/main.ts",
-    "smoke": "tsx scripts/smoke.ts",
+    "dev": "pnpm run build:preload && tsx src/main.ts",
+    "smoke": "pnpm run build:preload && tsx scripts/smoke.ts",
+    "build:preload": "tsc -p tsconfig.preload.json && node -e \"const fs=require('node:fs');fs.rmSync('dist/preload.cjs.js',{force:true});fs.renameSync('dist/preload.js','dist/preload.cjs.js')\"",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

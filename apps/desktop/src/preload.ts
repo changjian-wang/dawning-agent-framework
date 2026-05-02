@@ -1,19 +1,17 @@
 /**
  * Preload bridge — runs in the renderer's isolated world.
  *
- * Per ADR-025 §3 the renderer never sees the startup token directly;
- * instead it asks the main process via IPC for a fresh runtime status,
- * and main attaches the token on its way out. This keeps the token in
- * the main process and out of the BrowserWindow's JS context.
+ * Per ADR-025 §3 / ADR-027 §3 the renderer never sees the startup token
+ * directly; instead it asks the main process via IPC for runtime data
+ * and inbox operations, and main attaches the token on its way out.
+ * This keeps the token in the main process and out of the BrowserWindow
+ * JS context.
  *
- * NOTE: Electron does not (yet) load `.ts` preload modules through tsx;
- * the dev script transpiles this file to CommonJS at runtime via the
- * `tsx` loader. The `.cjs.js` filename in main.ts mirrors the on-disk
- * path tsx writes when the loader is active. For a bare `tsx`
- * invocation in S5b we accept that the renderer falls back to a plain
- * `index.html` that performs its own fetch via window.fetch when the
- * preload is unavailable. The full preload <-> renderer contract is
- * scaffolded here so the next ADR (front-end stack) has a stable surface.
+ * Per ADR-027 §2 this file is precompiled via `tsconfig.preload.json`
+ * to `dist/preload.cjs.js` and main.ts loads it from there. tsx does
+ * NOT participate in Electron's preload load chain — Electron's
+ * BrowserWindow uses its own loader, which expects a real CommonJS
+ * file on disk.
  */
 
 import { contextBridge, ipcRenderer } from "electron";
@@ -28,6 +26,34 @@ interface RuntimeStatus {
   [key: string]: unknown;
 }
 
+export interface InboxItemSnapshot {
+  id: string;
+  content: string;
+  source: string | null;
+  capturedAtUtc: string;
+  createdAt: string;
+}
+
+export interface InboxListPage {
+  items: InboxItemSnapshot[];
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+export interface InboxProblem {
+  type?: string;
+  title?: string;
+  status?: number;
+  detail?: string;
+  errors?: Record<string, string[]>;
+  [key: string]: unknown;
+}
+
+export type InboxIpcResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; status: number; problem: InboxProblem };
+
 const api = {
   runtime: {
     /** Returns the current /api/runtime/status JSON; main attaches the token. */
@@ -37,6 +63,27 @@ const api = {
     /** Returns the base URL without exposing the token. */
     getBaseUrl: async (): Promise<string> => {
       return (await ipcRenderer.invoke("agentos:runtime:get-base-url")) as string;
+    },
+  },
+  inbox: {
+    /** POST /api/inbox via main; token attached by main, never seen here. */
+    capture: async (req: {
+      content: string;
+      source?: string;
+    }): Promise<InboxIpcResult<InboxItemSnapshot>> => {
+      return (await ipcRenderer.invoke(
+        "agentos:inbox:capture",
+        req,
+      )) as InboxIpcResult<InboxItemSnapshot>;
+    },
+    /** GET /api/inbox via main; token attached by main, never seen here. */
+    list: async (
+      query: { limit?: number; offset?: number } = {},
+    ): Promise<InboxIpcResult<InboxListPage>> => {
+      return (await ipcRenderer.invoke(
+        "agentos:inbox:list",
+        query,
+      )) as InboxIpcResult<InboxListPage>;
     },
   },
 };
