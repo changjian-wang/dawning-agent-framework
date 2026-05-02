@@ -65,6 +65,7 @@ part_of: []
 - [ADR-024 SQLite/Dapper 通电：连接工厂、Schema 引导与 V0 持久化骨架](../adrs/sqlite-dapper-bootstrap-and-schema-init.md)
 - [ADR-025 桌面进程监督：Electron 主进程拉起 .NET Api 子进程的拓扑、端口与启动 token](../adrs/desktop-process-supervisor-electron-dotnet-child.md)
 - [ADR-026 Inbox V0 数据契约与捕获面：聚合形态、表结构、UUIDv7 主键与列表分页](../adrs/inbox-v0-capture-and-list-contract.md)
+- [ADR-027 桌面渲染端 V0：原生 HTML + 预编译 preload + 通过 IPC 桥的 inbox 单页 UI](../adrs/desktop-renderer-v0-native-html-and-ipc-bridge.md)
 
 已落地规则：
 
