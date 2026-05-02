@@ -64,6 +64,7 @@ part_of: []
 - [ADR-023 Api 入口立面：AppService 接入与 V0 端点形态](../adrs/api-entry-facade-and-v0-endpoints.md)
 - [ADR-024 SQLite/Dapper 通电：连接工厂、Schema 引导与 V0 持久化骨架](../adrs/sqlite-dapper-bootstrap-and-schema-init.md)
 - [ADR-025 桌面进程监督：Electron 主进程拉起 .NET Api 子进程的拓扑、端口与启动 token](../adrs/desktop-process-supervisor-electron-dotnet-child.md)
+- [ADR-026 Inbox V0 数据契约与捕获面：聚合形态、表结构、UUIDv7 主键与列表分页](../adrs/inbox-v0-capture-and-list-contract.md)
 
 已落地规则：
 
