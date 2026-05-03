@@ -17,12 +17,12 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { BackendChildProcess } from "./supervisor/spawn-backend.ts";
+import type { BackendChildProcess } from "./supervisor/spawn-backend.js";
 
-import { spawnBackend, HEADER_NAME } from "./supervisor/spawn-backend.ts";
-import { awaitListening } from "./supervisor/port-handshake.ts";
-import { probeUntilReady } from "./supervisor/readiness-probe.ts";
-import { shutdownBackend } from "./supervisor/shutdown.ts";
+import { spawnBackend, HEADER_NAME } from "./supervisor/spawn-backend.js";
+import { awaitListening } from "./supervisor/port-handshake.js";
+import { probeUntilReady } from "./supervisor/readiness-probe.js";
+import { shutdownBackend } from "./supervisor/shutdown.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -70,9 +70,9 @@ function createWindow(context: RuntimeContext): BrowserWindow {
     title: "Dawning Agent OS — V0",
     webPreferences: {
       // Per ADR-027 §2 preload is precompiled via tsconfig.preload.json
-      // to dist/preload.cjs.js. __dirname is `src/` under tsx, so we go
-      // up one level into the package root to reach dist/.
-      preload: path.join(__dirname, "..", "dist", "preload.cjs.js"),
+      // to dist/preload.cjs.js. main.ts is also precompiled to dist/main.js
+      // via tsconfig.electron.json, so the preload sits in the same dir.
+      preload: path.join(__dirname, "preload.cjs.js"),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,

@@ -12,7 +12,7 @@
  * regardless of where in the buffer it lands.
  */
 
-import type { BackendChildProcess } from "./spawn-backend.ts";
+import type { BackendChildProcess } from "./spawn-backend.js";
 
 const LISTENING_PATTERN = /Now listening on:\s+(https?:\/\/[^\s]+)/i;
 

@@ -7,7 +7,7 @@
  * after shutdown.
  */
 
-import type { BackendChildProcess } from "./spawn-backend.ts";
+import type { BackendChildProcess } from "./spawn-backend.js";
 
 const DEFAULT_GRACE_MS = 10_000;
 

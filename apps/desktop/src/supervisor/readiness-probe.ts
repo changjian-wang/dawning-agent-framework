@@ -13,7 +13,7 @@
  * only describes the subset it needs to validate readiness.
  */
 
-import { HEADER_NAME } from "./spawn-backend.ts";
+import { HEADER_NAME } from "./spawn-backend.js";
 
 export interface RuntimeStatusResponse {
   healthy?: boolean;
