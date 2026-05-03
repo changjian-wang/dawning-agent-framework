@@ -43,6 +43,12 @@ public sealed class InboxRepository(IDbConnectionFactory connectionFactory) : II
         + "ORDER BY captured_at_utc DESC, id DESC "
         + "LIMIT @limit OFFSET @offset";
 
+    private const string GetByIdSql =
+        "SELECT id, content, source, captured_at_utc, created_at_utc "
+        + "FROM inbox_items "
+        + "WHERE id = @id "
+        + "LIMIT 1";
+
     private const string CountSql = "SELECT COUNT(*) FROM inbox_items";
 
     private readonly IDbConnectionFactory _connectionFactory =
@@ -106,6 +112,26 @@ public sealed class InboxRepository(IDbConnectionFactory connectionFactory) : II
             items.Add(MapRow(row));
         }
         return items;
+    }
+
+    /// <inheritdoc />
+    public async Task<InboxItem?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        await using var connection = await _connectionFactory
+            .OpenAsync(cancellationToken)
+            .ConfigureAwait(false);
+
+        var row = await connection
+            .QuerySingleOrDefaultAsync<InboxItemRow>(
+                new CommandDefinition(
+                    GetByIdSql,
+                    new { id = id.ToString() },
+                    cancellationToken: cancellationToken
+                )
+            )
+            .ConfigureAwait(false);
+
+        return row is null ? null : MapRow(row);
     }
 
     /// <inheritdoc />
