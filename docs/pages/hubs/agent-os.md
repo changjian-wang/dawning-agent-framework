@@ -67,6 +67,7 @@ part_of: []
 - [ADR-026 Inbox V0 数据契约与捕获面：聚合形态、表结构、UUIDv7 主键与列表分页](../adrs/inbox-v0-capture-and-list-contract.md)
 - [ADR-027 桌面渲染端 V0：原生 HTML + 预编译 preload + 通过 IPC 桥的 inbox 单页 UI](../adrs/desktop-renderer-v0-native-html-and-ipc-bridge.md)
 - [ADR-028 LLM Provider V0：ILlmProvider 抽象、OpenAI/DeepSeek 兼容客户端与 /api/llm/ping smoke 端点](../adrs/llm-provider-v0-openai-deepseek-abstraction.md)
+- [ADR-029 LLM Provider 扩展：Azure OpenAI 支持](../adrs/llm-provider-azure-openai-extension.md)
 
 已落地规则：
 
