@@ -144,7 +144,9 @@ public static class InfrastructureServiceCollectionExtensions
             if (string.IsNullOrEmpty(providerOptions.ApiKey))
             {
                 logger.LogWarning(
-                    "LLM ApiKey for active provider '{Provider}' is empty; calls will return llm.authenticationFailed until configured.",
+                    "LLM ApiKey for active provider '{Provider}' is empty. Set via environment variable "
+                    + "(e.g., LLM_PROVIDERS_OPENAI_APIKEY for OpenAI) or dotnet user-secrets. "
+                    + "Until configured, LLM calls will return llm.authenticationFailed.",
                     opts.ActiveProvider
                 );
             }
