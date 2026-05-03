@@ -1,13 +1,20 @@
 using Dawning.AgentOS.Application.Abstractions;
 using Dawning.AgentOS.Application.Abstractions.Hosting;
+using Dawning.AgentOS.Application.Abstractions.Llm;
+using Dawning.AgentOS.Application.Llm;
 using Dawning.AgentOS.Application.Abstractions.Persistence;
 using Dawning.AgentOS.Domain.Inbox;
 using Dawning.AgentOS.Infrastructure.Hosting;
+using Dawning.AgentOS.Infrastructure.Llm.DeepSeek;
+using Dawning.AgentOS.Infrastructure.Llm.OpenAi;
 using Dawning.AgentOS.Infrastructure.Options;
 using Dawning.AgentOS.Infrastructure.Persistence;
 using Dawning.AgentOS.Infrastructure.Persistence.Inbox;
 using Dawning.AgentOS.Infrastructure.Time;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Dawning.AgentOS.Infrastructure.DependencyInjection;
 
@@ -24,10 +31,15 @@ public static class InfrastructureServiceCollectionExtensions
     /// <paramref name="services"/>.
     /// </summary>
     /// <param name="services">The DI service collection.</param>
+    /// <param name="configuration">The host configuration; used to bind <see cref="LlmOptions"/> per ADR-028 §决策 E1 / F1.</param>
     /// <returns>The same collection for fluent chaining.</returns>
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         ArgumentNullException.ThrowIfNull(services);
+        ArgumentNullException.ThrowIfNull(configuration);
 
         // ADR-026 §5: Dapper materializes snake_case columns into
         // PascalCase row classes; this is a process-wide setting and
@@ -55,6 +67,129 @@ public static class InfrastructureServiceCollectionExtensions
         // (ADR-024 §E1) keeps the repository safely re-entrant.
         services.AddScoped<IInboxRepository, InboxRepository>();
 
+        // LLM provider (ADR-028).
+        services.AddLlm(configuration);
+
         return services;
     }
+
+    /// <summary>
+    /// Internal helper isolating the LLM-provider wiring fixed in
+    /// ADR-028 §决策 A1 / E1 / F1 / G2 / I1: bind <see cref="LlmOptions"/>
+    /// from configuration, validate <see cref="LlmOptions.ActiveProvider"/>
+    /// at startup, register one named <see cref="HttpClient"/> per
+    /// provider, and register exactly one <see cref="ILlmProvider"/>
+    /// implementation (the active one) so callers stay agnostic.
+    /// </summary>
+    private static IServiceCollection AddLlm(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services
+            .AddOptions<LlmOptions>()
+            .Bind(configuration.GetSection(LlmOptions.SectionName))
+            .ValidateOnStart();
+        services.AddSingleton<IValidateOptions<LlmOptions>, LlmOptionsValidator>();
+
+        // Resolve the bound options once at composition time so we can
+        // pin each named HttpClient's BaseAddress correctly. ApiKey can
+        // still be empty at this point — see ADR-028 §决策 G2.
+        var snapshot = new LlmOptions();
+        configuration.GetSection(LlmOptions.SectionName).Bind(snapshot);
+
+        services.AddHttpClient(
+            OpenAiLlmProvider.HttpClientName,
+            client =>
+            {
+                if (!string.IsNullOrWhiteSpace(snapshot.Providers.OpenAI.BaseUrl))
+                {
+                    client.BaseAddress = new Uri(snapshot.Providers.OpenAI.BaseUrl);
+                }
+            }
+        );
+
+        services.AddHttpClient(
+            DeepSeekLlmProvider.HttpClientName,
+            client =>
+            {
+                if (!string.IsNullOrWhiteSpace(snapshot.Providers.DeepSeek.BaseUrl))
+                {
+                    client.BaseAddress = new Uri(snapshot.Providers.DeepSeek.BaseUrl);
+                }
+            }
+        );
+
+        // Register exactly one ILlmProvider per the active selection.
+        // Callers receive an opaque ILlmProvider; provider-specific
+        // types (OpenAiLlmProvider / DeepSeekLlmProvider) are internal.
+        services.AddSingleton<ILlmProvider>(sp =>
+        {
+            var opts = sp.GetRequiredService<IOptionsMonitor<LlmOptions>>().CurrentValue;
+            var logger = sp.GetRequiredService<ILogger<LlmOptions>>();
+            var provider = ResolveActiveProvider(sp, opts);
+
+            // ADR-028 §决策 G2: empty ApiKey is allowed at startup so
+            // the rest of the surface remains usable; we surface a
+            // single warning here so operators see the cause without
+            // reading the source.
+            var providerOptions = string.Equals(
+                opts.ActiveProvider,
+                LlmOptions.OpenAiProviderName,
+                StringComparison.Ordinal
+            )
+                ? opts.Providers.OpenAI
+                : opts.Providers.DeepSeek;
+
+            if (string.IsNullOrEmpty(providerOptions.ApiKey))
+            {
+                logger.LogWarning(
+                    "LLM ApiKey for active provider '{Provider}' is empty; calls will return llm.authenticationFailed until configured.",
+                    opts.ActiveProvider
+                );
+            }
+
+            return provider;
+        });
+
+        return services;
+    }
+
+    private static ILlmProvider ResolveActiveProvider(IServiceProvider sp, LlmOptions options)
+    {
+        var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
+        var optionsMonitor = sp.GetRequiredService<IOptionsMonitor<LlmOptions>>();
+
+        if (
+            string.Equals(
+                options.ActiveProvider,
+                LlmOptions.OpenAiProviderName,
+                StringComparison.Ordinal
+            )
+        )
+        {
+            return new OpenAiLlmProvider(httpClientFactory, optionsMonitor);
+        }
+
+        if (
+            string.Equals(
+                options.ActiveProvider,
+                LlmOptions.DeepSeekProviderName,
+                StringComparison.Ordinal
+            )
+        )
+        {
+            return new DeepSeekLlmProvider(httpClientFactory, optionsMonitor);
+        }
+
+        // The IValidateOptions<LlmOptions> guard runs at startup before
+        // this factory is invoked, so reaching here would indicate a
+        // bypassed validation chain. Throwing matches the existing
+        // ArgumentException convention in this layer.
+        throw new InvalidOperationException(
+            $"Unknown LLM ActiveProvider '{options.ActiveProvider}'; expected "
+                + $"'{LlmOptions.OpenAiProviderName}' or '{LlmOptions.DeepSeekProviderName}'."
+        );
+    }
 }
+

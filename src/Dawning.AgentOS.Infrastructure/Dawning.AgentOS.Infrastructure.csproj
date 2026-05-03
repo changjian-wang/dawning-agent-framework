@@ -29,6 +29,7 @@
         <PackageReference Include="Microsoft.Data.Sqlite" />
         <PackageReference Include="Dapper" />
         <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.Http" />
         <PackageReference Include="Microsoft.Extensions.Options" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     </ItemGroup>
@@ -41,5 +42,13 @@
          on filesystem layout at deployment time. -->
     <ItemGroup>
         <EmbeddedResource Include="Persistence\Migrations\*.sql" />
+    </ItemGroup>
+
+    <!-- ADR-028 §决策 J1: provider implementations are intentionally
+         internal sealed; the test assembly needs InternalsVisibleTo to
+         construct them through the same DI shape (IHttpClientFactory +
+         IOptionsMonitor) that AddInfrastructure() uses in production. -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="Dawning.AgentOS.Infrastructure.Tests" />
     </ItemGroup>
 </Project>

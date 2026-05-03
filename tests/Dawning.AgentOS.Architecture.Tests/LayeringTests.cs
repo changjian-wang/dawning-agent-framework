@@ -387,13 +387,20 @@ public sealed class LayeringTests
     [Test]
     public void Api_EndpointsNamespace_OnlyContainsStaticClasses()
     {
-        // Per ADR-023 §2 every endpoint group is a static class providing
-        // a Map<Feature>Endpoints extension method. NetArchTest models
-        // 'static' as 'sealed + abstract' on the underlying type metadata.
+        // Per ADR-023 §2 every endpoint registration class is a static
+        // class providing a Map<Feature>Endpoints extension method.
+        // NetArchTest models 'static' as 'sealed + abstract' on the
+        // underlying type metadata. The rule is scoped to types named
+        // *Endpoints so that purely-Api response DTOs (records) can
+        // coexist alongside their endpoint group without violating the
+        // contract intent (which is about the registration shape, not
+        // about what other types may live under the Endpoints folder).
         var result = Types
             .InAssembly(Api)
             .That()
             .ResideInNamespaceStartingWith("Dawning.AgentOS.Api.Endpoints")
+            .And()
+            .HaveNameEndingWith("Endpoints")
             .Should()
             .BeClasses()
             .And()
